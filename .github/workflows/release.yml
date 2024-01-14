@@ -180,3 +180,5 @@ jobs:
           publish_branch: main # default: gh-pages
           publish_dir: ./updater
           force_orphan: true
+        env:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
