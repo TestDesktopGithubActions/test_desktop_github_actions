@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "Comprar Paquete",
+    "visitWebsite": "Visitar el sitio web oficial",
+    "contactCustomerService": "Contactar al Servicio al Cliente",
+    "preferences": "Preferencias",
+    "versionCheck": "Verificación de Versión",
+    "logout": "Cerrar Sesión",
+    "uploadLog": "Subir Registro",
+    "uploadLogSuccess": "Registro subido con éxito",
+    "exit": "Salir del programa"
+  },
+  "modal": {
+    "notification": "Notificación",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "close": "Cerrar"
+  },
+  "auth": {
+    "login": "Iniciar sesión ahora",
+    "signup": "Registrarse ahora",
+    "forgotPassword": "¿Olvidaste tu contraseña?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "Por favor, ingresa el código de invitación",
+    "emailPlaceholder": "Por favor, ingresa tu correo electrónico",
+    "emailInvalid": "Por favor, ingresa un correo electrónico válido",
+    "passwordPlaceholder": "Por favor, ingresa la contraseña",
+    "confirmPasswordPlaceholder": "Por favor, confirma la contraseña",
+    "confirmPasswordInvalid": "Las dos contraseñas no coinciden",
+    "button": "Registrarse",
+    "urlText": "Ir al inicio de sesión",
+    "hint": "¿Ya tienes una cuenta? {0}",
+    "activateMessage": "¡Registro exitoso! Hemos enviado un código de activación a tu correo electrónico. Por favor, ingresa el código para activar tu cuenta.",
+    "activationCodePlaceholder": "Por favor, ingresa el código de activación",
+    "activationCodeInvalid": "Por favor, ingresa un código de activación válido",
+    "activateSuccessMessage": "¡Activación exitosa! Serás redirigido a la página de inicio de sesión en breve.",
+    "activateButton": "Activar"
+  },
+  "login": {
+    "emailPlaceholder": "por favor, ingresa tu correo electrónico",
+    "emailInvalid": "Por favor, ingresa un correo electrónico válido",
+    "passwordPlaceholder": "por favor, ingresa la contraseña",
+    "button": "Iniciar sesión",
+    "urlText": "crear una cuenta",
+    "hint": "¿No tienes una cuenta? {0}",
+    "invalidMessage": "¡Ups! ¿Estás seguro de que la contraseña de la cuenta es correcta?",
+    "loadingText": "Genial, estamos iniciando sesión ahora"
+  },
+  "index": {
+    "selectRoute": "Por favor, selecciona una ruta",
+    "buttonText": "Conexión Rápida",
+    "buttonTextDisconnect": "Desconectar",
+    "buttonTextConnecting": "Conectando",
+    "buttonTextDisconnecting": "Desconectando",
+    "buttonConnectedDuration": "Duración de la Conexión",
+    "hint": "Línea {0} actualmente seleccionada en modo oficina",
+    "route": "Ruta",
+    "state": "Estado:",
+    "disconnect": "Desconectado",
+    "connect": "Conectado",
+    "connecting": "Conectando",
+    "disconnecting": "Desconectando",
+    "connectHint": "Haz clic para conectar",
+    "disconnectHint": "Haz clic para desconectar",
+    "renewalTips": "Ve a la aplicación para comprar o renovar tu paquete",
+    "renewNow": "Paquete restante {0} días, vence el {1}",
+    "lineLoading": "Cargando",
+    "selectLine": "Selecciona una ruta",
+    "defaultLine": "Emparejar automáticamente la ruta más rápida",
+    "disconnectFirst": "Por favor, desconéctese primero",
+    "noRouteNodes": "No hay rutas disponibles por el momento",
+    "defaultNodeCountry": "Línea: Automático({0})",
+    "packageExpired": "Paquete caducado",
+    "forceDisconnect": "La conexión actual ha sido desconectada por la fuerza"
+  },
+  "preference": {
+    "selfStart": "Iniciar automáticamente al iniciar",
+    "selectLanguage": "Seleccionar Idioma"
+  },
+  "versionCheck": {
+    "new": "Nueva Versión Encontrada",
+    "versión": "Versión",
+    "checking": "Comprobando...",
+    "update": "Actualizar Ahora",
+    "latest": "Tu versión actual es la más reciente"
+  }
+}

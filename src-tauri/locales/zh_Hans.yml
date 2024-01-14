@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: 解析错误
+Database error: 数据库错误
+Http error: HTTP错误
+Param error: 参数错误
+IO error: 输入输出错误
+System error: 系统错误
+
+# BadRequest
+Login error: 登录错误
+Logout error: 注销错误
+Account update token error: 帐户更新令牌错误
+Node error: 节点错误
+Upload error: 上传错误
+System tray error: 系统托盘错误
+Language error: 语言错误
+Init database error: 初始化数据库错误
+Storage error: 存储错误
+Splash screen error: 启动画面错误
+Ping error: Ping错误
+
+# Middleware
+Decode error: 解码错误
+Invalid token: 无效令牌
+Invalid token, without key: 无效令牌，无密钥
+Invalid key: 无效密钥
+
+Auth error: 认证错误
+Encrypt error: 加密错误
+Decrypt error: 解密错误
+International error: 国际化错误
+Signature error: 签名错误
+
+# Login
+Get mac address failed: 获取MAC地址失败
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: 设置语言失败
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: 更新系统托盘图标失败
+System tray handle get failed: 获取系统托盘句柄失败
+
+# Http
+Http builder generate failed: HTTP构建器生成失败
+Received a non-success status: 收到非成功状态
+Get physical iface error: 获取物理接口错误
+Operation timed out: 操作超时
+Request failed: 请求失败
+
+# IO
+Create directory failed: 创建目录失败
+
+# Parse
+Parse vector to string failed: 将向量解析为字符串失败
+Parse addr failed: 解析地址失败
+Parse value to vector failed: 将值解析为向量失败
+Parse vector to array failed: 将向量解析为数组失败
+Serialize json error: 序列化JSON错误
+Deserialize json error: 反序列化JSON错误
+
+# Param
+Token is empty: 令牌为空
+Email is empty: 电子邮件为空
+Passwd is empty: 密码为空
+Sorry, please enter the correct email: 抱歉，请输入正确的电子邮件
+No valid IPs to ping: 没有有效的IP进行ping
+
+# Jwt
+Do not access illegally: 请勿非法访问
+Token time expires: 令牌时间已过期
+
+# Signature
+Missing signature: 缺少签名
+Invalid signature format: 无效的签名格式
+Invalid nonce: 无效的nonce
+Invalid timestamp: 无效的时间戳
+Incorrect signature: 不正确的签名
+
+# Database
+Database create failed: 数据库创建失败
+Database drop failed: 数据库删除失败
+Database connect failed: 数据库连接失败
+Get public database connection failed: 获取公共数据库连接失败
+Get user database connection failed: 获取用户数据库连接失败
+Get public database pool failed: 获取公共数据库池失败
+Get user database pool failed: 获取用户数据库池失败
+Set public storage failed: 设置公共存储失败
+Get public storage failed: 获取公共存储失败
+Set user storage failed: 设置用户存储失败
+Get user storage failed: 获取用户存储失败
+Query data failed: 查询数据失败
+Query one piece of data failed: 查询一条数据失败
+Insert failed: 插入失败
+Update failed: 更新失败
+Delete failed: 删除失败
+
+# Migrate
+Get migrator failed: 获取迁移器失败
+Run migration failed: 运行迁移失败
+
+# System
+key not set: 键未设置
+unauthorized: 未经授权
+no worker: 无工作人员
+worker mailbox error: 工作人员邮箱错误
+port not open: 端口未打开
+Iface not set: Iface未设置
+Iface send failed: Iface发送失败
+all ip has been allocated: 所有IP已分配
+ip is empty: IP为空
+all port has been allocated: 所有端口已分配
+verify packet error: 验证数据包错误
+unexpected result: 意外结果
+new listener failed: 新侦听器失败
+assign iface failed: 分配Iface失败
+resources not exist: 资源不存在
+transport error: 传输错误
+callback unavailable: 回调不可用
+Json error: JSON错误
+Tun error: Tun错误
+crypto error: 加密错误
+
+# Menu
+Quit: 退出
+Hide: 隐藏

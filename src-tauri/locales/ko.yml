@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: 구문 분석 오류
+Database error: 데이터베이스 오류
+Http error: HTTP 오류
+Param error: 매개 변수 오류
+IO error: 입출력 오류
+System error: 시스템 오류
+
+# BadRequest
+Login error: 로그인 오류
+Logout error: 로그아웃 오류
+Account update token error: 계정 업데이트 토큰 오류
+Node error: 노드 오류
+Upload error: 업로드 오류
+System tray error: 시스템 트레이 오류
+Language error: 언어 오류
+Init database error: 데이터베이스 초기화 오류
+Storage error: 저장소 오류
+Splash screen error: 스플래시 화면 오류
+Ping error: 핑 오류
+
+# Middleware
+Decode error: 디코드 오류
+Invalid token: 잘못된 토큰
+Invalid token, without key: 키 없는 잘못된 토큰
+Invalid key: 잘못된 키
+
+Auth error: 인증 오류
+Encrypt error: 암호화 오류
+Decrypt error: 복호화 오류
+International error: 국제화 오류
+Signature error: 서명 오류
+
+# Login
+Get mac address failed: MAC 주소 가져오기 실패
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: 언어 설정 실패
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: 시스템 트레이 아이콘 업데이트 실패
+System tray handle get failed: 시스템 트레이 핸들 가져오기 실패
+
+# Http
+Http builder generate failed: HTTP 빌더 생성 실패
+Received a non-success status: 비 성공 상태를 수신함
+Get physical iface error: 물리 인터페이스 가져오기 오류
+Operation timed out: 작업 시간 초과
+Request failed: 요청 실패
+
+# IO
+Create directory failed: 디렉터리 생성 실패
+
+# Parse
+Parse vector to string failed: 벡터를 문자열로 변환 실패
+Parse addr failed: 주소 분석 실패
+Parse value to vector failed: 값을 벡터로 변환 실패
+Parse vector to array failed: 벡터를 배열로 변환 실패
+Serialize json error: JSON 직렬화 오류
+Deserialize json error: JSON 역직렬화 오류
+
+# Param
+Token is empty: 토큰이 비어 있음
+Email is empty: 이메일이 비어 있음
+Passwd is empty: 비밀번호가 비어 있음
+Sorry, please enter the correct email: 죄송합니다. 올바른 이메일을 입력하세요
+No valid IPs to ping: 핑할 유효한 IP가 없음
+
+# Jwt
+Do not access illegally: 불법적으로 접근하지 마십시오
+Token time expires: 토큰 시간이 만료되었습니다
+
+# Signature
+Missing signature: 서명 없음
+Invalid signature format: 잘못된 서명 형식
+Invalid nonce: 잘못된 난스
+Invalid timestamp: 잘못된 타임스탬프
+Incorrect signature: 잘못된 서명
+
+# Database
+Database create failed: 데이터베이스 생성 실패
+Database drop failed: 데이터베이스 삭제 실패
+Database connect failed: 데이터베이스 연결 실패
+Get public database connection failed: 공용 데이터베이스 연결 가져오기 실패
+Get user database connection failed: 사용자 데이터베이스 연결 가져오기 실패
+Get public database pool failed: 공용 데이터베이스 풀 가져오기 실패
+Get user database pool failed: 사용자 데이터베이스 풀 가져오기 실패
+Set public storage failed: 공용 저장소 설정 실패
+Get public storage failed: 공용 저장소 가져오기 실패
+Set user storage failed: 사용자 저장소 설정 실패
+Get user storage failed: 사용자 저장소 가져오기 실패
+Query data failed: 데이터 쿼리 실패
+Query one piece of data failed: 데이터 하나의 조각 쿼리 실패
+Insert failed: 삽입 실패
+Update failed: 업데이트 실패
+Delete failed: 삭제 실패
+
+# Migrate
+Get migrator failed: 마이그레이터 가져오기 실패
+Run migration failed: 마이그레이션 실행 실패
+
+# System
+key not set: 키가 설정되지 않았습니다
+unauthorized: 무단
+no worker: 직원 없음
+worker mailbox error: 직원 메일함 오류
+port not open: 포트가 열려 있지 않음
+Iface not set: Iface가 설정되지 않음
+Iface send failed: Iface 전송 실패
+all ip has been allocated: 모든 IP가 할당되었습니다
+ip is empty: IP가 비어 있음
+all port has been allocated: 모든 포트가 할당되었습니다
+verify packet error: 패킷 확인 오류
+unexpected result: 예상치 못한 결과
+new listener failed: 새로운 청취자 실패
+assign iface failed: Iface 할당 실패
+resources not exist: 리소스가 존재하지 않습니다
+transport error: 전송 오류
+callback unavailable: 콜백을 사용할 수 없음
+Json error: JSON 오류
+Tun error: Tun 오류
+crypto error: 암호화 오류
+
+# Menu
+Quit: 종료
+Hide: 숨기다

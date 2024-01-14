@@ -1,0 +1,131 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devPath": "http://127.0.0.1:5771",
+    "distDir": "../dist",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "Falcon Flow",
+    "version": "../package.json"
+  },
+  "tauri": {
+    "allowlist": {
+      "fs": {
+        "all": true,
+        "writeFile": true,
+        "scope": [
+          "$RESOURCE/*",
+          "$APPLOCALDATA/storage/*",
+          "$APPLOCALDATA/storage/users/*",
+          "$APPLOCALDATA/storage/public/*"
+        ]
+      },
+      "path": {
+        "all": true
+      },
+      "shell": {
+        "all": true,
+        "open": true
+      },
+      "window": {
+        "minimize": true,
+        "maximize": false,
+        "show": true,
+        "hide": true,
+        "close": true,
+        "startDragging": true,
+        "unminimize": true,
+        "unmaximize": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": [
+          "http://**",
+          "https://**"
+        ]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.tauri.falconflow",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [
+        "wintun.dll"
+      ],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": "",
+        "webviewInstallMode": {
+          "type": "embedBootstrapper"
+        }
+      }
+    },
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data:"
+    },
+    "updater": {
+      "active": true,
+      "dialog": true,
+      "endpoints": [
+        "https://ram-flux.github.io//install.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgxRjlDRjFDQ0YwM0MzQTYKUldTbXd3UFBITS81Z1h0K0ZCSHRwK2dBMnVobWNRN1NtNDRrRDl0eFNCaGZhdlgrUW5uSjRWREgK",
+      "windows": {
+        "installMode": "passive"
+      }
+    },
+    "windows": [
+      {
+        "width": 360,
+        "height": 550,
+        "decorations": false,
+        "url": "/splashscreen.html",
+        "label": "splashscreen",
+        "visible": true,
+        "transparent": true
+      },
+      {
+        "fullscreen": false,
+        "height": 550,
+        "resizable": false,
+        "title": "Falcon Flow",
+        "width": 360,
+        "decorations": false,
+        "visible": true,
+        "transparent": true,
+        "skipTaskbar": true
+      }
+    ],
+    "systemTray": {
+      "iconPath": "icons/icon_dark.png",
+      "iconAsTemplate": false
+    },
+    "macOSPrivateApi": true
+  }
+}

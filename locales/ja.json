@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "パッケージを購入",
+    "visitWebsite": "公式ウェブサイトを訪問",
+    "contactCustomerService": "カスタマーサービスに連絡",
+    "preferences": "設定",
+    "versionCheck": "バージョンチェック",
+    "logout": "ログアウト",
+    "uploadLog": "ログをアップロード",
+    "uploadLogSuccess": "ログが正常にアップロードされました",
+    "exit": "プログラムを終了する"
+  },
+  "modal": {
+    "notification": "通知",
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "close": "閉じる"
+  },
+  "auth": {
+    "login": "今すぐログイン",
+    "signup": "今すぐサインアップ",
+    "forgotPassword": "パスワードを忘れましたか？"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "招待コードを入力してください",
+    "emailPlaceholder": "メールアドレスを入力してください",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "confirmPasswordPlaceholder": "パスワードを再確認してください",
+    "confirmPasswordInvalid": "パスワードが一致しません",
+    "button": "サインアップ",
+    "urlText": "ログイン画面へ移動",
+    "hint": "すでにアカウントをお持ちですか？{0}",
+    "activateMessage": "登録が完了しました！登録確認コードをあなたのメールアドレスに送信しました。アカウントを有効化するには、コードを入力してください。",
+    "activationCodePlaceholder": "認証コードを入力してください",
+    "activationCodeInvalid": "有効な認証コードを入力してください",
+    "activateSuccessMessage": "認証が成功しました！ログインページにリダイレクトされます。",
+    "activateButton": "認証"
+  },
+  "login": {
+    "emailPlaceholder": "メールアドレスを入力してください",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordPlaceholder": "パスワードを入力してください",
+    "button": "ログイン",
+    "urlText": "アカウントを作成",
+    "hint": "アカウントをお持ちでないですか？{0}",
+    "invalidMessage": "おっと、アカウントのパスワードが正しいことを確認していますか？",
+    "loadingText": "素晴らしい、ログイン中です"
+  },
+  "index": {
+    "selectRoute": "ルートを選択してください",
+    "buttonText": "クイック接続",
+    "buttonTextDisconnect": "切断",
+    "buttonTextConnecting": "接続中",
+    "buttonTextDisconnecting": "切断中",
+    "buttonConnectedDuration": "接続時間",
+    "hint": "現在選択中のライン {0} オフィスモード",
+    "route": "ルート",
+    "state": "状態：",
+    "disconnect": "切断済み",
+    "connect": "接続済み",
+    "connecting": "接続中",
+    "disconnecting": "切断中",
+    "connectHint": "クリックして接続",
+    "disconnectHint": "クリックして切断",
+    "renewalTips": "パッケージを購入または更新するには、アプリに移動してください",
+    "renewNow": "パッケージ残り {0} 日、{1} まで有効",
+    "lineLoading": "読み込み中",
+    "selectLine": "ルートを選択",
+    "defaultLine": "自動的に最速のルートを選択",
+    "disconnectFirst": "最初に切断してください",
+    "noRouteNodes": "現在、利用可能なルートはありません",
+    "defaultNodeCountry": "ライン：オート({0})",
+    "packageExpired": "パッケージの有効期限が切れました",
+    "forceDisconnect": "現在の接続が強制的に切断されました"
+  },
+  "preference": {
+    "selfStart": "起動時に自動起動",
+    "selectLanguage": "言語を選択"
+  },
+  "versionCheck": {
+    "new": "新しいバージョンが見つかりました",
+    "version": "バージョン",
+    "checking": "チェック中...",
+    "update": "今すぐ更新",
+    "latest": "現在のバージョンは最新です"
+  }
+}

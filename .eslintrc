@@ -1,0 +1,58 @@
+{
+    "extends": [
+        "@antfu",
+        ".eslintrc-auto-import.json"
+    ],
+    "overrides": [
+        {
+            "files": ["*.vue"],
+            "rules": {
+                "indent": "off",
+                "curly": ["error", "all"],
+                "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+                "@typescript-eslint/indent": "off",
+                "@typescript-eslint/semi": ["error", "always"],
+                "@typescript-eslint/brace-style": ["error", "1tbs"],
+                "vue/html-indent": ["error", 4],
+                "vue/component-name-in-template-casing": ["error", "kebab-case", {
+                    "registeredComponentsOnly": false
+                }],
+                "vue/script-indent": ["error", 4, { "baseIndent": 1 }],
+                "@typescript-eslint/member-delimiter-style": ["error", {
+                    "multiline": {
+                        "delimiter": "semi",
+                        "requireLast": true
+                    },
+                    "singleline": {
+                        "delimiter": "semi",
+                        "requireLast": false
+                    },
+                    "multilineDetection": "brackets"
+                }],
+                "quote-props": ["error", "as-needed"]
+            }
+        },
+        {
+            "files": ["*.ts"],
+            "rules": {
+                "curly": ["error", "all"],
+                "no-console": "off",
+                "@typescript-eslint/brace-style": ["error", "1tbs"],
+                "@typescript-eslint/indent": ["error", 4],
+                "@typescript-eslint/semi": ["error", "always"],
+                "@typescript-eslint/member-delimiter-style": ["error", {
+                    "multiline": {
+                        "delimiter": "semi",
+                        "requireLast": true
+                    },
+                    "singleline": {
+                        "delimiter": "semi",
+                        "requireLast": false
+                    },
+                    "multilineDetection": "brackets"
+                }],
+                "@typescript-eslint/quotes": ["error", "single", { "allowTemplateLiterals": true }]
+            }
+        }
+    ]
+}

@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: Parse error
+Database error: Database error
+Http error: Http error
+Param error: Param error
+IO error: IO error
+System error: System error
+
+# BadRequest
+Login error: Login error
+Logout error: Logout error
+Account update token error: Account update token error
+Node error: Node error
+Upload error: Upload error
+System tray error: System tray error
+Language error: Language error
+Init database error: Init database error
+Storage error: Storage error
+Splash screen error: Splash screen error
+Ping error: Ping error
+
+# Middleware
+Decode error: Decode error
+Invalid token: Invalid token
+Invalid token, without key: Invalid token, without key
+Invalid key: Invalid key
+
+Auth error: Auth error
+Encrypt error: Encrypt error
+Decrypt error: Decrypt error
+International error: International error
+Signature error: Signature error
+
+# Login
+Get mac address failed: Get mac address failed
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Set language failed
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Update system tray icon failed
+System tray handle get failed: System tray handle get failed
+
+# Http
+Http builder generate failed: Http builder generate failed
+Received a non-success status: Received a non-success status
+Get physical iface error: Get physical iface error
+Operation timed out: Operation timed out
+Request failed: Request failed
+
+# IO
+Create directory failed: Create directory failed
+
+# Parse
+Parse vector to string failed: Parse vector to string failed
+Parse addr failed: Parse addr failed
+Parse value to vector failed: Parse value to vector failed
+Parse vector to array failed: Parse vector to array failed
+Serialize json error: Serialize json error
+Deserialize json error: Deserialize json error
+
+# Param
+Token is empty: Token is empty
+Email is empty: Email is empty
+Passwd is empty: Passwd is empty
+Sorry, please enter the correct email: Sorry, please enter the correct email
+No valid IPs to ping: No valid IPs to ping
+
+# Jwt
+Do not access illegally: Do not access illegally
+Token time expires: Token time expires
+
+# Signature
+Missing signature: Missing signature
+Invalid signature format: Invalid signature format
+Invalid nonce: Invalid nonce
+Invalid timestamp: Invalid timestamp
+Incorrect signature: Incorrect signature
+
+# Database
+Database create failed: Database create failed
+Database drop failed: Database drop failed
+Database connect failed: Database connect failed
+Get public database connection failed: Get public database connection failed
+Get user database connection failed: Get user database connection failed
+Get public database pool failed: Get public database pool failed
+Get user database pool failed: Get user database pool failed
+Set public storage failed: Set public storage failed
+Get public storage failed: Get public storage failed
+Set user storage failed: Set user storage failed
+Get user storage failed: Get user storage failed
+Query data failed: Query data failed
+Query one piece of data failed: Query one piece of data failed
+Insert failed: Insert failed
+Update failed: Update failed
+Delete failed: Delete failed
+
+# Migrate
+Get migrator failed: Get migrator failed
+Run migration failed: Run migration failed
+
+# System
+key not set: Key not set
+unauthorized: Unauthorized
+no worker: No worker
+worker mailbox error: Worker mailbox error
+port not open: Port not open
+Iface not set: Iface not set
+Iface send failed: Iface send failed
+all ip has been allocated: All ip has been allocated
+ip is empty: Ip is empty
+all port has been allocated: All port has been allocated
+verify packet error: Verify packet error
+unexpected result: Unexpected result
+new listener failed: New listener failed
+assign iface failed: Assign iface failed
+resources not exist: Resources not exist
+transport error: Transport error
+callback unavailable: Callback unavailable
+Json error: Json error
+Tun error: Tun error
+crypto error: Crypto error
+
+# Menu
+Quit: Quit
+Hide: Hide

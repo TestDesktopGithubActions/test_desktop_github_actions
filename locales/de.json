@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "Paket kaufen",
+    "visitWebsite": "Offizielle Website besuchen",
+    "contactCustomerService": "Kundenservice kontaktieren",
+    "preferences": "Einstellungen",
+    "versionCheck": "Versionsprüfung",
+    "logout": "Abmelden",
+    "uploadLog": "Protokoll hochladen",
+    "uploadLogSuccess": "Protokoll erfolgreich hochgeladen",
+    "exit": "Programm beenden"
+  },
+  "modal": {
+    "notification": "Benachrichtigung",
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen",
+    "close": "Schließen"
+  },
+  "auth": {
+    "login": "Jetzt anmelden",
+    "signup": "Jetzt registrieren",
+    "forgotPassword": "Passwort vergessen?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "Bitte geben Sie den Einladungscode ein",
+    "emailPlaceholder": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "passwordPlaceholder": "Bitte geben Sie das Passwort ein",
+    "confirmPasswordPlaceholder": "Bitte bestätigen Sie das Passwort",
+    "confirmPasswordInvalid": "Die beiden Passwörter stimmen nicht überein",
+    "button": "Registrieren",
+    "urlText": "Zum Login gehen",
+    "hint": "Sie haben bereits ein Konto? {0}",
+    "activateMessage": "Registrierung erfolgreich! Wir haben einen Aktivierungscode an Ihre E-Mail-Adresse gesendet. Bitte geben Sie den Code ein, um Ihr Konto zu aktivieren.",
+    "activationCodePlaceholder": "Bitte geben Sie den Aktivierungscode ein",
+    "activationCodeInvalid": "Bitte geben Sie einen gültigen Aktivierungscode ein",
+    "activateSuccessMessage": "Aktivierung erfolgreich! Sie werden in Kürze zur Login-Seite weitergeleitet.",
+    "activateButton": "Aktivieren"
+  },
+  "login": {
+    "emailPlaceholder": "Bitte geben Sie Ihre E-Mail-Adresse ein",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "passwordPlaceholder": "Bitte geben Sie das Passwort ein",
+    "button": "Anmelden",
+    "urlText": "Ein Konto erstellen",
+    "hint": "Sie haben kein Konto? {0}",
+    "invalidMessage": "Hoppla! Sind Sie sicher, dass das Kontopasswort korrekt ist?",
+    "loadingText": "Super, wir melden Sie jetzt an"
+  },
+  "index": {
+    "selectRoute": "Bitte wählen Sie eine Strecke aus",
+    "buttonText": "Schnellverbindung",
+    "buttonTextDisconnect": "Trennen",
+    "buttonTextConnecting": "Verbinden",
+    "buttonTextDisconnecting": "Trennen",
+    "buttonConnectedDuration": "Verbindungsdauer",
+    "hint": "Aktuell ausgewählte Linie {0} im Büromodus",
+    "route": "Strecke",
+    "state": "Status:",
+    "disconnect": "Getrennt",
+    "connect": "Verbunden",
+    "connecting": "Verbinden...",
+    "disconnecting": "Trennen...",
+    "connectHint": "Zum Verbinden klicken",
+    "disconnectHint": "Zum Trennen klicken",
+    "renewalTips": "Gehen Sie zur App, um Ihr Paket zu kaufen oder zu erneuern",
+    "renewNow": "Verbleibende Laufzeit {0} Tage, endet am {1}",
+    "lineLoading": "Laden",
+    "selectLine": "Wählen Sie eine Strecke aus",
+    "defaultLine": "Automatische Zuordnung der schnellsten Route",
+    "disconnectFirst": "Bitte zuerst trennen",
+    "noRouteNodes": "Derzeit keine verfügbaren Routen",
+    "defaultNodeCountry": "Linie: Auto({0})",
+    "packageExpired": "Paket abgelaufen",
+    "forceDisconnect": "Die aktuelle Verbindung wurde zwangsweise getrennt"
+  },
+  "preference": {
+    "selfStart": "Automatisch beim Start starten",
+    "selectLanguage": "Sprache auswählen"
+  },
+  "versionCheck": {
+    "new": "Neue Version gefunden",
+    "version": "Version",
+    "checking": "Überprüfen...",
+    "update": "Jetzt aktualisieren",
+    "latest": "Ihre aktuelle Version ist die neueste"
+  }
+}

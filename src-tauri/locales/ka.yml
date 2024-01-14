@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: განსაზღვრების შეცდომა
+Database error: მონაცემთა შეცდომა
+Http error: Http შეცდომა
+Param error: პარამეტრის შეცდომა
+IO error: IO შეცდომა
+System error: სისტემური შეცდომა
+
+# BadRequest
+Login error: შესვლის შეცდომა
+Logout error: გასვლის შეცდომა
+Account update token error: ანგარიშის განახლების ნიშნავს შეცდომა
+Node error: ნოუდის შეცდომა
+Upload error: ატვირთვის შეცდომა
+System tray error: სისტემური მართვის შეცდომა
+Language error: ენის შეცდომა
+Init database error: ბაზის ინიციალიზაციის შეცდომა
+Storage error: საწყისი შეცდომა
+Splash screen error: სპლეშ ეკრანის შეცდომა
+Ping error: პინგის შეცდომა
+
+# Middleware
+Decode error: გაშვების შეცდომა
+Invalid token: არასწორი ნიშნავს
+Invalid token, without key: არასწორი ნიშნავს, გასაღების გარეშე
+Invalid key: არასწორი გასაღები
+
+Auth error: ავტორიზაციის შეცდომა
+Encrypt error: დაშიფრვის შეცდომა
+Decrypt error: გაშიფრვის შეცდომა
+International error: საერთაშორისო შეცდომა
+Signature error: ხელმოწერის შეცდომა
+
+# Login
+Get mac address failed: MAC მისამართის მიღება ვერ მოხერხდა
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: ენის დაყენება ვერ მოხერხდა
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: სისტემური მართვის ხატულის განახლება ვერ მოხერხდა
+System tray handle get failed: სისტემური მართვის ჰენდლის მიღება ვერ მოხერხდა
+
+# Http
+Http builder generate failed: HTTP შექმნის შეცდომა
+Received a non-success status: არაწესრიგებული სტატუსის მიღება
+Get physical iface error: ფიზიკური ინტერფეისის შეცდომა
+Operation timed out: ოპერაცია ვადას გადააჭარბა
+Request failed: მოთხოვნა ვერ შედგა
+
+# IO
+Create directory failed: დირექტორიის შექმნა ვერ მოხერხდა
+
+# Parse
+Parse vector to string failed: ვექტორის სტრინგად გარდაქმნა ვერ მოხერხდა
+Parse addr failed: მისამართის გარდაქმნა ვერ მოხერხდა
+Parse value to vector failed: მნიშვნელობის ვექტორში გარდაქმნა ვერ მოხერხდა
+Parse vector to array failed: ვექტორის მასივში გარდაქმნა ვერ მოხერხდა
+Serialize json error: JSON-ის სერიალიზაციის შეცდომა
+Deserialize json error: JSON-ის დესერიალიზაციის შეცდომა
+
+# Param
+Token is empty: ნიშნავს ცარიელია
+Email is empty: ელ-ფოსტა ცარიელია
+Passwd is empty: პაროლი ცარიელია
+Sorry, please enter the correct email: საწაარმოოდ, შეიყვანეთ სწორი ელ-ფოსტა
+No valid IPs to ping: პინგის ვალიდური IP-ები არ არის
+
+# Jwt
+Do not access illegally: დაულოცველად წვდომა არ შეიძლება
+Token time expires: ნიშნავსის დრო ამოიწურა
+
+# Signature
+Missing signature: ხელმოწერა არ არის
+Invalid signature format: არასწორი ხელმოწერის ფორმატი
+Invalid nonce: არასწორი ნონსი
+Invalid timestamp: არასწორი დროსთარისი
+Incorrect signature: არასწორი ხელმოწერა
+
+# Database
+Database create failed: ბაზის შექმნა ვერ მოხერხდა
+Database drop failed: ბაზის წაშლა ვერ მოხერხდა
+Database connect failed: ბაზის დაკავშირება ვერ მოხერხდა
+Get public database connection failed: საჯარო ბაზის დაკავშირების მიღება ვერ მოხერხდა
+Get user database connection failed: მომხმარებლის ბაზის დაკავშირება ვერ მოხერხდა
+Get public database pool failed: საჯარო ბაზის პულის მიღება ვერ მოხერხდა
+Get user database pool failed: მომხმარებლის ბაზის პულის მიღება ვერ მოხერხდა
+Set public storage failed: საჯარო საწყისის შენახვა ვერ მოხერხდა
+Get public storage failed: საჯარო საწყისის მიღება ვერ მოხერხდა
+Set user storage failed: მომხმარებლის საწყისის შენახვა ვერ მოხერხდა
+Get user storage failed: მომხმარებლის საწყისის მიღება ვერ მოხერხდა
+Query data failed: მონაცემთა მოთხოვნა ვერ შედგა
+Query one piece of data failed: მონაცემის ერთი ნაწილის მოთხოვნა ვერ შედგა
+Insert failed: ჩაწერა ვერ შედგა
+Update failed: განახლება ვერ შედგა
+Delete failed: წაშლა ვერ შედგა
+
+# Migrate
+Get migrator failed: მიგრატორის მიღება ვერ შედგა
+Run migration failed: მიგრაციის გაშესრულება ვერ შედგა
+
+# System
+key not set: გასაყიდი არ არის დაყენებული
+unauthorized: დაუშვებელი
+no worker: არ არის მუშემა
+worker mailbox error: მუშემას ფოსტის პრობლემა
+port not open: პორტი არ არის გახსნილი
+Iface not set: Iface არ არის დაყენებული
+Iface send failed: Iface-ის გაგზავნა ჩაიჭერა
+all ip has been allocated: ყველა IP-ს განაყილებულია
+ip is empty: IP ცარიელია
+all port has been allocated: ყველა პორტი განაყილებულია
+verify packet error: პაკეტის შემოწმების შეცდომა
+unexpected result: ელოდებული შედეგი
+new listener failed: ახალი მომსმიანი ჩაიჭერა
+assign iface failed: Iface-ის მინიჭება ჩაიჭერა
+resources not exist: რესურსები არ არის არსები
+transport error: ტრანსპორტის შეცდომა
+callback unavailable: უკუკგამოს უარყოფა
+Json error: JSON-ის შეცდომა
+Tun error: Tun-ის შეცდომა
+crypto error: კრიპტო შეცდომა
+
+# Menu
+Quit: შერჩევა
+Hide: დამალვა

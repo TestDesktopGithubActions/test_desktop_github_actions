@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "პაკეტის შეძენა",
+    "visitWebsite": "შევიდეთ ოფიციალ ვებსაიტზე",
+    "contactCustomerService": "დაგეგმეთ კლიენტის სერვისი",
+    "preferences": "პრეფერენციები",
+    "versionCheck": "ვერსიის შემოწმება",
+    "logout": "გასვლა",
+    "uploadLog": "ლოგი ატვირთვა",
+    "uploadLogSuccess": "ლოგი წარმატებით აიტვირთა",
+    "exit": "პროგრამიდან გასვლა"
+  },
+  "modal": {
+    "notification": "შეტყობინება",
+    "confirm": "დადასტურება",
+    "cancel": "გაუქმება",
+    "close": "დახურვა"
+  },
+  "auth": {
+    "login": "შესვლა ახლა",
+    "signup": "რეგისტრაცია ახლა",
+    "forgotPassword": "პაროლის დავიწყება?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "გთხოვთ, შეიყვანეთ მოწვევის კოდი",
+    "emailPlaceholder": "გთხოვთ, შეიყვანეთ თქვენი ელფოსტა",
+    "emailInvalid": "გთხოვთ, შეიყვანეთ სწორი ელფოსტა",
+    "passwordPlaceholder": "გთხოვთ, შეიყვანეთ პაროლი",
+    "confirmPasswordPlaceholder": "გთხოვთ, გადაამოწმეთ პაროლი",
+    "confirmPasswordInvalid": "ორი პაროლი არ ეკუთვნება",
+    "button": "რეგისტრაცია",
+    "urlText": "გადასვლა შესვლაზე",
+    "hint": "უკვე გაქვთ ანგარიში? {0}",
+    "activateMessage": "რეგისტრაცია წარმატებით ხართ! ჩვენ გამოგიგზავნეთ გააქტიურების კოდი თქვენი ელფოსტაზე. გთხოვთ, შეიყვანოთ კოდი რეგისტრაციისთვის.",
+    "activationCodePlaceholder": "გთხოვთ, შეიყვანოთ გააქტიურების კოდი",
+    "activationCodeInvalid": "გთხოვთ, შეიყვანოთ სწორი გააქტიურების კოდი",
+    "activateSuccessMessage": "აქტივაცია წარმატებით ხდება! თქვენ დაგეგმებული ხართ შესვლის გვერდზე გადასვლისათვის.",
+    "activateButton": "აქტივაცია"
+  },
+  "login": {
+    "emailPlaceholder": "გთხოვთ, შეიყვანოთ თქვენი ელფოსტა",
+    "emailInvalid": "გთხოვთ, შეიყვანოთ სწორი ელფოსტა",
+    "passwordPlaceholder": "გთხოვთ, შეიყვანოთ პაროლი",
+    "button": "შესვლა",
+    "urlText": "შექმენით ანგარიში",
+    "hint": "არ გაქვთ ანგარიში? {0}",
+    "invalidMessage": "უკავშირდება, გახსოვდეს თუ სწორად არის ანგარიშის პაროლი?",
+    "loadingText": "რადგანაც, ჩვენ შეგვიძლია დავლეგვათ შესვლა ახლა"
+  },
+  "index": {
+    "selectRoute": "გთხოვთ, აირჩიეთ მარშრუტი",
+    "buttonText": "სწრაფი დაკავშირება",
+    "buttonTextDisconnect": "წარმოიდგენეთ კავშირი",
+    "buttonTextConnecting": "კავშირება",
+    "buttonTextDisconnecting": "კავშირის გაწმენდა",
+    "buttonConnectedDuration": "კავშირის ხანგრძლივობა",
+    "hint": "არჩეული ხაზი {0} ოფის რეჟიმშია",
+    "route": "მარშრუტი",
+    "state": "სტატუსი:",
+    "disconnect": "გამუქრავა",
+    "connect": "დაკავებული",
+    "connecting": "დაკავება",
+    "disconnecting": "გამუქრავა",
+    "connectHint": "დააჭირეთ დაკავებისთვის",
+    "disconnectHint": "დააჭირეთ გამოქრებისთვის",
+    "renewalTips": "გადაიხადეთ აპლიკაციაში პაკეტის შეძენა ან განახლება",
+    "renewNow": "პაკეტი დარჩა {0} დღე, {1} ვადაგასულება",
+    "lineLoading": "ჩამოტვირთვა",
+    "selectLine": "აირჩიეთ მარშუტი",
+    "defaultLine": "ავტომატურად დაემთხვევით სწრაფი მარშრუტი",
+    "disconnectFirst": "გთხოვთ, დარეკევა პირველია",
+    "noRouteNodes": "ამჟამინდელი მარშუტები არ არის",
+    "defaultNodeCountry": "ხაზი: ავტო({0})",
+    "packageExpired": "პაკეტი ვადაგასულია",
+    "forceDisconnect": "მიმდინარე კავშირი ძალადობით მოხსნა"
+  },
+  "preference": {
+    "selfStart": "თავიდან ჩართვა ჩართულია",
+    "selectLanguage": "აირჩიეთ ენა"
+  },
+  "versionCheck": {
+    "new": "ახალი ვერსია ნაპოვნია",
+    "version": "ვერსია",
+    "checking": "შემოწმება...",
+    "update": "განახლება ახლა",
+    "latest": "თქვენი მიმდინარე ვერსია უკვე ბოლო ვერსიაა"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "Comprar Pacote",
+    "visitWebsite": "Visitar o site oficial",
+    "contactCustomerService": "Contatar o Atendimento ao Cliente",
+    "preferences": "Preferências",
+    "versionCheck": "Verificar Versão",
+    "logout": "Sair",
+    "uploadLog": "Enviar Registro",
+    "uploadLogSuccess": "Registro enviado com sucesso",
+    "exit": "Sair do programa"
+  },
+  "modal": {
+    "notification": "Notificação",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "close": "Fechar"
+  },
+  "auth": {
+    "login": "Entrar agora",
+    "signup": "Cadastrar agora",
+    "forgotPassword": "Esqueci a senha?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "Por favor, insira o código de convite",
+    "emailPlaceholder": "Por favor, insira seu e-mail",
+    "emailInvalid": "Por favor, insira um e-mail válido",
+    "passwordPlaceholder": "Por favor, insira a senha",
+    "confirmPasswordPlaceholder": "Por favor, confirme a senha",
+    "confirmPasswordInvalid": "As duas senhas não são iguais",
+    "button": "Cadastrar",
+    "urlText": "Ir para o login",
+    "hint": "Já tem uma conta? {0}",
+    "activateMessage": "Cadastro efetuado com sucesso! Enviamos um código de ativação para o seu e-mail. Por favor, insira o código para ativar sua conta.",
+    "activationCodePlaceholder": "Por favor, insira o código de ativação",
+    "activationCodeInvalid": "Por favor, insira um código de ativação válido",
+    "activateSuccessMessage": "Ativação bem-sucedida! Você será redirecionado para a página de login em breve.",
+    "activateButton": "Ativar"
+  },
+  "login": {
+    "emailPlaceholder": "por favor, insira seu e-mail",
+    "emailInvalid": "Por favor, insira um e-mail válido",
+    "passwordPlaceholder": "por favor, insira a senha",
+    "button": "Entrar",
+    "urlText": "criar uma conta",
+    "hint": "Não tem uma conta? {0}",
+    "invalidMessage": "Ops! Você tem certeza de que a senha da conta está correta?",
+    "loadingText": "Ótimo, estamos fazendo seu login agora"
+  },
+  "index": {
+    "selectRoute": "Por favor, selecione uma rota",
+    "buttonText": "Conexão Rápida",
+    "buttonTextDisconnect": "Desconectar",
+    "buttonTextConnecting": "Conectando",
+    "buttonTextDisconnecting": "Desconectando",
+    "buttonConnectedDuration": "Duração da Conexão",
+    "hint": "Linha {0} atualmente selecionada no modo escritório",
+    "route": "Rota",
+    "state": "Estado:",
+    "disconnect": "Desconectado",
+    "connect": "Conectado",
+    "connecting": "Conectando",
+    "disconnecting": "Desconectando",
+    "connectHint": "Clique para conectar",
+    "disconnectHint": "Clique para desconectar",
+    "renewalTips": "Vá para o aplicativo para comprar ou renovar seu pacote",
+    "renewNow": "Pacote restante {0} dias, expira em {1}",
+    "lineLoading": "Carregando",
+    "selectLine": "Selecione uma rota",
+    "defaultLine": "Combinação automática da rota mais rápida",
+    "disconnectFirst": "Por favor, desconecte primeiro",
+    "noRouteNodes": "Sem rotas disponíveis no momento",
+    "defaultNodeCountry": "Linha: Automático({0})",
+    "packageExpired": "Pacote expirado",
+    "forceDisconnect": "Conexão atual foi desconectada à força"
+  },
+  "preference": {
+    "selfStart": "Iniciar automaticamente na inicialização",
+    "selectLanguage": "Selecionar Idioma"
+  },
+  "versionCheck": {
+    "new": "Nova Versão Encontrada",
+    "version": "Versão",
+    "checking": "Verificando...",
+    "update": "Atualizar Agora",
+    "latest": "Sua versão atual é a mais recente"
+  }
+}

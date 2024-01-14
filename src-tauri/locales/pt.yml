@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: Erro de análise
+Database error: Erro de banco de dados
+Http error: Erro HTTP
+Param error: Erro de parâmetro
+IO error: Erro de E/S
+System error: Erro do sistema
+
+# BadRequest
+Login error: Erro de login
+Logout error: Erro de logout
+Account update token error: Erro de atualização de token de conta
+Node error: Erro de nó
+Upload error: Erro de upload
+System tray error: Erro de bandeja do sistema
+Language error: Erro de idioma
+Init database error: Erro de inicialização do banco de dados
+Storage error: Erro de armazenamento
+Splash screen error: Erro de splash screen
+Ping error: Erro de ping
+
+# Middleware
+Decode error: Erro de decodificação
+Invalid token: Token inválido
+Invalid token, without key: Token inválido, sem chave
+Invalid key: Chave inválida
+
+Auth error: Erro de autenticação
+Encrypt error: Erro de criptografia
+Decrypt error: Erro de descriptografia
+International error: Erro internacional
+Signature error: Erro de assinatura
+
+# Login
+Get mac address failed: Falha ao obter o endereço MAC
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Falha ao definir o idioma
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Falha ao atualizar o ícone da bandeja do sistema
+System tray handle get failed: Falha ao obter o identificador da bandeja do sistema
+
+# Http
+Http builder generate failed: Falha na geração do construtor HTTP
+Received a non-success status: Recebido um status não-sucedido
+Get physical iface error: Erro ao obter a interface física
+Operation timed out: Operação expirou
+Request failed: Falha na solicitação
+
+# IO
+Create directory failed: Falha ao criar o diretório
+
+# Parse
+Parse vector to string failed: Falha ao analisar o vetor para string
+Parse addr failed: Falha ao analisar o endereço
+Parse value to vector failed: Falha ao analisar o valor para vetor
+Parse vector to array failed: Falha ao analisar o vetor para array
+Serialize json error: Erro de serialização JSON
+Deserialize json error: Erro de desserialização JSON
+
+# Param
+Token is empty: O token está vazio
+Email is empty: O e-mail está vazio
+Passwd is empty: A senha está vazia
+Sorry, please enter the correct email: Desculpe, por favor insira o e-mail correto
+No valid IPs to ping: Nenhum IP válido para pingar
+
+# Jwt
+Do not access illegally: Não acesse ilegalmente
+Token time expires: O tempo do token expirou
+
+# Signature
+Missing signature: Assinatura ausente
+Invalid signature format: Formato de assinatura inválido
+Invalid nonce: Nonce inválido
+Invalid timestamp: Carimbo de tempo inválido
+Incorrect signature: Assinatura incorreta
+
+# Database
+Database create failed: Falha ao criar o banco de dados
+Database drop failed: Falha ao excluir o banco de dados
+Database connect failed: Falha ao conectar ao banco de dados
+Get public database connection failed: Falha ao obter a conexão do banco de dados público
+Get user database connection failed: Falha ao obter a conexão do banco de dados do usuário
+Get public database pool failed: Falha ao obter o pool do banco de dados público
+Get user database pool failed: Falha ao obter o pool do banco de dados do usuário
+Set public storage failed: Falha ao definir o armazenamento público
+Get public storage failed: Falha ao obter o armazenamento público
+Set user storage failed: Falha ao definir o armazenamento do usuário
+Get user storage failed: Falha ao obter o armazenamento do usuário
+Query data failed: Falha na consulta de dados
+Query one piece of data failed: Falha na consulta de um pedaço de dados
+Insert failed: Falha na inserção
+Update failed: Falha na atualização
+Delete failed: Falha na exclusão
+
+# Migrate
+Get migrator failed: Falha ao obter o migrador
+Run migration failed: Falha ao executar a migração
+
+# System
+key not set: Chave não definida
+unauthorized: Não autorizado
+no worker: Nenhum trabalhador
+worker mailbox error: Erro na caixa de correio do trabalhador
+port not open: Porta não aberta
+Iface not set: Iface não definido
+Iface send failed: Envio de Iface falhou
+all ip has been allocated: Todos os IPs foram alocados
+ip is empty: IP está vazio
+all port has been allocated: Todas as portas foram alocadas
+verify packet error: Erro de verificação do pacote
+unexpected result: Resultado inesperado
+new listener failed: Novo ouvinte falhou
+assign iface failed: Atribuição de Iface falhou
+resources not exist: Recursos não existem
+transport error: Erro de transporte
+callback unavailable: Retorno de chamada indisponível
+Json error: Erro de JSON
+Tun error: Erro de Tun
+crypto error: Erro de criptografia
+
+# Menu
+Quit: Sair
+Hide: Esconder

@@ -1,0 +1,14 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="xianlu">
+<mask id="mask0_653_5773" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+<rect id="Rectangle 1" width="24" height="24" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_653_5773)">
+<g id="Group 11">
+<path id="Vector 4" d="M3.00316 10.9282L11.0749 3.19272C12.3052 2.01371 14.2523 2.03442 15.4572 3.23933V3.23933C16.6417 4.42385 16.6846 6.33067 15.5546 7.56728L8.41551 15.3799C7.18587 16.7255 7.23258 18.8004 8.52153 20.0894V20.0894C9.85265 21.4205 12.0103 21.421 13.3415 20.0899C16.6023 16.829 20.5746 12.8567 20.5746 12.8567" stroke="#3C424E" stroke-width="2.14286" stroke-linecap="round"/>
+<path id="Vector 5" d="M1.7159 6.85603V10.9275C1.7159 11.5192 2.19559 11.9989 2.78733 11.9989H6.85875" stroke="#3C424E" stroke-width="2.14286" stroke-linecap="round"/>
+<path id="Vector 6" d="M21.8559 16.7142V12.6428C21.8559 12.051 21.3762 11.5713 20.7845 11.5713H16.7131" stroke="#3C424E" stroke-width="2.14286" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+</svg>

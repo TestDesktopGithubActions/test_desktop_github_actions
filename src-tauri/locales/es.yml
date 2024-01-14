@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: Error de análisis
+Database error: Error de base de datos
+Http error: Error de HTTP
+Param error: Error de parámetro
+IO error: Error de E/S
+System error: Error del sistema
+
+# BadRequest
+Login error: Error de inicio de sesión
+Logout error: Error de cierre de sesión
+Account update token error: Error de actualización de token de cuenta
+Node error: Error de nodo
+Upload error: Error de carga
+System tray error: Error de bandeja del sistema
+Language error: Error de idioma
+Init database error: Error de inicialización de base de datos
+Storage error: Error de almacenamiento
+Splash screen error: Error de pantalla de presentación
+Ping error: Error de ping
+
+# Middleware
+Decode error: Error de decodificación
+Invalid token: Token inválido
+Invalid token, without key: Token inválido, sin clave
+Invalid key: Clave inválida
+
+Auth error: Error de autenticación
+Encrypt error: Error de cifrado
+Decrypt error: Error de descifrado
+International error: Error internacional
+Signature error: Error de firma
+
+# Login
+Get mac address failed: Falló la obtención de la dirección MAC
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Falló la configuración del idioma
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Falló la actualización del icono de la bandeja del sistema
+System tray handle get failed: Falló la obtención del controlador de la bandeja del sistema
+
+# Http
+Http builder generate failed: Falló la generación del constructor HTTP
+Received a non-success status: Se recibió un estado no exitoso
+Get physical iface error: Error al obtener la interfaz física
+Operation timed out: Tiempo de operación agotado
+Request failed: Falló la solicitud
+
+# IO
+Create directory failed: Falló la creación del directorio
+
+# Parse
+Parse vector to string failed: Falló el análisis del vector a cadena
+Parse addr failed: Falló el análisis de la dirección
+Parse value to vector failed: Falló el análisis del valor al vector
+Parse vector to array failed: Falló el análisis del vector al array
+Serialize json error: Error al serializar JSON
+Deserialize json error: Error al deserializar JSON
+
+# Param
+Token is empty: El token está vacío
+Email is empty: El correo electrónico está vacío
+Passwd is empty: La contraseña está vacía
+Sorry, please enter the correct email: Lo siento, por favor ingrese el correo electrónico correcto
+No valid IPs to ping: No hay IPs válidas para hacer ping
+
+# Jwt
+Do not access illegally: No acceder de forma ilegal
+Token time expires: El tiempo del token ha expirado
+
+# Signature
+Missing signature: Firma faltante
+Invalid signature format: Formato de firma inválido
+Invalid nonce: Valor no válido
+Invalid timestamp: Marca de tiempo no válida
+Incorrect signature: Firma incorrecta
+
+# Database
+Database create failed: Falló la creación de la base de datos
+Database drop failed: Falló la eliminación de la base de datos
+Database connect failed: Falló la conexión a la base de datos
+Get public database connection failed: Falló la obtención de la conexión a la base de datos pública
+Get user database connection failed: Falló la obtención de la conexión a la base de datos de usuario
+Get public database pool failed: Falló la obtención del grupo de conexiones de la base de datos pública
+Get user database pool failed: Falló la obtención del grupo de conexiones de la base de datos de usuario
+Set public storage failed: Falló la configuración del almacenamiento público
+Get public storage failed: Falló la obtención del almacenamiento público
+Set user storage failed: Falló la configuración del almacenamiento de usuario
+Get user storage failed: Falló la obtención del almacenamiento de usuario
+Query data failed: Falló la consulta de datos
+Query one piece of data failed: Falló la consulta de un dato
+Insert failed: Falló la inserción
+Update failed: Falló la actualización
+Delete failed: Falló la eliminación
+
+# Migrate
+Get migrator failed: Falló la obtención del migrador
+Run migration failed: Falló la migración
+
+# System
+key not set: Clave no establecida
+unauthorized: No autorizado
+no worker: No hay trabajador
+worker mailbox error: Error en el buzón del trabajador
+port not open: Puerto no abierto
+Iface not set: Iface no establecida
+Iface send failed: Envío de Iface fallido
+all ip has been allocated: Todas las IP han sido asignadas
+ip is empty: La IP está vacía
+all port has been allocated: Todos los puertos han sido asignados
+verify packet error: Error de verificación de paquete
+unexpected result: Resultado inesperado
+new listener failed: Nuevo escucha fallido
+assign iface failed: Asignación de Iface fallida
+resources not exist: Recursos no existen
+transport error: Error de transporte
+callback unavailable: Devolución de llamada no disponible
+Json error: Error de JSON
+Tun error: Error de Tun
+crypto error: Error de cifrado
+
+# Menu
+Quit: Salir
+Hide: Ocultar

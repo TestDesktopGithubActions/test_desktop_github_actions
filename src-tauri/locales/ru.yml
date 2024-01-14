@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: Ошибка разбора
+Database error: Ошибка базы данных
+Http error: Ошибка HTTP
+Param error: Ошибка параметра
+IO error: Ошибка ввода-вывода
+System error: Ошибка системы
+
+# BadRequest
+Login error: Ошибка входа
+Logout error: Ошибка выхода
+Account update token error: Ошибка обновления токена учетной записи
+Node error: Ошибка узла
+Upload error: Ошибка загрузки
+System tray error: Ошибка системного лотка
+Language error: Ошибка языка
+Init database error: Ошибка инициализации базы данных
+Storage error: Ошибка хранения
+Splash screen error: Ошибка заставки
+Ping error: Ошибка пинга
+
+# Middleware
+Decode error: Ошибка декодирования
+Invalid token: Недействительный токен
+Invalid token, without key: Недействительный токен, без ключа
+Invalid key: Недопустимый ключ
+
+Auth error: Ошибка аутентификации
+Encrypt error: Ошибка шифрования
+Decrypt error: Ошибка дешифрования
+International error: Международная ошибка
+Signature error: Ошибка подписи
+
+# Login
+Get mac address failed: Ошибка получения MAC-адреса
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Ошибка установки языка
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Ошибка обновления значка системного лотка
+System tray handle get failed: Ошибка получения обработчика системного лотка
+
+# Http
+Http builder generate failed: Ошибка генерации построителя HTTP
+Received a non-success status: Получен статус неуспеха
+Get physical iface error: Ошибка получения физического интерфейса
+Operation timed out: Операция завершилась по истечении времени
+Request failed: Ошибка запроса
+
+# IO
+Create directory failed: Ошибка создания каталога
+
+# Parse
+Parse vector to string failed: Ошибка преобразования вектора в строку
+Parse addr failed: Ошибка разбора адреса
+Parse value to vector failed: Ошибка преобразования значения в вектор
+Parse vector to array failed: Ошибка преобразования вектора в массив
+Serialize json error: Ошибка сериализации JSON
+Deserialize json error: Ошибка десериализации JSON
+
+# Param
+Token is empty: Токен пуст
+Email is empty: Электронная почта пуста
+Passwd is empty: Пароль пуст
+Sorry, please enter the correct email: Извините, введите правильный адрес электронной почты
+No valid IPs to ping: Нет действительных IP-адресов для пинга
+
+# Jwt
+Do not access illegally: Не допускайте незаконного доступа
+Token time expires: Время действия токена истекло
+
+# Signature
+Missing signature: Отсутствует подпись
+Invalid signature format: Недопустимый формат подписи
+Invalid nonce: Недопустимый nonce
+Invalid timestamp: Недопустимый временной штамп
+Incorrect signature: Неправильная подпись
+
+# Database
+Database create failed: Ошибка создания базы данных
+Database drop failed: Ошибка удаления базы данных
+Database connect failed: Ошибка подключения к базе данных
+Get public database connection failed: Ошибка получения общего подключения к базе данных
+Get user database connection failed: Ошибка получения подключения к базе данных пользователя
+Get public database pool failed: Ошибка получения общего пула базы данных
+Get user database pool failed: Ошибка получения пула базы данных пользователя
+Set public storage failed: Ошибка установки общего хранилища
+Get public storage failed: Ошибка получения общего хранилища
+Set user storage failed: Ошибка установки хранилища пользователя
+Get user storage failed: Ошибка получения хранилища пользователя
+Query data failed: Ошибка запроса данных
+Query one piece of data failed: Ошибка запроса одного фрагмента данных
+Insert failed: Ошибка вставки
+Update failed: Ошибка обновления
+Delete failed: Ошибка удаления
+
+# Migrate
+Get migrator failed: Ошибка получения мигратора
+Run migration failed: Ошибка запуска миграции
+
+# System
+key not set: Ключ не установлен
+unauthorized: Неавторизованный
+no worker: Отсутствует работник
+worker mailbox error: Ошибка почтового ящика работника
+port not open: Порт не открыт
+Iface not set: Iface не установлен
+Iface send failed: Отправка Iface не удалась
+all ip has been allocated: Все IP-адреса были выделены
+ip is empty: IP пустой
+all port has been allocated: Все порты были выделены
+verify packet error: Ошибка проверки пакета
+unexpected result: Неожиданный результат
+new listener failed: Новый прослушиватель не удался
+assign iface failed: Назначение Iface не удалось
+resources not exist: Ресурсы не существуют
+transport error: Ошибка транспорта
+callback unavailable: Обратный вызов недоступен
+Json error: Ошибка JSON
+Tun error: Ошибка Tun
+crypto error: Ошибка шифрования
+
+# Menu
+Quit: Выйти
+Hide: Скрыть

@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "購買套餐",
+    "visitWebsite": "訪問官方網站",
+    "contactCustomerService": "聯繫客戶服務",
+    "preferences": "設定",
+    "versionCheck": "版本檢查",
+    "logout": "登出",
+    "uploadLog": "上傳日誌",
+    "uploadLogSuccess": "日誌成功上傳",
+    "exit": "退出程序"
+  },
+  "modal": {
+    "notification": "通知",
+    "confirm": "確認",
+    "cancel": "取消",
+    "close": "關閉"
+  },
+  "auth": {
+    "login": "立即登入",
+    "signup": "立即註冊",
+    "forgotPassword": "忘記密碼？"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "請輸入邀請碼",
+    "emailPlaceholder": "請輸入您的電子郵件",
+    "emailInvalid": "請輸入有效的電子郵件",
+    "passwordPlaceholder": "請輸入密碼",
+    "confirmPasswordPlaceholder": "請再次確認密碼",
+    "confirmPasswordInvalid": "兩次密碼不一致",
+    "button": "註冊",
+    "urlText": "前往登入",
+    "hint": "已經有帳號？{0}",
+    "activateMessage": "註冊成功！我們已向您的電子郵件發送了一個啟動碼。請輸入該碼以啟動您的帳號。",
+    "activationCodePlaceholder": "請輸入啟動碼",
+    "activationCodeInvalid": "請輸入有效的啟動碼",
+    "activateSuccessMessage": "啟動成功！您將被重定向到登入頁面。",
+    "activateButton": "啟動"
+  },
+  "login": {
+    "emailPlaceholder": "請輸入您的電子郵件",
+    "emailInvalid": "請輸入有效的電子郵件",
+    "passwordPlaceholder": "請輸入密碼",
+    "button": "登入",
+    "urlText": "創建帳號",
+    "hint": "還沒有帳號？{0}",
+    "invalidMessage": "噢，您確定帳號密碼正確嗎？",
+    "loadingText": "好的，我們正在幫您登入"
+  },
+  "index": {
+    "selectRoute": "請選擇路線",
+    "buttonText": "快速連接",
+    "buttonTextDisconnect": "斷開連接",
+    "buttonTextConnecting": "連接中",
+    "buttonTextDisconnecting": "斷開中",
+    "buttonConnectedDuration": "已連接時間",
+    "hint": "當前選定線路 {0} 辦公室模式",
+    "route": "路線",
+    "state": "狀態：",
+    "disconnect": "已斷開",
+    "connect": "已連接",
+    "connecting": "連接中",
+    "disconnecting": "斷開中",
+    "connectHint": "點擊連接",
+    "disconnectHint": "點擊斷開",
+    "renewalTips": "前往 APP 購買或續訂您的套餐",
+    "renewNow": "套餐剩餘 {0} 天，{1} 到期",
+    "lineLoading": "加載中",
+    "selectLine": "選擇路線",
+    "defaultLine": "自動匹配最快線路",
+    "disconnectFirst": "請先斷開連接",
+    "noRouteNodes": "暫無可用線路",
+    "defaultNodeCountry": "線路：自動({0})",
+    "packageExpired": "套餐已過期",
+    "forceDisconnect": "當前連接被強制斷開"
+  },
+  "preference": {
+    "selfStart": "開機時自動啟動",
+    "selectLanguage": "選擇語言"
+  },
+  "versionCheck": {
+    "new": "發現新版本",
+    "version": "版本",
+    "checking": "檢查中...",
+    "update": "立即更新",
+    "latest": "您的當前版本是最新版本"
+  }
+}

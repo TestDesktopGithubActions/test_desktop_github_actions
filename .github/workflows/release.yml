@@ -1,0 +1,181 @@
+# 可选，将显示在 GitHub 存储库的“操作”选项卡中的工作流名称
+name: Release CI
+
+# 指定此工作流的触发器
+on:
+  push:
+    # 匹配特定标签 (refs/tags)
+    tags:
+      - "v*" # 推送事件匹配 v*, 例如 v1.0，v20.15.10 等来触发工作流
+
+# 需要运行的作业组合
+jobs:
+  # 任务：创建 release 版本
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      RELEASE_UPLOAD_ID: ${{ steps.create_release.outputs.id }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # 根据查询到的版本号创建 release
+      - name: Create Release
+        id: create_release
+        # uses: actions/create-release@v1.1.4
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: "See the assets to download this version and install."
+  # 编译 Tauri
+  build-tauri:
+    needs: [create-release]
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          # - platform: 'macos-latest'
+          #   args: '--target universal-apple-darwin'
+          - platform: "macos-latest"
+            args: "--target x86_64-apple-darwin"
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
+          - platform: "windows-latest"
+            args: "--target x86_64-pc-windows-msvc"
+    env:
+      CARGO_NET_GIT_FETCH_WITH_CLI: true
+    runs-on: ${{ matrix.settings.platform }}
+    steps:
+      - uses: actions/checkout@v3
+
+      # 安装 Node.js
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # 安装 Rust
+      - name: Install Rust nightly
+        # uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          toolchain: nightly
+          # default: true
+          target: aarch64-apple-darwin
+
+      # 使用 Rust 缓存，加快安装速度
+      - uses: Swatinem/rust-cache@v2
+
+      - name: install dependencies (ubuntu only)
+        if: matrix.settings.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
+
+      # 可选，如果需要将 Rust 编译为 wasm，则安装 wasm-pack
+      # - uses: jetli/wasm-pack-action@v0.3.0
+      #   with:
+      #     # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')
+      #     version: v0.9.1
+
+      # 可选，如果需要使用 rsw 构建 wasm，则安装 rsw
+      # - name: Install rsw
+      #   run: cargo install rsw
+
+      # 安装 pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        id: pnpm-install
+        with:
+          version: 8.7.4
+          run_install: false
+
+      # 获取 pnpm 缓存
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      # 设置 pnpm 缓存
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Give GitHub Actions access to private repo
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+
+      - name: Update cargo config to use Git CLI
+        run: |
+          echo "[net]" >> $HOME/.cargo/config.toml
+          echo "git-fetch-with-cli = true" >> $HOME/.cargo/config.toml
+
+      - name: Setup SSH for private repository access
+        run: |
+          echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+
+      # 安装依赖执行构建，以及推送 github release
+      - name: Install app dependencies and build it
+        run: |
+          echo "Installing application dependencies..."
+          pnpm install --no-frozen-lockfile
+          echo "Application dependencies installed."
+          echo "Building the application..."
+          pnpm bundle
+          echo "Application built successfully."
+        env:
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: tauri-apps/tauri-action@v0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        with:
+          releaseId: ${{ needs.create-release.outputs.RELEASE_UPLOAD_ID }}
+          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: "App v__VERSION__"
+          releaseBody: "See the assets to download this version and install."
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.settings.args }}
+  # 生成静态资源并将其推送到 github pages
+  updater:
+    runs-on: ubuntu-latest
+    needs: [create-release, build-tauri]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Add development dependencies
+        run: yarn add -D node-fetch @actions/github
+
+      - name: Run updater script
+        run: yarn updater
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: QuantumCat-957/QuantumCat-957.github.io
+          publish_branch: main # default: gh-pages
+          publish_dir: ./updater
+          force_orphan: true

@@ -1,0 +1,138 @@
+_version: 1
+
+# Fehler
+Parse error: Parse error
+Database error: Datenbankfehler
+Http error: HTTP-Fehler
+Param error: Parameterfehler
+IO error: E/A-Fehler
+System error: Systemfehler
+
+# BadRequest
+Login error: Anmeldefehler
+Logout error: Abmeldungsfehler
+Account update token error: Konto-Update-Token-Fehler
+Node error: Knotenfehler
+Upload error: Upload-Fehler
+System tray error: System-Tray-Fehler
+Language error: Sprachfehler
+Init database error: Datenbankinitialisierungsfehler
+Storage error: Speicherfehler
+Splash screen error: Startbildschirmfehler
+Ping error: Ping-Fehler
+
+# Middleware
+Decode error: Dekodierungsfehler
+Invalid token: Ungültiges Token
+Invalid token, without key: Ungültiges Token, ohne Schlüssel
+Invalid key: Ungültiger Schlüssel
+
+Auth error: Authentifizierungsfehler
+Encrypt error: Verschlüsselungsfehler
+Decrypt error: Entschlüsselungsfehler
+International error: Internationalisierungsfehler
+Signature error: Signaturfehler
+
+# Login
+Get mac address failed: MAC-Adresse konnte nicht abgerufen werden
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Sprache konnte nicht festgelegt werden
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Aktualisierung des System-Tray-Symbols fehlgeschlagen
+System tray handle get failed: Abrufen des System-Tray-Handles fehlgeschlagen
+
+# Http
+Http builder generate failed: Generierung des Http-Builders fehlgeschlagen
+Received a non-success status: Nicht erfolgreichen Status erhalten
+Get physical iface error: Fehler beim Abrufen der physischen Schnittstelle
+Operation timed out: Zeitüberschreitung der Operation
+Request failed: Anfrage fehlgeschlagen
+
+# IO
+Create directory failed: Erstellen des Verzeichnisses fehlgeschlagen
+
+# Parse
+Parse vector to string failed: Vektor in Zeichenfolge umwandeln fehlgeschlagen
+Parse addr failed: Adresse parsen fehlgeschlagen
+Parse value to vector failed: Wert in Vektor umwandeln fehlgeschlagen
+Parse vector to array failed: Vektor in Array umwandeln fehlgeschlagen
+Serialize json error: JSON serialisieren fehlgeschlagen
+Deserialize json error: JSON deserialisieren fehlgeschlagen
+
+# Param
+Token is empty: Token ist leer
+Email is empty: E-Mail ist leer
+Passwd is empty: Passwort ist leer
+Sorry, please enter the correct email: Entschuldigung, bitte geben Sie die korrekte E-Mail-Adresse ein
+No valid IPs to ping: Keine gültigen IPs zum Pingen
+
+# Jwt
+Do not access illegally: Kein illegaler Zugriff
+Token time expires: Token-Zeit abgelaufen
+
+# Signature
+Missing signature: Signatur fehlt
+Invalid signature format: Ungültiges Signaturformat
+Invalid nonce: Ungültige Zufallszahl
+Invalid timestamp: Ungültiger Zeitstempel
+Incorrect signature: Falsche Signatur
+
+# Database
+Database create failed: Erstellen der Datenbank fehlgeschlagen
+Database drop failed: Löschen der Datenbank fehlgeschlagen
+Database connect failed: Verbindung zur Datenbank fehlgeschlagen
+Get public database connection failed: Abrufen der öffentlichen Datenbankverbindung fehlgeschlagen
+Get user database connection failed: Abrufen der Benutzerdatenbankverbindung fehlgeschlagen
+Get public database pool failed: Abrufen des öffentlichen Datenbank-Pools fehlgeschlagen
+Get user database pool failed: Abrufen des Benutzerdatenbank-Pools fehlgeschlagen
+Set public storage failed: Festlegen des öffentlichen Speichers fehlgeschlagen
+Get public storage failed: Abrufen des öffentlichen Speichers fehlgeschlagen
+Set user storage failed: Festlegen des Benutzerspeichers fehlgeschlagen
+Get user storage failed: Abrufen des Benutzerspeichers fehlgeschlagen
+Query data failed: Abfragen der Daten fehlgeschlagen
+Query one piece of data failed: Abfragen eines Datenstücks fehlgeschlagen
+Insert failed: Einfügen fehlgeschlagen
+Update failed: Aktualisieren fehlgeschlagen
+Delete failed: Löschen fehlgeschlagen
+
+# Migrate
+Get migrator failed: Abrufen des Migrators fehlgeschlagen
+Run migration failed: Migration fehlgeschlagen
+
+# System
+key not set: Schlüssel nicht gesetzt
+unauthorized: Nicht autorisiert
+no worker: Kein Arbeiter
+worker mailbox error: Fehler im Worker-Postfach
+port not open: Port nicht geöffnet
+Iface not set: Iface nicht gesetzt
+Iface send failed: Iface-Sendung fehlgeschlagen
+all ip has been allocated: Alle IPs wurden zugewiesen
+ip is empty: IP ist leer
+all port has been allocated: Alle Ports wurden zugewiesen
+verify packet error: Fehler bei der Paketüberprüfung
+unexpected result: Unerwartetes Ergebnis
+new listener failed: Neuer Listener fehlgeschlagen
+assign iface failed: Iface-Zuordnung fehlgeschlagen
+resources not exist: Ressourcen existieren nicht
+transport error: Transportfehler
+callback unavailable: Rückruf nicht verfügbar
+Json error: JSON-Fehler
+Tun error: Tun-Fehler
+crypto error: Krypto-Fehler
+
+# Menu
+Quit: Beenden
+Hide: Verstecken

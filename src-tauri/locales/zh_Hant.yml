@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: 解析錯誤
+Database error: 數據庫錯誤
+Http error: HTTP錯誤
+Param error: 參數錯誤
+IO error: 輸入輸出錯誤
+System error: 系統錯誤
+
+# BadRequest
+Login error: 登錄錯誤
+Logout error: 登出錯誤
+Account update token error: 帳戶更新令牌錯誤
+Node error: 節點錯誤
+Upload error: 上傳錯誤
+System tray error: 系統托盤錯誤
+Language error: 語言錯誤
+Init database error: 初始化數據庫錯誤
+Storage error: 儲存錯誤
+Splash screen error: 啟動畫面錯誤
+Ping error: Ping錯誤
+
+# Middleware
+Decode error: 解碼錯誤
+Invalid token: 無效令牌
+Invalid token, without key: 無效令牌，無密鑰
+Invalid key: 無效金鑰
+
+Auth error: 認證錯誤
+Encrypt error: 加密錯誤
+Decrypt error: 解密錯誤
+International error: 國際化錯誤
+Signature error: 簽名錯誤
+
+# Login
+Get mac address failed: 獲取MAC地址失敗
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: 設定語言失敗
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: 更新系統托盤圖標失敗
+System tray handle get failed: 獲取系統托盤處理程序失敗
+
+# Http
+Http builder generate failed: HTTP構建器生成失敗
+Received a non-success status: 收到非成功狀態
+Get physical iface error: 獲取物理接口錯誤
+Operation timed out: 操作超時
+Request failed: 請求失敗
+
+# IO
+Create directory failed: 創建目錄失敗
+
+# Parse
+Parse vector to string failed: 將向量解析為字符串失敗
+Parse addr failed: 解析地址失敗
+Parse value to vector failed: 將值解析為向量失敗
+Parse vector to array failed: 將向量解析為數組失敗
+Serialize json error: 序列化JSON錯誤
+Deserialize json error: 反序列化JSON錯誤
+
+# Param
+Token is empty: 令牌為空
+Email is empty: 電子郵件為空
+Passwd is empty: 密碼為空
+Sorry, please enter the correct email: 抱歉，請輸入正確的電子郵件
+No valid IPs to ping: 沒有有效的IP進行ping
+
+# Jwt
+Do not access illegally: 請勿非法訪問
+Token time expires: 令牌時間已過期
+
+# Signature
+Missing signature: 缺少簽名
+Invalid signature format: 無效的簽名格式
+Invalid nonce: 無效的nonce
+Invalid timestamp: 無效的時間戳
+Incorrect signature: 不正確的簽名
+
+# Database
+Database create failed: 數據庫創建失敗
+Database drop failed: 數據庫刪除失敗
+Database connect failed: 數據庫連接失敗
+Get public database connection failed: 獲取公共數據庫連接失敗
+Get user database connection failed: 獲取用戶數據庫連接失敗
+Get public database pool failed: 獲取公共數據庫池失敗
+Get user database pool failed: 獲取用戶數據庫池失敗
+Set public storage failed: 設置公共存儲失敗
+Get public storage failed: 獲取公共存儲失敗
+Set user storage failed: 設置用戶存儲失敗
+Get user storage failed: 獲取用戶存儲失敗
+Query data failed: 查詢數據失敗
+Query one piece of data failed: 查詢一條數據失敗
+Insert failed: 插入失敗
+Update failed: 更新失敗
+Delete failed: 刪除失敗
+
+# Migrate
+Get migrator failed: 獲取遷移器失敗
+Run migration failed: 運行遷移失敗
+
+# System
+key not set: 未設置金鑰
+unauthorized: 未經授權
+no worker: 沒有工作人員
+worker mailbox error: 工作人員郵箱錯誤
+port not open: 端口未開啟
+Iface not set: Iface 未設置
+Iface send failed: Iface 發送失敗
+all ip has been allocated: 所有IP已分配
+ip is empty: IP為空
+all port has been allocated: 所有端口已分配
+verify packet error: 驗證封包錯誤
+unexpected result: 意外結果
+new listener failed: 新監聽器失敗
+assign iface failed: 分配Iface失敗
+resources not exist: 資源不存在
+transport error: 傳輸錯誤
+callback unavailable: 回撥不可用
+Json error: JSON錯誤
+Tun error: Tun錯誤
+crypto error: 加密錯誤
+
+# Menu
+Quit: 退出
+Hide: 隱藏

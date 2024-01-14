@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "Acheter un forfait",
+    "visitWebsite": "Visiter le site officiel",
+    "contactCustomerService": "Contacter le service client",
+    "preferences": "Préférences",
+    "versionCheck": "Vérification de version",
+    "logout": "Déconnexion",
+    "uploadLog": "Télécharger le journal",
+    "uploadLogSuccess": "Journal téléchargé avec succès",
+    "exit": "Programm beenden"
+  },
+  "modal": {
+    "notification": "Notification",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "close": "Fermer"
+  },
+  "auth": {
+    "login": "Connectez-vous maintenant",
+    "signup": "Inscrivez-vous maintenant",
+    "forgotPassword": "Mot de passe oublié ?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "Veuillez entrer le code d'invitation",
+    "emailPlaceholder": "Veuillez entrer votre adresse e-mail",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide",
+    "passwordPlaceholder": "Veuillez entrer le mot de passe",
+    "confirmPasswordPlaceholder": "Veuillez confirmer le mot de passe",
+    "confirmPasswordInvalid": "Les deux mots de passe ne correspondent pas",
+    "button": "S'inscrire",
+    "urlText": "Aller à la page de connexion",
+    "hint": "Vous avez déjà un compte ? {0}",
+    "activateMessage": "Inscription réussie ! Nous avons envoyé un code d'activation à votre adresse e-mail. Veuillez entrer le code pour activer votre compte.",
+    "activationCodePlaceholder": "Veuillez entrer le code d'activation",
+    "activationCodeInvalid": "Veuillez entrer un code d'activation valide",
+    "activateSuccessMessage": "Activation réussie ! Vous serez redirigé vers la page de connexion dans un instant.",
+    "activateButton": "Activer"
+  },
+  "login": {
+    "emailPlaceholder": "Veuillez entrer votre adresse e-mail",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide",
+    "passwordPlaceholder": "Veuillez entrer le mot de passe",
+    "button": "Se connecter",
+    "urlText": "Créer un compte",
+    "hint": "Vous n'avez pas de compte ? {0}",
+    "invalidMessage": "Oups ! Êtes-vous sûr que le mot de passe du compte est correct ?",
+    "loadingText": "Parfait, nous vous connectons maintenant"
+  },
+  "index": {
+    "selectRoute": "Veuillez sélectionner un itinéraire",
+    "buttonText": "Connexion rapide",
+    "buttonTextDisconnect": "Déconnexion",
+    "buttonTextConnecting": "Connexion en cours",
+    "buttonTextDisconnecting": "Déconnexion en cours",
+    "buttonConnectedDuration": "Durée de connexion",
+    "hint": "Ligne {0} actuellement sélectionnée en mode bureau",
+    "route": "Itinéraire",
+    "state": "État :",
+    "disconnect": "Déconnecté",
+    "connect": "Connecté",
+    "connecting": "Connexion en cours",
+    "disconnecting": "Déconnexion en cours",
+    "connectHint": "Cliquez pour vous connecter",
+    "disconnectHint": "Cliquez pour vous déconnecter",
+    "renewalTips": "Rendez-vous dans l'application pour acheter ou renouveler votre forfait",
+    "renewNow": "Forfait restant {0} jours, expire le {1}",
+    "lineLoading": "Chargement",
+    "selectLine": "Sélectionnez un itinéraire",
+    "defaultLine": "Correspondance automatique du trajet le plus rapide",
+    "disconnectFirst": "Veuillez d'abord vous déconnecter",
+    "noRouteNodes": "Aucun itinéraire disponible pour le moment",
+    "defaultNodeCountry": "Ligne : Auto({0})",
+    "packageExpired": "Forfait expiré",
+    "forceDisconnect": "La connexion actuelle a été déconnectée de force"
+  },
+  "preference": {
+    "selfStart": "Démarrage automatique au démarrage",
+    "selectLanguage": "Sélectionner la langue"
+  },
+  "versionCheck": {
+    "new": "Nouvelle version trouvée",
+    "version": "Version",
+    "checking": "Vérification en cours...",
+    "update": "Mettre à jour maintenant",
+    "latest": "Votre version actuelle est la dernière version"
+  }
+}

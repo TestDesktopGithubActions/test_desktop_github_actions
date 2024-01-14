@@ -1,0 +1,9 @@
+@import '@unocss/reset/tailwind.css';
+
+html,
+body {
+    border-radius: 24px;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}

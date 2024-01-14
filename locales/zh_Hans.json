@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "购买套餐",
+    "visitWebsite": "访问官网",
+    "contactCustomerService": "联系客服",
+    "preferences": "偏好设置",
+    "versionCheck": "版本检查",
+    "logout": "退出登录",
+    "uploadLog": "上传日志",
+    "uploadLogSuccess": "日志上传成功",
+    "exit": "退出程序"
+  },
+  "modal": {
+    "notification": "提示",
+    "confirm": "确认",
+    "cancel": "取消",
+    "close": "关闭"
+  },
+  "auth": {
+    "login": "立即登录",
+    "signup": "立即注册",
+    "forgotPassword": "忘记密码?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "请输入邀请码",
+    "emailPlaceholder": "请输入邮箱",
+    "emailInvalid": "请输入正确的邮箱",
+    "passwordPlaceholder": "请输入密码",
+    "confirmPasswordPlaceholder": "请再次确认密码",
+    "confirmPasswordInvalid": "两次输入的密码不一致",
+    "button": "注册",
+    "urlText": "前去登录",
+    "hint": "已有账户？{0}",
+    "activateMessage": "注册成功！我们已经向您的邮箱发送了激活码。请在输入激活码后激活您的账户。",
+    "activationCodePlaceholder": "请输入激活码",
+    "activationCodeInvalid": "请输入正确的激活码",
+    "activateSuccessMessage": "激活成功！即将为您跳转到登录页面。",
+    "activateButton": "激活"
+  },
+  "login": {
+    "emailPlaceholder": "请输入邮箱",
+    "emailInvalid": "请输入正确的邮箱",
+    "passwordPlaceholder": "请输入密码",
+    "button": "登录",
+    "urlText": "创建一个帐户",
+    "hint": "没有账户？{0}",
+    "invalidMessage": "ooops....您确定邮箱和密码正确吗？",
+    "loadingText": "真棒，我们正在为您登录"
+  },
+  "index": {
+    "selectRoute": "请选择线路",
+    "buttonText": "快速连接",
+    "buttonTextDisconnect": "断开",
+    "buttonTextConnecting": "连接中",
+    "buttonTextDisconnecting": "断开中",
+    "buttonConnectedDuration": "已连接时长",
+    "hint": "当前选择线路{0}局模式",
+    "route": "线路",
+    "state": "状态：",
+    "disconnect": "已断开连接",
+    "connect": "连接成功",
+    "connecting": "连接中",
+    "disconnecting": "断开中",
+    "connectHint": "点击即可连接",
+    "disconnectHint": "点击即可断开连接",
+    "renewalTips": "前往 APP 购买或续费套餐",
+    "renewNow": "套餐剩余 {0} 天，{1} 到期",
+    "lineLoading": "加载中",
+    "selectLine": "选择线路",
+    "defaultLine": "自动匹配最快线路",
+    "disconnectFirst": "请先断开连接",
+    "noRouteNodes": "暂无可用线路",
+    "defaultNodeCountry": "线路：自动({0})",
+    "packageExpired": "套餐已过期",
+    "forceDisconnect": "当前连接被强制断开"
+  },
+  "preference": {
+    "selfStart": "开机自启",
+    "selectLanguage": "选择语言"
+  },
+  "versionCheck": {
+    "new": "发现新版本",
+    "version": "版本号",
+    "checking": "检查中...",
+    "update": "立即更新",
+    "latest": "您当前版本是最新版"
+  }
+}

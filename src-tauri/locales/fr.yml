@@ -1,0 +1,138 @@
+_version: 1
+
+# Erreur
+Parse error: Erreur d'analyse
+Database error: Erreur de base de données
+Http error: Erreur HTTP
+Param error: Erreur de paramètre
+IO error: Erreur d'E/S
+System error: Erreur système
+
+# BadRequest
+Login error: Erreur de connexion
+Logout error: Erreur de déconnexion
+Account update token error: Erreur de mise à jour du jeton de compte
+Node error: Erreur de nœud
+Upload error: Erreur de téléversement
+System tray error: Erreur de la barre d'état système
+Language error: Erreur de langue
+Init database error: Erreur d'initialisation de base de données
+Storage error: Erreur de stockage
+Splash screen error: Erreur de l'écran de démarrage
+Ping error: Erreur de ping
+
+# Middleware
+Decode error: Erreur de décodage
+Invalid token: Jeton invalide
+Invalid token, without key: Jeton invalide, sans clé
+Invalid key: Clé invalide
+
+Auth error: Erreur d'authentification
+Encrypt error: Erreur de chiffrement
+Decrypt error: Erreur de déchiffrement
+International error: Erreur internationale
+Signature error: Erreur de signature
+
+# Login
+Get mac address failed: Échec de l'obtention de l'adresse MAC
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: Échec de la configuration de la langue
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: Échec de la mise à jour de l'icône de la barre d'état système
+System tray handle get failed: Échec de l'obtention de la poignée de la barre d'état système
+
+# Http
+Http builder generate failed: Échec de la génération du constructeur HTTP
+Received a non-success status: Statut non réussi reçu
+Get physical iface error: Erreur lors de l'obtention de l'interface physique
+Operation timed out: Délai d'opération dépassé
+Request failed: Requête échouée
+
+# IO
+Create directory failed: Échec de la création du répertoire
+
+# Parse
+Parse vector to string failed: Échec de l'analyse du vecteur en chaîne
+Parse addr failed: Échec de l'analyse de l'adresse
+Parse value to vector failed: Échec de l'analyse de la valeur en vecteur
+Parse vector to array failed: Échec de l'analyse du vecteur en tableau
+Serialize json error: Erreur de sérialisation JSON
+Deserialize json error: Erreur de désérialisation JSON
+
+# Param
+Token is empty: Le jeton est vide
+Email is empty: L'e-mail est vide
+Passwd is empty: Le mot de passe est vide
+Sorry, please enter the correct email: Désolé, veuillez saisir le bon e-mail
+No valid IPs to ping: Aucune adresse IP valide à pinger
+
+# Jwt
+Do not access illegally: N'accédez pas illégalement
+Token time expires: Le temps du jeton a expiré
+
+# Signature
+Missing signature: Signature manquante
+Invalid signature format: Format de signature invalide
+Invalid nonce: Nonce invalide
+Invalid timestamp: Horodatage invalide
+Incorrect signature: Signature incorrecte
+
+# Database
+Database create failed: Échec de la création de la base de données
+Database drop failed: Échec de la suppression de la base de données
+Database connect failed: Échec de la connexion à la base de données
+Get public database connection failed: Échec de l'obtention de la connexion à la base de données publique
+Get user database connection failed: Échec de l'obtention de la connexion à la base de données utilisateur
+Get public database pool failed: Échec de l'obtention du pool de connexions de la base de données publique
+Get user database pool failed: Échec de l'obtention du pool de connexions de la base de données utilisateur
+Set public storage failed: Échec de la configuration du stockage public
+Get public storage failed: Échec de l'obtention du stockage public
+Set user storage failed: Échec de la configuration du stockage utilisateur
+Get user storage failed: Échec de l'obtention du stockage utilisateur
+Query data failed: Échec de la requête de données
+Query one piece of data failed: Échec de la requête d'une donnée
+Insert failed: Échec de l'insertion
+Update failed: Échec de la mise à jour
+Delete failed: Échec de la suppression
+
+# Migrate
+Get migrator failed: Échec de l'obtention du migrateur
+Run migration failed: Échec de la migration
+
+# System
+key not set: Clé non définie
+unauthorized: Non autorisé
+no worker: Aucun travailleur
+worker mailbox error: Erreur de boîte aux lettres du travailleur
+port not open: Port non ouvert
+Iface not set: Iface non défini
+Iface send failed: Envoi Iface échoué
+all ip has been allocated: Toutes les adresses IP ont été attribuées
+ip is empty: IP est vide
+all port has been allocated: Tous les ports ont été attribués
+verify packet error: Erreur de vérification du paquet
+unexpected result: Résultat inattendu
+new listener failed: Nouvel échec de l'auditeur
+assign iface failed: Attribution Iface échouée
+resources not exist: Ressources inexistantes
+transport error: Erreur de transport
+callback unavailable: Rappel non disponible
+Json error: Erreur JSON
+Tun error: Erreur Tun
+crypto error: Erreur de cryptage
+
+# Menu
+Quit: Quitter
+Hide: Cacher

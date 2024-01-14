@@ -1,0 +1,88 @@
+{
+  "menu": {
+    "purchasePackage": "Purchase Package",
+    "visitWebsite": "Visit the official website",
+    "contactCustomerService": "Contact Customer Service",
+    "preferences": "Preferences",
+    "versionCheck": "Version Check",
+    "logout": "Logout",
+    "uploadLog": "Upload Log",
+    "uploadLogSuccess": "Log uploaded successfully",
+    "exit": "Exit"
+  },
+  "modal": {
+    "notification": "Notification",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "auth": {
+    "login": "Login now",
+    "signup": "Signup now",
+    "forgotPassword": "Forgot password?"
+  },
+  "signup": {
+    "inviteCodePlaceholder": "Please enter the invitation code",
+    "emailPlaceholder": "Please input your email",
+    "emailInvalid": "Please enter a valid email",
+    "passwordPlaceholder": "Please enter password",
+    "confirmPasswordPlaceholder": "Please reconfirm the password",
+    "confirmPasswordInvalid": "The two passwords are inconsistent",
+    "button": "Sign up",
+    "urlText": "Go to login",
+    "hint": "Already have an account? {0}",
+    "activateMessage": "Registration successful! We've sent an activation code to your email. Please enter the code to activate your account.",
+    "activationCodePlaceholder": "Please enter the activation code",
+    "activationCodeInvalid": "Please enter a valid activation code",
+    "activateSuccessMessage": "Activation successful! You will be redirected to the login page shortly.",
+    "activateButton": "Activate"
+  },
+  "login": {
+    "emailPlaceholder": "please input your email",
+    "emailInvalid": "Please enter a valid email",
+    "passwordPlaceholder": "please enter password",
+    "button": "Login",
+    "urlText": "create an account",
+    "hint": "Don't have an account? {0}",
+    "invalidMessage": "Ooops Are you sure the account password is correct?",
+    "loadingText": "Great, we are logging you in now"
+  },
+  "index": {
+    "selectRoute": "Please select a route",
+    "buttonText": "Quick Connect",
+    "buttonTextDisconnect": "Disconnect",
+    "buttonTextConnecting": "Connecting",
+    "buttonTextDisconnecting": "Disconnecting",
+    "buttonConnectedDuration": "Connected duration",
+    "hint": "Currently selected line {0} office mode",
+    "route": "Route",
+    "state": "State:",
+    "disconnect": "Disconnected",
+    "connect": "Connected",
+    "connecting": "Connecting",
+    "disconnecting": "Disconnecting",
+    "connectHint": "Click to connect",
+    "disconnectHint": "Click to disconnect",
+    "renewalTips": "Go to the APP to purchase or renew your package",
+    "renewNow": "Package remaining {0} days, {1} expires",
+    "lineLoading": "Loading",
+    "selectLine": "Select a route",
+    "defaultLine": "Automatically match the fastest route",
+    "disconnectFirst": "Please disconnect first",
+    "noRouteNodes": "No available routes",
+    "defaultNodeCountry": "Line: Auto({0})",
+    "packageExpired": "Package expired",
+    "forceDisconnect": "Current connection has been forcibly disconnected"
+  },
+  "preference": {
+    "selfStart": "Self start upon startup",
+    "selectLanguage": "Select Language"
+  },
+  "versionCheck": {
+    "new": "New Version Found",
+    "version": "Version",
+    "checking": "Checking...",
+    "update": "Update Now",
+    "latest": "Your current version is the latest version"
+  }
+}

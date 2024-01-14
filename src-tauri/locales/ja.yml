@@ -1,0 +1,138 @@
+_version: 1
+
+# Error
+Parse error: パースエラー
+Database error: データベースエラー
+Http error: HTTPエラー
+Param error: パラメータエラー
+IO error: 入出力エラー
+System error: システムエラー
+
+# BadRequest
+Login error: ログインエラー
+Logout error: ログアウトエラー
+Account update token error: アカウント更新トークンエラー
+Node error: ノードエラー
+Upload error: アップロードエラー
+System tray error: システムトレイエラー
+Language error: 言語エラー
+Init database error: データベース初期化エラー
+Storage error: ストレージエラー
+Splash screen error: スプラッシュスクリーンエラー
+Ping error: ピングエラー
+
+# Middleware
+Decode error: デコードエラー
+Invalid token: 無効なトークン
+Invalid token, without key: キーなしの無効なトークン
+Invalid key: 無効なキー
+
+Auth error: 認証エラー
+Encrypt error: 暗号化エラー
+Decrypt error: 復号化エラー
+International error: 国際化エラー
+Signature error: 署名エラー
+
+# Login
+Get mac address failed: MACアドレスの取得に失敗しました
+
+# Logout
+
+# AccountUpdateToken
+
+# Node
+
+# Upload
+
+# SetLanguage
+Set language failed: 言語の設定に失敗しました
+
+# Ping
+
+# SystemTray
+Update system tray icon failed: システムトレイアイコンの更新に失敗しました
+System tray handle get failed: システムトレイハンドルの取得に失敗しました
+
+# Http
+Http builder generate failed: HTTPビルダーの生成に失敗しました
+Received a non-success status: 成功でないステータスを受信しました
+Get physical iface error: 物理インターフェースの取得エラー
+Operation timed out: タイムアウトしました
+Request failed: リクエストに失敗しました
+
+# IO
+Create directory failed: ディレクトリの作成に失敗しました
+
+# Parse
+Parse vector to string failed: ベクトルの文字列へのパースに失敗しました
+Parse addr failed: アドレスのパースに失敗しました
+Parse value to vector failed: 値のベクトルへのパースに失敗しました
+Parse vector to array failed: ベクトルの配列へのパースに失敗しました
+Serialize json error: JSONのシリアル化エラー
+Deserialize json error: JSONのデシリアル化エラー
+
+# Param
+Token is empty: トークンが空です
+Email is empty: メールアドレスが空です
+Passwd is empty: パスワードが空です
+Sorry, please enter the correct email: 申し訳ございませんが、正しいメールアドレスを入力してください
+No valid IPs to ping: ピングする有効なIPがありません
+
+# Jwt
+Do not access illegally: 違法なアクセスはしないでください
+Token time expires: トークンの有効期限が切れました
+
+# Signature
+Missing signature: 署名がありません
+Invalid signature format: 無効な署名形式
+Invalid nonce: 無効なナンス
+Invalid timestamp: 無効なタイムスタンプ
+Incorrect signature: 不正な署名
+
+# Database
+Database create failed: データベースの作成に失敗しました
+Database drop failed: データベースの削除に失敗しました
+Database connect failed: データベースの接続に失敗しました
+Get public database connection failed: 公共データベースの接続の取得に失敗しました
+Get user database connection failed: ユーザーデータベースの接続の取得に失敗しました
+Get public database pool failed: 公共データベースプールの取得に失敗しました
+Get user database pool failed: ユーザーデータベースプールの取得に失敗しました
+Set public storage failed: 公共ストレージの設定に失敗しました
+Get public storage failed: 公共ストレージの取得に失敗しました
+Set user storage failed: ユーザーストレージの設定に失敗しました
+Get user storage failed: ユーザーストレージの取得に失敗しました
+Query data failed: データのクエリに失敗しました
+Query one piece of data failed: データの一部のクエリに失敗しました
+Insert failed: 挿入に失敗しました
+Update failed: 更新に失敗しました
+Delete failed: 削除に失敗しました
+
+# Migrate
+Get migrator failed: マイグレータの取得に失敗しました
+Run migration failed: マイグレーションの実行に失敗しました
+
+# System
+key not set: キーが設定されていません
+unauthorized: 認可されていません
+no worker: ワーカーがいません
+worker mailbox error: ワーカーメールボックスエラー
+port not open: ポートが開いていません
+Iface not set: Ifaceが設定されていません
+Iface send failed: Ifaceの送信に失敗しました
+all ip has been allocated: すべてのIPが割り当てられています
+ip is empty: IPが空です
+all port has been allocated: すべてのポートが割り当てられています
+verify packet error: パケットの検証エラー
+unexpected result: 予期しない結果
+new listener failed: 新しいリスナーが失敗しました
+assign iface failed: Ifaceの割り当てに失敗しました
+resources not exist: リソースが存在しません
+transport error: トランスポートエラー
+callback unavailable: コールバックが利用できません
+Json error: JSONエラー
+Tun error: Tunエラー
+crypto error: 暗号エラー
+
+# Menu
+Quit: 終了
+Hide: 非表示
