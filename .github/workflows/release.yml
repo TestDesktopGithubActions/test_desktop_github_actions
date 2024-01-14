@@ -175,7 +175,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: QuantumCat-957/QuantumCat-957.github.io
+          # external_repository: QuantumCat-957/QuantumCat-957.github.io
+          external_repository: ram-flux/ram-flux.github.io
           publish_branch: main # default: gh-pages
           publish_dir: ./updater
           force_orphan: true
