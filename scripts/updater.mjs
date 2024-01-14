@@ -225,7 +225,7 @@ async function addPackageVersion() {
             version: updateData.version,
             target: targetMap[platform] || "Unknown",
             installer: installerMap[platform] || "Unknown",
-            note: updateData.notes,
+            notes: updateData.notes,
             download_url: data.url,
         };
 
@@ -233,7 +233,6 @@ async function addPackageVersion() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // 如果有需要的话，可以添加其他header
             },
             body: JSON.stringify(packageData),
         };
