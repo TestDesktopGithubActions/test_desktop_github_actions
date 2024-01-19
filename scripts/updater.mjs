@@ -3,17 +3,26 @@
 import fetch from "node-fetch";
 import { getOctokit, context } from "@actions/github";
 import fs from "fs";
+import ssh2 from "ssh2";
 
 import updatelog from "./updatelog.mjs";
 
 const token = process.env.GITHUB_TOKEN;
 const personal_access_token = process.env.PERSONAL_TOKEN;
+const api_private_key = process.env.API_PRIVATE_KEY;
+
+const serverConfig = {
+    host: "54.179.190.222",
+    port: 22,
+    username: "admin",
+    privateKey: api_private_key,
+};
 
 const platformMap = {
-    "darwin-aarch64": "macOS",
+    "darwin-aarch64": "macos",
     // "darwin": "macOS",
-    "darwin-x86_64": "macOS",
-    "windows-x86_64": "Windows",
+    "darwin-x86_64": "macos",
+    "windows-x86_64": "windows",
     // "windows-x86_64-nsis": "Windows",
     // "windows-x86_64-msi": "Windows"
 };
@@ -22,7 +31,7 @@ const targetMap = {
     "darwin-aarch64": "aarch64",
     // "darwin": "universal",
     "darwin-x86_64": "x86_64",
-    "windows-x86_64": "x86_64-nsis",
+    "windows-x86_64": "x86_64",
     // "windows-x86_64-nsis": "x86_64-nsis",
     // "windows-x86_64-msi": "x86_64-msi"
 };
@@ -143,6 +152,22 @@ async function updater() {
         console.log("[setAsset] set sig, updateData: ", updateData);
     };
 
+    const upload = async (asset) => {
+        let remoteFilePath = "";
+        if (/_aarch64.dmg$/.test(asset.name)) {
+            remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
+        } else if (/_x64.dmg$/.test(asset.name)) {
+            remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
+        }
+        // windows
+        else if (/_x64_en-US.msi$/.test(asset.name)) {
+            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
+        } else if (/_x64-setup.exe$/.test(asset.name)) {
+            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
+        }
+        uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
+    };
+
     const setAsset = async (asset) => {
         console.log("[setAsset] asset: ", asset);
         console.log("[setAsset] name: ", asset.name);
@@ -153,6 +178,7 @@ async function updater() {
         // console.log('[setAsset] reg: ', reg);
         await setSig(asset);
         await setUrl(asset);
+        await upload(asset);
     };
 
     const promises = latestRelease.assets.map(async (asset) => {
@@ -251,4 +277,46 @@ async function addPackageVersion() {
             console.error("An error has occurred:", error);
         }
     }
+}
+
+// 上传文件到api server
+async function uploadGitHubFileToServer(url, remoteFilePath, serverConfig) {
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/octet-stream",
+                Authorization: `token ${personal_access_token}`,
+            },
+        });
+
+        const fileData = await response.buffer();
+        await UploadPackage(fileData, remoteFilePath, serverConfig);
+    } catch (error) {
+        console.error("Error:", error);
+        return "";
+    }
+}
+
+// 封装发送POST请求的函数
+async function UploadPackage(fileData, remoteFilePath, serverConfig) {
+    const conn = new ssh2.Client();
+
+    conn.on("ready", function () {
+        console.log("SSH connection established");
+
+        conn.sftp(function (err, sftp) {
+            if (err) throw err;
+
+            const writeStream = sftp.createWriteStream(remoteFilePath);
+            writeStream.write(fileData);
+
+            writeStream.on("close", function () {
+                console.log("File transferred");
+                conn.end();
+            });
+        });
+    });
+
+    conn.connect(serverConfig);
 }
