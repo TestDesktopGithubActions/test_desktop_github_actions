@@ -244,7 +244,7 @@ async function getSignature(url) {
 
 // 封装发送POST请求的函数
 async function addPackageVersion() {
-    const url = "https://boss.ffdev.cc/v1/version";
+    const url = "https://boss.ffdev.cc/v1/release/version";
     for (const [platform, data] of Object.entries(updateData.platforms)) {
         const packageData = {
             platform: platformMap[platform] || "Unknown",
