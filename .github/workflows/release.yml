@@ -166,6 +166,9 @@ jobs:
       - name: Add development dependencies
         run: yarn add -D node-fetch @actions/github
 
+      - name: Install ssh2 package
+        run: yarn add ssh2
+
       - name: Run updater script
         run: yarn updater
         env:
