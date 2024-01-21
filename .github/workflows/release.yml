@@ -63,7 +63,7 @@ jobs:
           toolchain: nightly
           # default: true
           target: aarch64-apple-darwin
-        
+
       # 使用 Rust 缓存，加快安装速度
       - uses: Swatinem/rust-cache@v2
 
@@ -120,7 +120,7 @@ jobs:
 
       - name: Print config.toml content
         run: cat $HOME/.cargo/config.toml
-      
+
       - name: Remove duplicate key in config.toml
         run: sed -i '' '/net/d' $HOME/.cargo/config.toml
 
@@ -163,6 +163,11 @@ jobs:
     needs: [create-release, build-tauri]
 
     steps:
+      - name: Create API SSH private key file
+        run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -191,4 +196,3 @@ jobs:
           force_orphan: true
         env:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          api_private_key: ${{ secrets.API_PRIVATE_KEY }}

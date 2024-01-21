@@ -9,13 +9,12 @@ import updatelog from "./updatelog.mjs";
 
 const token = process.env.GITHUB_TOKEN;
 const personal_access_token = process.env.PERSONAL_TOKEN;
-const api_private_key = process.env.API_PRIVATE_KEY;
 
 const serverConfig = {
     host: "54.179.190.222",
     port: 22,
     username: "admin",
-    privateKey: api_private_key,
+    privateKey: "/home/runner/.ssh/id_rsa",
 };
 
 const platformMap = {
