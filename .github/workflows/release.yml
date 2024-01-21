@@ -170,7 +170,7 @@ jobs:
           echo "${{ secrets.API_PRIVATE_KEY }}" > $HOME/.ssh/api_id_rsa
           chmod 600 $HOME/.ssh/api_id_rsa  # 设置私钥文件权限
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+          API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
       - name: Print api_id_rsa content
         run: cat $HOME/.ssh/api_id_rsa
@@ -191,7 +191,7 @@ jobs:
         run: yarn updater
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+          API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
