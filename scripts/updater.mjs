@@ -14,7 +14,7 @@ const serverConfig = {
     host: "54.179.190.222",
     port: 22,
     username: "admin",
-    privateKey: "/home/runner/.ssh/id_rsa",
+    privateKey: "/home/runner/.ssh/api_id_rsa",
 };
 
 const platformMap = {

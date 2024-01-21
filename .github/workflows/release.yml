@@ -164,7 +164,11 @@ jobs:
 
     steps:
       - name: Create API SSH private key file
-        run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
+        # run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
+        run: |
+          mkdir -p ~/.ssh  # 创建 .ssh 目录
+          echo "$API_PRIVATE_KEY" > ~/.ssh/api_id_rsa
+          chmod 600 ~/.ssh/api_id_rsa  # 设置私钥文件权限
         env:
           SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
