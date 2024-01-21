@@ -173,7 +173,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
       - name: Print api_id_rsa content
-        run: cat $HOME/.ssh/api_id_rsa
+        run: cat ~/.ssh/api_id_rsa
 
       - name: Checkout repository
         uses: actions/checkout@v3
