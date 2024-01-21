@@ -166,14 +166,14 @@ jobs:
       - name: Create API SSH private key file
         # run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
         run: |
-          mkdir -p ~/.ssh  # 创建 .ssh 目录
-          echo "$API_PRIVATE_KEY" > ~/.ssh/api_id_rsa
-          chmod 600 ~/.ssh/api_id_rsa  # 设置私钥文件权限
+          mkdir -p $HOME/.ssh  # 创建 .ssh 目录
+          echo "${{ secrets.API_PRIVATE_KEY }}" > $HOME/.ssh/api_id_rsa
+          chmod 600 $HOME/.ssh/api_id_rsa  # 设置私钥文件权限
         env:
           SSH_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
       - name: Print api_id_rsa content
-        run: cat ~/.ssh/api_id_rsa
+        run: cat $HOME/.ssh/api_id_rsa
 
       - name: Checkout repository
         uses: actions/checkout@v3
