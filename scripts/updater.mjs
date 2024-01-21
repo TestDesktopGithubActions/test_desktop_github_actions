@@ -306,17 +306,32 @@ async function UploadPackage(fileData, remoteFilePath, serverConfig) {
         console.log("SSH connection established");
 
         conn.sftp(function (err, sftp) {
-            if (err) throw err;
+            if (err) {
+                conn.end();
+                reject(err);
+            }
 
             const writeStream = sftp.createWriteStream(remoteFilePath);
-            writeStream.write(fileData);
-
             writeStream.on("close", function () {
                 console.log("File transferred");
                 conn.end();
+                resolve();
             });
+            writeStream.on('error', function (err) {
+                console.error('File transfer error:', err);
+                conn.end();
+                reject(err);
+            });
+
+            writeStream.write(fileData);
+            writeStream.end();
         });
     });
-
+    conn.on('error', function (err) {
+        console.error("SSH connection error:", err);
+        conn.end();
+        reject(err);
+    });
+    
     conn.connect(serverConfig);
 }
