@@ -64,6 +64,13 @@ jobs:
           # default: true
           target: aarch64-apple-darwin
 
+      - name: Print config.toml content
+        run: cat /Users/runner/.cargo/config.toml
+      
+      - name: Remove duplicate key in config.toml
+        run: sed -i '' '/net/d' /Users/runner/.cargo/config.toml
+        
+
       # 使用 Rust 缓存，加快安装速度
       - uses: Swatinem/rust-cache@v2
 
