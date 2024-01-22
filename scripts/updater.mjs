@@ -9,14 +9,6 @@ import updatelog from "./updatelog.mjs";
 
 const token = process.env.GITHUB_TOKEN;
 const personal_access_token = process.env.PERSONAL_TOKEN;
-const api_private_key = process.env.API_PRIVATE_KEY;
-
-const serverConfig = {
-    host: "54.179.190.222",
-    port: 22,
-    username: "admin",
-    privateKey: "/home/runner/.ssh/api_id_rsa",
-};
 
 const platformMap = {
     "darwin-aarch64": "macos",
@@ -24,7 +16,7 @@ const platformMap = {
     "darwin-x86_64": "macos",
     "windows-x86_64": "windows",
     // "windows-x86_64-nsis": "Windows",
-    // "windows-x86_64-msi": "Windows"
+    "windows-x86_64-msi": "Windows",
 };
 
 const targetMap = {
@@ -34,6 +26,7 @@ const targetMap = {
     "windows-x86_64": "x86_64",
     // "windows-x86_64-nsis": "x86_64-nsis",
     // "windows-x86_64-msi": "x86_64-msi"
+    "windows-x86_64-msi": "x86_64",
 };
 
 const installerMap = {
@@ -42,7 +35,7 @@ const installerMap = {
     "darwin-x86_64": "dmg",
     "windows-x86_64": "exe",
     // "windows-x86_64-nsis": "exe",
-    // "windows-x86_64-msi": "msi"
+    "windows-x86_64-msi": "msi",
 };
 
 // 需要生成的静态 json 文件数据，根据自己的需要进行调整
@@ -60,16 +53,16 @@ const updateData = {
         // 'linux-x86_64': { signature: '', url: '' },
         "windows-x86_64": { signature: "", url: "" },
         // 'windows-x86_64-nsis': { signature: '', url: '' },
-        // 'windows-x86_64-msi': { signature: '', url: '' },
+        "windows-x86_64-msi": { signature: "", url: "" },
         // 'windows-i686': { signature: '', url: '' }, // no supported
     },
 };
 
 async function updater() {
-    const privateKeyPath = "/home/runner/.ssh/api_id_rsa";
-    const privateKeyContent = fs.readFileSync(privateKeyPath, "utf8");
-    console.log("ssh私钥: ", privateKeyContent);
-    console.log("api_private_key: ", api_private_key);
+    // const privateKeyPath = "/home/runner/.ssh/api_id_rsa";
+    // const privateKeyContent = fs.readFileSync(privateKeyPath, "utf8");
+    // console.log("ssh私钥: ", privateKeyContent);
+    // console.log("api_private_key: ", api_private_key);
     if (!token) {
         console.log("GITHUB_TOKEN is required");
         process.exit(1);
@@ -123,10 +116,9 @@ async function updater() {
             else if (/_x64-setup.nsis.zip.sig$/.test(asset.name)) {
                 // updateData.platforms['windows-x86_64-nsis'].signature = sig;
                 updateData.platforms["windows-x86_64"].signature = sig;
+            } else if (/_x64_en-US.msi.zip.sig$/.test(asset.name)) {
+                updateData.platforms["windows-x86_64-msi"].signature = sig;
             }
-            // else if (/_x64_en-US.msi.zip.sig$/.test(asset.name)) {
-            //   updateData.platforms['windows-x86_64-msi'].signature = sig;
-            // }
         }
     };
 
@@ -150,10 +142,10 @@ async function updater() {
                 asset.browser_download_url;
             // updateData.platforms['windows-x86_64-nsis'].url = asset.browser_download_url;
         }
-        // else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
-        //   updateData.platforms['windows-x86_64-msi'].url = asset.browser_download_url;
-        // }
-        console.log("[setAsset] set sig, updateData: ", updateData);
+        else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
+          updateData.platforms['windows-x86_64-msi'].url = asset.browser_download_url;
+        }
+        console.log("[setUrl] updateData: ", updateData);
     };
 
     const upload = async (asset) => {
@@ -182,7 +174,7 @@ async function updater() {
         // console.log('[setAsset] reg: ', reg);
         await setSig(asset);
         await setUrl(asset);
-        await upload(asset);
+        // await upload(asset);
     };
 
     const promises = latestRelease.assets.map(async (asset) => {
@@ -250,6 +242,12 @@ async function getSignature(url) {
 async function addPackageVersion() {
     const url = "https://boss.ffdev.cc/v1/release/version";
     for (const [platform, data] of Object.entries(updateData.platforms)) {
+        console.log(
+            `[${platform} ${data.target} ${data.installer}] Start add package version!`
+        );
+        console.log(
+            `[${platform} ${data.target} ${data.installer}] download url: ${data.url}`
+        );
         const packageData = {
             platform: platformMap[platform] || "Unknown",
             version: updateData.version,
@@ -259,6 +257,9 @@ async function addPackageVersion() {
             download_url: data.url,
         };
 
+        console.log(
+            `[${platform} ${data.target} ${data.installer}] packageData: ${packageData}`
+        );
         const requestOptions = {
             method: "POST",
             headers: {
@@ -270,7 +271,9 @@ async function addPackageVersion() {
         try {
             const response = await fetch(url, requestOptions);
             if (response.ok) {
-                console.log("Added package version information successfully!");
+                console.log(
+                    `[${platform} ${data.target} ${data.installer}] Added package version information successfully!`
+                );
             } else {
                 console.error(
                     "Failed to add package version information:",
