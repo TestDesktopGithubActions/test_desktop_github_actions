@@ -41,6 +41,13 @@ const installerMap = {
     "windows-x86_64-msi": "msi",
 };
 
+const pkgUrl = {
+    "darwin-aarch64": "",
+    "darwin-x86_64": "",
+    "windows-x86_64": "",
+    "windows-x86_64-msi": "",
+};
+
 // 需要生成的静态 json 文件数据，根据自己的需要进行调整
 const updateData = {
     version: "",
@@ -151,20 +158,24 @@ async function updater() {
         console.log("[setUrl] updateData: ", updateData);
     };
 
-    const upload = async (asset) => {
-        let remoteFilePath = "";
+    const setPkgUrl = async (asset) => {
+        // let remoteFilePath = "";
         if (/_aarch64.dmg$/.test(asset.name)) {
-            remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
+            // remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
+            pkgUrl["darwin-aarch64"] = asset.browser_download_url;
         } else if (/_x64.dmg$/.test(asset.name)) {
-            remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
+            // remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
+            pkgUrl["darwin-x86_64"] = asset.browser_download_url;
         }
         // windows
         else if (/_x64_en-US.msi$/.test(asset.name)) {
-            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
+            // remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
+            pkgUrl["windows-x86_64-msi"] = asset.browser_download_url;
         } else if (/_x64-setup.exe$/.test(asset.name)) {
-            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
+            // remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
+            pkgUrl["windows-x86_64"] = asset.browser_download_url;
         }
-        uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
+        // uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
     };
 
     const setAsset = async (asset) => {
@@ -177,7 +188,7 @@ async function updater() {
         // console.log('[setAsset] reg: ', reg);
         await setSig(asset);
         await setUrl(asset);
-        // await upload(asset);
+        await setPkgUrl(asset);
     };
 
     const promises = latestRelease.assets.map(async (asset) => {
@@ -262,7 +273,8 @@ async function addPackageVersion(boss_login_token) {
             target: targetMap[platform] || "Unknown",
             installer: installerMap[platform] || "Unknown",
             notes: updateData.notes,
-            download_url: data.url,
+            // download_url: data.url,
+            download_url: pkgUrl[platform],
         };
 
         console.log(`[${platform}] packageData: ${packageData}`);
@@ -270,7 +282,7 @@ async function addPackageVersion(boss_login_token) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": boss_login_token
+                Authorization: boss_login_token,
             },
             body: JSON.stringify(packageData),
         };
