@@ -159,23 +159,23 @@ async function updater() {
     };
 
     const setPkgUrl = async (asset) => {
-        // let remoteFilePath = "";
+        let remoteFilePath = "";
         if (/_aarch64.dmg$/.test(asset.name)) {
-            // remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
+            remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
             pkgUrl["darwin-aarch64"] = asset.browser_download_url;
         } else if (/_x64.dmg$/.test(asset.name)) {
-            // remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
+            remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
             pkgUrl["darwin-x86_64"] = asset.browser_download_url;
         }
         // windows
         else if (/_x64_en-US.msi$/.test(asset.name)) {
-            // remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
+            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
             pkgUrl["windows-x86_64-msi"] = asset.browser_download_url;
         } else if (/_x64-setup.exe$/.test(asset.name)) {
-            // remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
+            remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
             pkgUrl["windows-x86_64"] = asset.browser_download_url;
         }
-        // uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
+        uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
     };
 
     const setAsset = async (asset) => {
