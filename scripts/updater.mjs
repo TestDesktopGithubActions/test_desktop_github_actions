@@ -141,9 +141,9 @@ async function updater() {
             updateData.platforms["windows-x86_64"].url =
                 asset.browser_download_url;
             // updateData.platforms['windows-x86_64-nsis'].url = asset.browser_download_url;
-        }
-        else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
-          updateData.platforms['windows-x86_64-msi'].url = asset.browser_download_url;
+        } else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
+            updateData.platforms["windows-x86_64-msi"].url =
+                asset.browser_download_url;
         }
         console.log("[setUrl] updateData: ", updateData);
     };
@@ -206,8 +206,18 @@ async function updater() {
     console.log("Generate updater/install.json");
 }
 
-updater().catch(console.error);
-addPackageVersion().catch(console.error);
+async function exec() {
+    try {
+        await updater();
+        await addPackageVersion();
+    } catch (error) {
+        console.error(error);
+    }
+    // updater().catch(console.error);
+    // addPackageVersion().catch(console.error);
+}
+
+exec().catch(console.error);
 
 // 获取签名内容
 async function _getSignature(url) {
@@ -242,12 +252,8 @@ async function getSignature(url) {
 async function addPackageVersion() {
     const url = "https://boss.ffdev.cc/v1/release/version";
     for (const [platform, data] of Object.entries(updateData.platforms)) {
-        console.log(
-            `[${platform} ${data.target} ${data.installer}] Start add package version!`
-        );
-        console.log(
-            `[${platform} ${data.target} ${data.installer}] download url: ${data.url}`
-        );
+        console.log(`[${platform}] Start add package version!`);
+        console.log(`[${platform}] download url: ${data.url}`);
         const packageData = {
             platform: platformMap[platform] || "Unknown",
             version: updateData.version,
@@ -257,9 +263,7 @@ async function addPackageVersion() {
             download_url: data.url,
         };
 
-        console.log(
-            `[${platform} ${data.target} ${data.installer}] packageData: ${packageData}`
-        );
+        console.log(`[${platform}] packageData: ${packageData}`);
         const requestOptions = {
             method: "POST",
             headers: {
