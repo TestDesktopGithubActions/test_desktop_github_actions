@@ -13,6 +13,13 @@ const boss_login_body = process.env.BOSS_LOGIN_BODY;
 const boss_login_url = "https://boss.ffdev.cc/v1/login";
 const boss_release_add_url = "https://boss.ffdev.cc/v1/release/version";
 
+const serverConfig = {
+    host: "54.179.190.222",
+    port: 22,
+    username: "admin",
+    privateKey: "/home/runner/.ssh/api_id_rsa",
+};
+
 const platformMap = {
     "darwin-aarch64": "macos",
     // "darwin": "macOS",
