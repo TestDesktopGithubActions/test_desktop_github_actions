@@ -193,6 +193,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          boss_login_body: ${{ secrets.BOSS_LOGIN_BODY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

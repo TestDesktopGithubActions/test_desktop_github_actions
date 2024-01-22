@@ -9,6 +9,9 @@ import updatelog from "./updatelog.mjs";
 
 const token = process.env.GITHUB_TOKEN;
 const personal_access_token = process.env.PERSONAL_TOKEN;
+const boss_login_body = process.env.BOSS_LOGIN_BODY;
+const boss_login_url = "https://boss.ffdev.cc/v1/login";
+const boss_release_add_url = "https://boss.ffdev.cc/v1/release/version";
 
 const platformMap = {
     "darwin-aarch64": "macos",
@@ -178,18 +181,7 @@ async function updater() {
     };
 
     const promises = latestRelease.assets.map(async (asset) => {
-        // const platformsToCheck = {
-        //   '.msi.zip': ['win64', 'windows-x86_64'],
-        //   '.app.tar.gz': ['darwin', 'darwin-x86_64', 'darwin-aarch64'],
-        //   // '.dmg': ['darwin', 'darwin-x86_64', 'darwin-aarch64'],
-        //   // '.app.tar.gz.sig': ['darwin', 'darwin-x86_64', 'darwin-aarch64'],
-        //   // '.tar.gz': ['linux', 'linux-x86_64']
-        // };
-
         await setAsset(asset);
-        // for (const [pattern, platforms] of Object.entries(platformsToCheck)) {
-        //   // await _setAsset(asset, new RegExp(pattern), platforms);
-        // };
     });
 
     await Promise.allSettled(promises);
@@ -208,8 +200,9 @@ async function updater() {
 
 async function exec() {
     try {
+        let boss_login_token = await getBossToken();
         await updater();
-        await addPackageVersion();
+        await addPackageVersion(boss_login_token);
     } catch (error) {
         console.error(error);
     }
@@ -218,6 +211,29 @@ async function exec() {
 }
 
 exec().catch(console.error);
+
+// 获取token
+async function getBossToken() {
+    try {
+        const response = await fetch(boss_login_url, {
+            method: "POST",
+            body: boss_login_body,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const {
+                result: { token },
+            } = data;
+            return token;
+        } else {
+            return "";
+        }
+    } catch (error) {
+        console.error("Error fetching or parsing data:", error);
+        return "";
+    }
+}
 
 // 获取签名内容
 async function _getSignature(url) {
@@ -235,22 +251,8 @@ async function _getSignature(url) {
     }
 }
 
-// 获取签名内容
-async function getSignature(url) {
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: { "Content-Type": "application/octet-stream" },
-        });
-        return response.text();
-    } catch (_) {
-        return "";
-    }
-}
-
 // 封装发送POST请求的函数
-async function addPackageVersion() {
-    const url = "https://boss.ffdev.cc/v1/release/version";
+async function addPackageVersion(boss_login_token) {
     for (const [platform, data] of Object.entries(updateData.platforms)) {
         console.log(`[${platform}] Start add package version!`);
         console.log(`[${platform}] download url: ${data.url}`);
@@ -268,12 +270,13 @@ async function addPackageVersion() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": boss_login_token
             },
             body: JSON.stringify(packageData),
         };
 
         try {
-            const response = await fetch(url, requestOptions);
+            const response = await fetch(boss_release_add_url, requestOptions);
             if (response.ok) {
                 console.log(
                     `[${platform} ${data.target} ${data.installer}] Added package version information successfully!`
