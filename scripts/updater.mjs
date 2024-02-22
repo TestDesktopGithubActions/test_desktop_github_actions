@@ -13,12 +13,12 @@ const boss_login_body = process.env.BOSS_LOGIN_BODY;
 const boss_login_url = "https://boss.ffdev.cc/v1/login";
 const boss_release_add_url = "https://boss.ffdev.cc/v1/release/version";
 
-const serverConfig = {
-    host: "54.179.190.222",
-    port: 22,
-    username: "admin",
-    privateKey: "/home/runner/.ssh/api_id_rsa",
-};
+// const serverConfig = {
+//     host: "54.179.190.222",
+//     port: 22,
+//     username: "admin",
+//     privateKey: "/home/runner/.ssh/api_id_rsa",
+// };
 
 const platformMap = {
     "darwin-aarch64": "macos",
@@ -169,20 +169,20 @@ async function updater() {
         let remoteFilePath = "";
         if (/_aarch64.dmg$/.test(asset.name)) {
             remoteFilePath = `/opt/www/rf/api/releases/macos/aarch64/dmg/${asset.name}`;
-            pkgUrl["darwin-aarch64"] = asset.browser_download_url;
+            // pkgUrl["darwin-aarch64"] = asset.browser_download_url;
         } else if (/_x64.dmg$/.test(asset.name)) {
             remoteFilePath = `/opt/www/rf/api/releases/macos/x86_64/dmg/${asset.name}`;
-            pkgUrl["darwin-x86_64"] = asset.browser_download_url;
+            // pkgUrl["darwin-x86_64"] = asset.browser_download_url;
         }
         // windows
         else if (/_x64_en-US.msi$/.test(asset.name)) {
             remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/msi/${asset.name}`;
-            pkgUrl["windows-x86_64-msi"] = asset.browser_download_url;
+            // pkgUrl["windows-x86_64-msi"] = asset.browser_download_url;
         } else if (/_x64-setup.exe$/.test(asset.name)) {
             remoteFilePath = `/opt/www/rf/api/releases/windows/x86_64/nsis/${asset.name}`;
-            pkgUrl["windows-x86_64"] = asset.browser_download_url;
+            // pkgUrl["windows-x86_64"] = asset.browser_download_url;
         }
-        uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
+        // uploadGitHubFileToServer(asset.url, remoteFilePath, serverConfig);
     };
 
     const setAsset = async (asset) => {
