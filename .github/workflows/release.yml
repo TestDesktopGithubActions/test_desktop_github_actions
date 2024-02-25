@@ -63,7 +63,8 @@ jobs:
         # uses: actions-rs/toolchain@v1
         uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: nightly-2024-01-12
+          # toolchain: nightly-2024-01-12
+          toolchain: nightly
           # default: true
           target: aarch64-apple-darwin
 
