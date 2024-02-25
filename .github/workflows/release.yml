@@ -208,26 +208,32 @@ jobs:
       #     copy_assets: true
 
 
-      - name: Create Release With Asset
-        id: Release-AIO1
-        uses: Hs1r1us/Release-AIO@v2.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
+      # - name: Create Release With Asset
+      #   id: Release-AIO1
+      #   uses: Hs1r1us/Release-AIO@v2.0.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      #   with:
+      #     tag_name: ${{ github.ref }}
           # asset_files: './asset_file'
 
-      - name: Duplicate Release With Asset to public_Repo
-        id: Release-AIO
-        uses: Hs1r1us/Release-AIO@v2.0.0
+      # - name: Duplicate Release With Asset to public_Repo
+      #   id: Release-AIO
+      #   uses: Hs1r1us/Release-AIO@v2.0.0
+      #   env:
+      #     # GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # You need a new token to access the target Repository
+      #     GITHUB_TOKEN: ${{ secrets.PRIVATE_TOKEN }} # You need a new token to access the target Repository
+      #   with:
+      #     tag_name: 'inherit' # Must use 'inherit' to get the latest release
+      #     body: 'hello world' # Will be added in the new release
+      #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
+      #     # asset_files: './asset_file' # Will be added in the new release
+
+      - name: Publish
         env:
-          # GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # You need a new token to access the target Repository
-          GITHUB_TOKEN: ${{ secrets.PRIVATE_TOKEN }} # You need a new token to access the target Repository
-        with:
-          tag_name: 'inherit' # Must use 'inherit' to get the latest release
-          body: 'hello world' # Will be added in the new release
-          repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
-          # asset_files: './asset_file' # Will be added in the new release
+          GITHUB_TOKEN: "${{ secrets.PERSONAL_TOKEN }}"
+        shell: bash
+        run: $GITHUB_ACTION_PATH/scripts/publish.sh
   # 生成静态资源并将其推送到 github pages
   updater:
     runs-on: ubuntu-latest
