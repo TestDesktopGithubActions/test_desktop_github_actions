@@ -19,50 +19,51 @@ jobs:
     steps:
       - name: Checkout public repository
         uses: actions/checkout@v3
-        with:
-          repository: TestDesktopGithubActions/desktop_release
+        # with:
+        #   repository: TestDesktopGithubActions/desktop_release
           # path: another_public_repo
 
-      - name: Get tag name from ref
-        shell: bash
-        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
-        id: get_tag
-      - name: Create tag in public repository
-        run: |
-          cd ${{github.workspace}}/desktop_release
-          git tag ${{ steps.get_tag.outputs.tag }}
-          git push --tags --porcelain
+      # - name: Get tag name from ref
+      #   shell: bash
+      #   run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+      #   id: get_tag
+      # - name: Create tag in public repository
+      #   run: |
+      #     cd ${{github.workspace}}/desktop_release
+      #     git tag ${{ steps.get_tag.outputs.tag }}
+      #     git push --tags --porcelain
 
       # 根据查询到的版本号创建 release
       - name: Create Release
         id: create_release
         # uses: actions/create-release@v1.1.4
-        # uses: softprops/action-gh-release@v1
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #   # GITHUB_REPOSITORY: ram-flux/desktop_release
-        # with:
-        #   body: "See the assets to download this version and install."
-
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # A personal access token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_REPOSITORY: ram-flux/desktop_release
         with:
-          tag_name: ${{ steps.get_tag.outputs.tag }}
-          release_name: Release ${{ steps.get_tag.outputs.tag }}
-          # tag_name: ${{ github.ref }}
-          # release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-          owner: TestDesktopGithubActions
-          repo: desktop_release
+          body: "See the assets to download this version and install."
 
-      # - name: Run Clone action
-      #   uses: andrewthetechie/gha-clone-releases@v1
-      #   with:
-      #     token: ${{ secrets.PERSONAL_TOKEN }}
-      #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
-      #     dest_repo: TestDesktopGithubActions/desktop_release
+        # uses: actions/create-release@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # A personal access token
+        # with:
+        #   # tag_name: ${{ steps.get_tag.outputs.tag }}
+        #   # release_name: Release ${{ steps.get_tag.outputs.tag }}
+        #   tag_name: ${{ github.ref }}
+        #   release_name: Release ${{ github.ref }}
+        #   draft: false
+        #   prerelease: false
+        #   owner: TestDesktopGithubActions
+        #   repo: desktop_release
+
+      - name: Run Clone action
+        uses: andrewthetechie/gha-clone-releases@v1
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          src_repo: TestDesktopGithubActions/test_desktop_github_actions
+          dest_repo: TestDesktopGithubActions/desktop_release
+          copy_assets: true
   # 编译 Tauri
   build-tauri:
     needs: [create-release]
