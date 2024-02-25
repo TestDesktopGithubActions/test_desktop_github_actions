@@ -208,6 +208,15 @@ jobs:
       #     copy_assets: true
 
 
+      - name: Create Release With Asset
+        id: Release-AIO1
+        uses: Hs1r1us/Release-AIO@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          # asset_files: './asset_file'
+
       - name: Duplicate Release With Asset to public_Repo
         id: Release-AIO
         uses: Hs1r1us/Release-AIO@v2.0.0
