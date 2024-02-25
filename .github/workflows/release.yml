@@ -57,13 +57,13 @@ jobs:
         #   owner: TestDesktopGithubActions
         #   repo: desktop_release
 
-      - name: Run Clone action
-        uses: andrewthetechie/gha-clone-releases@v1
-        with:
-          token: ${{ secrets.PERSONAL_TOKEN }}
-          src_repo: TestDesktopGithubActions/test_desktop_github_actions
-          dest_repo: TestDesktopGithubActions/desktop_release
-          copy_assets: true
+      # - name: Run Clone action
+      #   uses: andrewthetechie/gha-clone-releases@v1
+      #   with:
+      #     token: ${{ secrets.PERSONAL_TOKEN }}
+      #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
+      #     dest_repo: TestDesktopGithubActions/desktop_release
+      #     copy_assets: true
   # 编译 Tauri
   build-tauri:
     needs: [create-release]
@@ -198,6 +198,14 @@ jobs:
           prerelease: false
           args: ${{ matrix.settings.args }}
           # repo: ram-flux/desktop_release
+
+      - name: Run Clone action
+        uses: andrewthetechie/gha-clone-releases@v1
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          src_repo: TestDesktopGithubActions/test_desktop_github_actions
+          dest_repo: TestDesktopGithubActions/desktop_release
+          copy_assets: true
   # 生成静态资源并将其推送到 github pages
   updater:
     runs-on: ubuntu-latest
