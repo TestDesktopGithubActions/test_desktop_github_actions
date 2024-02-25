@@ -199,13 +199,25 @@ jobs:
           args: ${{ matrix.settings.args }}
           # repo: ram-flux/desktop_release
 
-      - name: Run Clone action
-        uses: andrewthetechie/gha-clone-releases@v1
+      # - name: Run Clone action
+      #   uses: andrewthetechie/gha-clone-releases@v1
+      #   with:
+      #     token: ${{ secrets.PERSONAL_TOKEN }}
+      #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
+      #     dest_repo: TestDesktopGithubActions/desktop_release
+      #     copy_assets: true
+
+
+      - name: Duplicate Release With Asset to public_Repo
+        id: Release-AIO
+        uses: Hs1r1us/Release-AIO@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # You need a new token to access the target Repository
         with:
-          token: ${{ secrets.PERSONAL_TOKEN }}
-          src_repo: TestDesktopGithubActions/test_desktop_github_actions
-          dest_repo: TestDesktopGithubActions/desktop_release
-          copy_assets: true
+          tag_name: 'inherit' # Must use 'inherit' to get the latest release
+          body: 'hello world' # Will be added in the new release
+          repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
+          # asset_files: './asset_file' # Will be added in the new release
   # 生成静态资源并将其推送到 github pages
   updater:
     runs-on: ubuntu-latest
