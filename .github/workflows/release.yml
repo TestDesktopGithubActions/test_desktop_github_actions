@@ -27,6 +27,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ram-flux/desktop_release
         with:
           body: "See the assets to download this version and install."
 
@@ -62,7 +63,7 @@ jobs:
         # uses: actions-rs/toolchain@v1
         uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: nightly
+          toolchain: nightly-2024-01-12
           # default: true
           target: aarch64-apple-darwin
 
