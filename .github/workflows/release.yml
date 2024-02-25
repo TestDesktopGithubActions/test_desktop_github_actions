@@ -126,8 +126,8 @@ jobs:
 
       # - name: Remove duplicate key in config.toml
       #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
-      - name: Remove duplicate key in config.toml
-        run: sed -i '' '/net/d' $HOME/.cargo/config.toml
+      # - name: Remove duplicate key in config.toml
+      #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
 
       - name: Setup SSH for private repository access
         run: |
