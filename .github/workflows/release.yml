@@ -34,7 +34,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           src_repo: TestDesktopGithubActions/test_desktop_github_actions
-          dest_repo: ram-flux/desktop_release
+          dest_repo: TestDesktopGithubActions/desktop_release
   # 编译 Tauri
   build-tauri:
     needs: [create-release]
