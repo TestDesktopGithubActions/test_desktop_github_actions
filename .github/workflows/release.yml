@@ -229,11 +229,6 @@ jobs:
       #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
       #     # asset_files: './asset_file' # Will be added in the new release
 
-      - name: Publish
-        env:
-          GITHUB_TOKEN: "${{ secrets.PERSONAL_TOKEN }}"
-        shell: bash
-        run: $GITHUB_ACTION_PATH/scripts/publish.sh
   # 生成静态资源并将其推送到 github pages
   updater:
     runs-on: ubuntu-latest
@@ -263,6 +258,13 @@ jobs:
 
       - name: Install ssh2 package
         run: yarn add ssh2
+
+      - name: Run publish script
+        run: yarn publish
+        env:
+          GITHUB_TOKEN: "${{ secrets.PERSONAL_TOKEN }}"
+        # shell: bash
+        # run: $GITHUB_ACTION_PATH/scripts/publish.sh
 
       - name: Run updater script
         run: yarn updater

@@ -13,7 +13,8 @@
     "prepare": "husky install",
     "codegen": "esno ./scripts/genTauriCommandType.ts",
     "updater": "node scripts/updater.mjs",
-    "release": "node scripts/release.mjs"
+    "release": "node scripts/release.mjs",
+    "publish": "node scripts/publish.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.4.0",
