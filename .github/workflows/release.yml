@@ -17,7 +17,21 @@ jobs:
       RELEASE_UPLOAD_ID: ${{ steps.create_release.outputs.id }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout public repository
+        uses: actions/checkout@v3
+        with:
+          repository: TestDesktopGithubActions/desktop_release
+          # path: another_public_repo
+
+      - name: Get tag name from ref
+        shell: bash
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+        id: get_tag
+      - name: Create tag in public repository
+        run: |
+          cd ${{github.workspace}}/desktop_release
+          git tag ${{ steps.get_tag.outputs.tag }}
+          git push --tags --porcelain
 
       # 根据查询到的版本号创建 release
       - name: Create Release
@@ -34,13 +48,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # A personal access token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.get_tag.outputs.tag }}
+          release_name: Release ${{ steps.get_tag.outputs.tag }}
+          # tag_name: ${{ github.ref }}
+          # release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
           owner: TestDesktopGithubActions
           repo: desktop_release
-
 
       # - name: Run Clone action
       #   uses: andrewthetechie/gha-clone-releases@v1
