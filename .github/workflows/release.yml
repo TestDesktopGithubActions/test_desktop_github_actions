@@ -32,7 +32,7 @@ jobs:
       - name: Run Clone action
         uses: andrewthetechie/gha-clone-releases@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
           src_repo: TestDesktopGithubActions/test_desktop_github_actions
           dest_repo: TestDesktopGithubActions/desktop_release
   # 编译 Tauri
