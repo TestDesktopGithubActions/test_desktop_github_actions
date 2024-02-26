@@ -12,7 +12,11 @@ const TAG = `v${APP_VERSION}`;
 
 
 const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
-const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
-cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
+cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, { stdio: 'inherit' });
+
+
+// const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
+// const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
+// cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
 
 cp.execSync(`gh release create ${TAG} -R https://github.com/TestDesktopGithubActions/desktop_release`, { stdio: 'inherit' });
