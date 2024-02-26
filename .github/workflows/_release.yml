@@ -63,7 +63,18 @@ jobs:
       #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
       #     dest_repo: TestDesktopGithubActions/desktop_release
       #     copy_assets: true
+      - name: Get url to upload to release from output
+        env:
+          url: ${{ steps.create_release.outputs.upload_url }}
+        run: |
+          mkdir artifact
+          echo $url > artifact/url.txt
 
+      - name: Upload artifact to share url with other jobs
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: artifact/url.txt
   # 编译 Tauri
   build-tauri:
     needs: [create-release]
@@ -79,6 +90,33 @@ jobs:
             args: "--target aarch64-apple-darwin"
           - platform: "windows-latest"
             args: "--target x86_64-pc-windows-msvc"
+
+        list:
+          [darwin-aarch64, darwin-x86_64, windows-x86_64, windows-x86_64-msi]
+        include:
+          - archtec: darwin-aarch64
+            platform: macos
+            target: aarch64
+            installer: dmg
+            installer_dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*
+            # macos_dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/x86_64-apple-darwin/release/bundle/macos/*
+          - archtec: darwin-x86_64
+            platform: macos
+            target: x86_64
+            installer: dmg
+            dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/
+          - archtec: windows-x86_64
+            platform: windows
+            target: x86_64
+            installer: exe
+            installer_dir: D:\a\test_desktop_github_actions\test_desktop_github_actions\src-tauri\target\x86_64-pc-windows-msvc\release\bundle\nsis/*
+
+          - archtec: windows-x86_64-msi
+            platform: windows
+            target: x86_64
+            installer: msi
+            installer_dir: D:\a\test_desktop_github_actions\test_desktop_github_actions\src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi/*
+
     env:
       CARGO_NET_GIT_FETCH_WITH_CLI: true
     runs-on: ${{ matrix.settings.platform }}
@@ -228,12 +266,32 @@ jobs:
       #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
       #     # asset_files: './asset_file' # Will be added in the new release
 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+      - name: Download artifact to get url to upload to release
+        uses: actions/download-artifact@v1
         with:
-          repo_token: ${{ secrets.PERSONAL_TOKEN }}
-          file: target/release/*
-          tag: ${{ github.ref }}
+          name: artifact
+      - name: Get url to upload to release from artifact
+        id: get_url
+        run: |
+          url=$(cat artifact/url.txt)
+          echo "##[set-output name=upload_url;]$url"
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
+        with:
+          upload_url: ${{ steps.get_url.outputs.upload_url }}
+          asset_path: ./${{ list.installer_dir }}
+          asset_name: ${{ list.installer_dir }}
+          asset_content_type: application/octet-stream
+      # - name: Upload binaries to release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.PERSONAL_TOKEN }}
+      #     file: target/release/*
+      #     tag: ${{ github.ref }}
 
   # 生成静态资源并将其推送到 github pages
   updater:
