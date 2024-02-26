@@ -283,8 +283,8 @@ jobs:
 
         with:
           upload_url: ${{ steps.get_url.outputs.upload_url }}
-          asset_path: ./${{ list.installer_dir }}
-          asset_name: ${{ list.installer_dir }}
+          asset_path: ./${{ matrix.list.installer_dir }}
+          asset_name: ${{ matrix.list.installer_dir }}
           asset_content_type: application/octet-stream
       # - name: Upload binaries to release
       #   uses: svenstaro/upload-release-action@v2
