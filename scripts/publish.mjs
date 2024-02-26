@@ -63,6 +63,7 @@ async function publishToNewRepo(releaseInfo) {
 // 主函数
 async function main() {
     const oldRepoReleaseInfo = await getOldRepoReleaseInfo();
+    console.log("oldRepoReleaseInfo:", oldRepoReleaseInfo);
     await publishToNewRepo(oldRepoReleaseInfo);
 }
 
