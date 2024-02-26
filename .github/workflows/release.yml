@@ -96,7 +96,7 @@ jobs:
       - name: Run publish script
         run: yarn publisher
         env:
-          GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         # shell: bash
         # run: $GITHUB_ACTION_PATH/scripts/publish.sh
