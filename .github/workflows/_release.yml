@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
         # with:
         #   repository: TestDesktopGithubActions/desktop_release
-          # path: another_public_repo
+        # path: another_public_repo
 
       # - name: Get tag name from ref
       #   shell: bash
@@ -32,7 +32,6 @@ jobs:
       #     cd ${{github.workspace}}/desktop_release
       #     git tag ${{ steps.get_tag.outputs.tag }}
       #     git push --tags --porcelain
-
       # 根据查询到的版本号创建 release
       - name: Create Release
         id: create_release
@@ -64,6 +63,7 @@ jobs:
       #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
       #     dest_repo: TestDesktopGithubActions/desktop_release
       #     copy_assets: true
+
   # 编译 Tauri
   build-tauri:
     needs: [create-release]
@@ -207,7 +207,6 @@ jobs:
       #     dest_repo: TestDesktopGithubActions/desktop_release
       #     copy_assets: true
 
-
       # - name: Create Release With Asset
       #   id: Release-AIO1
       #   uses: Hs1r1us/Release-AIO@v2.0.0
@@ -215,7 +214,7 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       #   with:
       #     tag_name: ${{ github.ref }}
-          # asset_files: './asset_file'
+      # asset_files: './asset_file'
 
       # - name: Duplicate Release With Asset to public_Repo
       #   id: Release-AIO
@@ -228,6 +227,13 @@ jobs:
       #     body: 'hello world' # Will be added in the new release
       #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
       #     # asset_files: './asset_file' # Will be added in the new release
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.PERSONAL_TOKEN }}
+          file: target/release/*
+          tag: ${{ github.ref }}
 
   # 生成静态资源并将其推送到 github pages
   updater:
