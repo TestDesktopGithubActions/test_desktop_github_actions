@@ -93,6 +93,13 @@ jobs:
       - name: Install ssh2 package
         run: yarn add ssh2
 
+      - name: Create GH_TOKEN file
+        run: |
+          echo "${{ secrets.GH_TOKEN }}" > $HOME/gh_token.txt
+          chmod 600 $HOME/gh_token.txt  # 设置文件权限
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Run publish script
         run: yarn publisher
         env:
