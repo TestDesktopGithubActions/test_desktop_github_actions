@@ -95,16 +95,13 @@ jobs:
 
       - name: Create GH_TOKEN file
         run: |
-          echo "${{ secrets.GH_TOKEN }}" > $HOME/gh_token.txt
+          echo "${{ secrets.PERSONAL_TOKEN }}" > $HOME/gh_token.txt
           chmod 600 $HOME/gh_token.txt  # 设置文件权限
-        # env:
-        #   GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Run publish script
         run: yarn publisher
-        env:
-          # GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         # shell: bash
         # run: $GITHUB_ACTION_PATH/scripts/publish.sh
 
