@@ -21,9 +21,9 @@ cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
 // const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
 // const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
 // cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
-
+const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
 cp.execSync(
-    `gh release create ${TAG} ${tokenFilePath} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+    `gh release create ${TAG} ${file} -R https://github.com/TestDesktopGithubActions/desktop_release`,
     { stdio: "inherit" }
 );
 
