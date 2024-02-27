@@ -277,15 +277,15 @@ jobs:
       #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
       #     # asset_files: './asset_file' # Will be added in the new release
 
-      - name: Download artifact to get url to upload to release
-        uses: actions/download-artifact@v1
-        with:
-          name: artifact
-      - name: Get url to upload to release from artifact
-        id: get_url
-        run: |
-          url=$(cat artifact/url.txt)
-          echo "##[set-output name=upload_url;]$url"
+      # - name: Download artifact to get url to upload to release
+      #   uses: actions/download-artifact@v1
+      #   with:
+      #     name: artifact
+      # - name: Get url to upload to release from artifact
+      #   id: get_url
+      #   run: |
+      #     url=$(cat artifact/url.txt)
+      #     echo "##[set-output name=upload_url;]$url"
 
 
       - name: Upload release asset
@@ -293,7 +293,7 @@ jobs:
         with:
           name: my-artifact
           path: |
-            ${{ fromJson(steps.build_tauri_app.outputs.artifactPaths) }}
+            ${{ steps.build_tauri_app.outputs.artifactPaths }}
         # uses: actions/upload-release-asset@v1.0.1
         # env:
         #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -333,7 +333,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        
+
       - name: Add development dependencies
         run: yarn add -D node-fetch @actions/github
 
