@@ -134,8 +134,8 @@ jobs:
       # 安装 Node.js
       - name: Setup node
         uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
+        # with:
+        #   node-version: 18.x
 
       # 安装 Rust
       - name: Install Rust nightly
