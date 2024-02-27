@@ -287,29 +287,15 @@ jobs:
       #     url=$(cat artifact/url.txt)
       #     echo "##[set-output name=upload_url;]$url"
 
-      - name: Prepare artifact paths
-        id: prepare-paths
-        run: |
-          const artifactPaths = ${{ steps.build_tauri_app.outputs.artifactPaths }};
-          console.log(JSON.stringify(artifactPaths));
-          core.setOutput('artifactPaths', artifactPaths.join('\n'));
-          
-      - name: Upload release asset
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-artifact
-          path: |
-            # ${{ steps.build_tauri_app.outputs.artifactPaths }}
-            ${{ steps.prepare-paths.outputs.artifactPaths }}
-        # uses: actions/upload-release-asset@v1.0.1
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      # uses: actions/upload-release-asset@v1.0.1
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 
-        # with:
-        #   upload_url: ${{ steps.get_url.outputs.upload_url }}
-        #   asset_path: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
-        #   asset_name: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
-        #   asset_content_type: application/octet-stream
+      # with:
+      #   upload_url: ${{ steps.get_url.outputs.upload_url }}
+      #   asset_path: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
+      #   asset_name: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
+      #   asset_content_type: application/octet-stream
       # - name: Upload binaries to release
       #   uses: svenstaro/upload-release-action@v2
       #   with:
@@ -317,6 +303,8 @@ jobs:
       #     file: target/release/*
       #     tag: ${{ github.ref }}
 
+    outputs:
+      ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
   # 生成静态资源并将其推送到 github pages
   updater:
     runs-on: ubuntu-latest
@@ -351,10 +339,27 @@ jobs:
       #   run: yarn publisher
       #   env:
       #     GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
-        # shell: bash
-        # run: $GITHUB_ACTION_PATH/scripts/publish.sh
+      # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
+      # shell: bash
+      # run: $GITHUB_ACTION_PATH/scripts/publish.sh
 
+      - name: Prepare artifact paths
+        id: prepare-paths
+        run: yarn prepare_artifact_paths
+        env:
+          ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
+        # run: |
+        #   const artifactPaths = ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }};
+        #   console.log(JSON.stringify(artifactPaths));
+        #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
+
+      - name: Upload release asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: |
+            # ${{ steps.build_tauri_app.outputs.artifactPaths }}
+            ${{ steps.prepare-paths.outputs.artifactPaths }}
       - name: Run updater script
         run: yarn updater
         env:
