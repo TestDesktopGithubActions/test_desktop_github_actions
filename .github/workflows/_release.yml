@@ -287,13 +287,20 @@ jobs:
       #     url=$(cat artifact/url.txt)
       #     echo "##[set-output name=upload_url;]$url"
 
-
+      - name: Prepare artifact paths
+        id: prepare-paths
+        run: |
+          const artifactPaths = ${{ steps.build_tauri_app.outputs.artifactPaths }};
+          console.log(JSON.stringify(artifactPaths));
+          core.setOutput('artifactPaths', artifactPaths.join('\n'));
+          
       - name: Upload release asset
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
           path: |
-            ${{ steps.build_tauri_app.outputs.artifactPaths }}
+            # ${{ steps.build_tauri_app.outputs.artifactPaths }}
+            ${{ steps.prepare-paths.outputs.artifactPaths }}
         # uses: actions/upload-release-asset@v1.0.1
         # env:
         #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -340,10 +347,10 @@ jobs:
       - name: Install ssh2 package
         run: yarn add ssh2
 
-      - name: Run publish script
-        run: yarn publisher
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      # - name: Run publish script
+      #   run: yarn publisher
+      #   env:
+      #     GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
         # shell: bash
         # run: $GITHUB_ACTION_PATH/scripts/publish.sh
