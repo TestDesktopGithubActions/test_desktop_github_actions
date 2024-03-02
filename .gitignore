@@ -33,5 +33,5 @@ package-lock.json
 
 # Auto
 .eslintrc-auto-import.json
-
+pnpm-lock.yaml
 # Unfinished
