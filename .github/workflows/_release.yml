@@ -312,8 +312,7 @@ jobs:
       - name: Prepare artifact paths
         id: prepare-paths
         run: |
-          yarn prepare_artifact_paths
-          artifactPaths=$(node scripts/prepareArtifactPaths.mjs)
+          artifactPaths=$(yarn prepare_artifact_paths)
           echo "::set-output name=artifactPaths::$artifactPaths"
         env:
           # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
