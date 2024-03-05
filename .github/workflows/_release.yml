@@ -311,7 +311,7 @@ jobs:
 
       - name: Prepare artifact paths
         id: prepare-paths
-        run: node prepare_artifact_paths
+        run: yarn prepare_artifact_paths
         env:
           # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
           ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
