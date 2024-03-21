@@ -28,15 +28,16 @@ const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_ac
 const parsedPaths = JSON.parse(artifact_paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
 
-const result = artifactPaths.join(" ");
+// const result = artifactPaths.join(" ");
 
-cp.execSync(
-    `gh release create ${TAG} ${result} -R https://github.com/TestDesktopGithubActions/desktop_release`,
-    { stdio: "inherit" }
-);
-// artifactPaths.forEach(file => {
-   
-// })
+artifactPaths.forEach(file => {
+    cp.execSync(
+        `gh release create ${TAG} "${file}" -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        { stdio: "inherit" }
+    );
+})
+
+
 
 // // 获取旧仓库的release信息
 // async function getOldRepoReleaseInfo() {
