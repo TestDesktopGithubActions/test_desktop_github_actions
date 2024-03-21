@@ -1,7 +1,7 @@
 import cp from "child_process";
 import fs from "fs";
 import path from "path";
-import { getOctokit, context } from "@actions/github";
+// import { getOctokit, context } from "@actions/github";
 
 const APP_VERSION = JSON.parse(
     fs.readFileSync("package.json", { encoding: "utf8" })
