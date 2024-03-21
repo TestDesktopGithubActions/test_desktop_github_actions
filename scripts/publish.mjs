@@ -8,6 +8,7 @@ const APP_VERSION = JSON.parse(
 ).version;
 const TAG = `v${APP_VERSION}`;
 const personal_access_token = process.env.PERSONAL_TOKEN;
+const artifact_paths = process.env.ARTIFACT_PATHS;
 
 // process.env.GH_TOKEN = "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";
 // const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
@@ -23,10 +24,13 @@ cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
 // const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
 // cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
 const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
-cp.execSync(
-    `gh release create ${TAG} ${file} -R https://github.com/TestDesktopGithubActions/desktop_release`,
-    { stdio: "inherit" }
-);
+
+artifact_paths.forEach(file => {
+    cp.execSync(
+        `gh release create ${TAG} ${file} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        { stdio: "inherit" }
+    );
+})
 
 // // 获取旧仓库的release信息
 // async function getOldRepoReleaseInfo() {

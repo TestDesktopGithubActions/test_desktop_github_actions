@@ -7,7 +7,7 @@ const paths = process.env.ARTIFACT_PATHS;
 const parsedPaths = JSON.parse(paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
 // console.log(artifactPaths.join("\n"));
-const result = artifactPaths.join("\n");
+const result = artifactPaths.join(" ");
 
 // 创建目录以及写入文件
 fs.mkdirSync(path.split('/').slice(0, -1).join('/'), { recursive: true }); // 递归创建目录
