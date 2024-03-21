@@ -323,6 +323,10 @@ jobs:
         #   console.log(JSON.stringify(artifactPaths));
         #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
 
+      - name: Create GH_TOKEN file
+        run: |
+          echo "${{ secrets.PERSONAL_TOKEN }}" > $HOME/gh_token.txt
+          chmod 600 $HOME/gh_token.txt  # 设置文件权限
       - name: Run publish script
         run: yarn publisher
         env:
