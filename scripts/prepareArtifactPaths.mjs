@@ -4,4 +4,4 @@ const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; 
 // console.log(artifactPaths.join("\n"));
 const result = artifactPaths.join("\n");
 console.log(result); // 输出到控制台
-return result; // 作为函数的返回值
+export default result;
