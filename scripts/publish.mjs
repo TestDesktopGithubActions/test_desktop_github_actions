@@ -29,7 +29,10 @@ const parsedPaths = JSON.parse(artifact_paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
 
 
-const quotedFilePaths = artifactPaths.map(file => `"${file}"`).join(" "); // Quote each file path and join them with a space
+// 确保传入的是文件路径而不是目录路径
+const file_paths = artifactPaths.filter(file => fs.statSync(file).isFile());
+
+const quotedFilePaths = file_paths.map(file => `"${file}"`).join(" "); // Quote each file path and join them with a space
 
 cp.execSync(
     `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
