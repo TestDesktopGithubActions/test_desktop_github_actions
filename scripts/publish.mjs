@@ -25,12 +25,18 @@ cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
 // cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
 const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
 
-artifact_paths.forEach(file => {
-    cp.execSync(
-        `gh release create ${TAG} ${file} -R https://github.com/TestDesktopGithubActions/desktop_release`,
-        { stdio: "inherit" }
-    );
-})
+const parsedPaths = JSON.parse(artifact_paths);
+const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
+
+const result = artifactPaths.join(" ");
+
+cp.execSync(
+    `gh release create ${TAG} ${result} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+    { stdio: "inherit" }
+);
+// artifactPaths.forEach(file => {
+   
+// })
 
 // // 获取旧仓库的release信息
 // async function getOldRepoReleaseInfo() {
