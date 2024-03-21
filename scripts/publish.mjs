@@ -9,6 +9,8 @@ const APP_VERSION = JSON.parse(
 const TAG = `v${APP_VERSION}`;
 const personal_access_token = process.env.PERSONAL_TOKEN;
 const artifact_paths = process.env.ARTIFACT_PATHS;
+const target = process.env.TARGET;
+const platform = process.env.PLATFORM;
 
 // process.env.GH_TOKEN = "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";
 // const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
@@ -38,6 +40,32 @@ const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; 
 
 // 确保传入的是文件路径而不是目录路径
 const file_paths = artifactPaths.filter((file) => fs.statSync(file).isFile());
+
+if (platform == "macos-latest") {
+    artifactPaths = file_paths.map((filePath) => {
+        if (
+            filePath.includes("Falcon Flow.app.tar.gz") ||
+            filePath.includes("Falcon Flow.app.tar.gz.sig")
+        ) {
+            const newFileName = filePath.replace(
+                "Falcon Flow",
+                `Falcon Flow_${target}`
+            );
+            const newPath = path.join(path.dirname(filePath), newFileName);
+
+            fs.rename(filePath, newPath, (err) => {
+                if (err) {
+                    console.error(`Error renaming file: ${filePath}`, err);
+                } else {
+                    console.log(`File renamed: ${filePath} -> ${newPath}`);
+                }
+            });
+            return newPath; // 返回新的文件路径
+        } else {
+            return filePath; // 不需要修改的文件直接返回
+        }
+    });
+}
 
 const quotedFilePaths = file_paths.map((file) => `"${file}"`).join(" "); // Quote each file path and join them with a space
 

@@ -86,10 +86,13 @@ jobs:
           #   args: '--target universal-apple-darwin'
           - platform: "macos-latest"
             args: "--target x86_64-apple-darwin"
+            target: x64
           - platform: "macos-latest"
             args: "--target aarch64-apple-darwin"
+            target: aarch64
           - platform: "windows-latest"
             args: "--target x86_64-pc-windows-msvc"
+            target: x64
 
         # list:
         #   [darwin-aarch64, darwin-x86_64, windows-x86_64, windows-x86_64-msi]
@@ -331,6 +334,8 @@ jobs:
         run: yarn publisher
         env:
           ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
+          TARGET: ${{ matrix.settings.target }}
+          PLATFORM: ${{ matrix.settings.platform }}
           # GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
           # shell: bash
