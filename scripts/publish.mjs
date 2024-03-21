@@ -28,14 +28,19 @@ const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_ac
 const parsedPaths = JSON.parse(artifact_paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
 
+
+const quotedFilePaths = artifact_paths.map(file => `"${file}"`).join(" "); // Quote each file path and join them with a space
+
+cp.execSync(
+    `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+    { stdio: "inherit" }
+);
+
 // const result = artifactPaths.join(" ");
 
-artifactPaths.forEach(file => {
-    cp.execSync(
-        `gh release create ${TAG} "${file}" -R https://github.com/TestDesktopGithubActions/desktop_release`,
-        { stdio: "inherit" }
-    );
-})
+// artifactPaths.forEach(file => {
+
+// })
 
 
 
