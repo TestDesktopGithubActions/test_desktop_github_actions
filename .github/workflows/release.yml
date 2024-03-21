@@ -313,7 +313,7 @@ jobs:
         id: prepare-paths
         run: |
           artifactPaths=$(yarn prepare_artifact_paths)
-          echo "::set-output name=artifactPaths::$artifactPaths"
+          # echo "::set-output name=artifactPaths::$artifactPaths"
         env:
           # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
           ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
@@ -321,13 +321,16 @@ jobs:
         #   const artifactPaths = ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }};
         #   console.log(JSON.stringify(artifactPaths));
         #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
-
+      - name: Print New Artifact Paths
+        run: |
+          echo "New Artifact Paths: ${{ env.NEW_ARTIFACT_PATHS }}"
       - name: Upload release asset
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: |
-            ${{ steps.prepare-paths.outputs.artifactPaths }}
+          path:  ${{ env.NEW_ARTIFACT_PATHS }}
+            # ${{ steps.prepare-paths.outputs.artifactPaths }}
+           
 
     # outputs:
     #   ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
