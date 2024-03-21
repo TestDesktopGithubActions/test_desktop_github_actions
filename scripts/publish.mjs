@@ -23,29 +23,44 @@ cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
 // const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
 // const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
 // cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
-const file = "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
+const file =
+    "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
 
 const parsedPaths = JSON.parse(artifact_paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
 
-
 // 确保传入的是文件路径而不是目录路径
-const file_paths = artifactPaths.filter(file => fs.statSync(file).isFile());
+const file_paths = artifactPaths.filter((file) => fs.statSync(file).isFile());
 
-const quotedFilePaths = file_paths.map(file => `"${file}"`).join(" "); // Quote each file path and join them with a space
+const quotedFilePaths = file_paths.map((file) => `"${file}"`).join(" "); // Quote each file path and join them with a space
 
-cp.execSync(
-    `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
-    { stdio: "inherit" }
-);
+const existingRelease = cp
+    .execSync(
+        `gh release list -R https://github.com/TestDesktopGithubActions/desktop_release`
+    )
+    .toString()
+    .split("\n")
+    .filter((line) => line.includes(TAG));
+
+if (existingRelease.length > 0) {
+    // 如果存在相同标签名的发布版本，则更新该发布版本
+    cp.execSync(
+        `gh release edit ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        { stdio: "inherit" }
+    );
+} else {
+    // 如果不存在相同标签名的发布版本，则创建新的发布版本
+    cp.execSync(
+        `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        { stdio: "inherit" }
+    );
+}
 
 // const result = artifactPaths.join(" ");
 
 // artifactPaths.forEach(file => {
 
 // })
-
-
 
 // // 获取旧仓库的release信息
 // async function getOldRepoReleaseInfo() {
