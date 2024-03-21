@@ -15,7 +15,14 @@ const artifact_paths = process.env.ARTIFACT_PATHS;
 // console.log('tokenFilePath:', tokenFilePath);
 // cp.execSync(`gh auth login --with-token=${tokenFilePath}`, { stdio: 'inherit' });
 
-const tokenFilePath = path.join(process.env.HOME, "gh_token.txt");
+const homeDirectory = process.env.USERPROFILE || process.env.HOME;
+
+if (!homeDirectory) {
+    console.error("Unable to determine the user home directory.");
+    process.exit(1);
+}
+
+const tokenFilePath = path.join(homeDirectory, "gh_token.txt");
 cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
     stdio: "inherit",
 });
@@ -45,7 +52,7 @@ const existingRelease = cp
 if (existingRelease.length > 0) {
     // 如果存在相同标签名的发布版本，则更新该发布版本
     cp.execSync(
-        `gh release edit ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        `gh release upload ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
         { stdio: "inherit" }
     );
 } else {
