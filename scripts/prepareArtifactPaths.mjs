@@ -1,5 +1,7 @@
-const fs = require('fs');
-const path = require('os').homedir() + '/new/artifact/file.txt'; // 生成文件路径
+import fs from 'fs';
+import { homedir } from 'os';
+
+const path = `${homedir()}/new/artifact/file.txt`; // 生成文件路径
 
 const paths = process.env.ARTIFACT_PATHS;
 const parsedPaths = JSON.parse(paths);
