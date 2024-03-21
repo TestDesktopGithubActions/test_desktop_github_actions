@@ -312,7 +312,8 @@ jobs:
       - name: Prepare artifact paths
         id: prepare-paths
         run: |
-          artifactPaths=$(yarn prepare_artifact_paths)
+          yarn prepare_artifact_paths
+          echo "artifactPath=~/new/artifact/file.txt" >> $GITHUB_ENV
           # echo "::set-output name=artifactPaths::$artifactPaths"
         env:
           # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
