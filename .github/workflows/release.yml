@@ -332,9 +332,9 @@ jobs:
         env:
           ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
           # GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
-          shell: bash
-          run: $GITHUB_ACTION_PATH/scripts/publish.sh
+          # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
+          # shell: bash
+          # run: $GITHUB_ACTION_PATH/scripts/publish.sh
         
       # - name: Print New Artifact Paths
       #   run: |
