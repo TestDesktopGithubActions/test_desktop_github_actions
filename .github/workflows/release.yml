@@ -324,12 +324,12 @@ jobs:
         #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
       - name: Print New Artifact Paths
         run: |
-          echo "New Artifact Paths: ${{ env.NEW_ARTIFACT_PATHS }}"
+          echo "New Artifact Paths: ${{ env.artifactPath }}"
       - name: Upload release asset
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path:  ${{ env.NEW_ARTIFACT_PATHS }}
+          path:  ${{ env.artifactPath }}
             # ${{ steps.prepare-paths.outputs.artifactPaths }}
            
 
