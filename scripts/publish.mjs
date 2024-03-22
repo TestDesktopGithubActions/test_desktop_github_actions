@@ -46,22 +46,24 @@ async function renameFiles(file_paths, target) {
 
     for (const filePath of file_paths) {
         if (filePath.includes("Falcon Flow.app.tar.gz") || filePath.includes("Falcon Flow.app.tar.gz.sig")) {
-            const newFileName = filePath.replace("Falcon Flow", `Falcon Flow_${target}`);
-            const newPath = path.join(path.dirname(filePath), newFileName);
+            const newPath = filePath.replace("Falcon Flow", `Falcon Flow_${target}`);
+            // const newPath = path.join(path.dirname(filePath), newFileName);
+            console.error(`newPath: ${newPath}`);
 
             try {
                 await new Promise((resolve, reject) => {
                     fs.rename(filePath, newPath, (err) => {
                         if (err) {
+                            console.error(`Error renaming file: ${filePath}`, err);
+                            renamedPaths.push(filePath);
                             reject(err);
                         } else {
+                            console.log(`File renamed: ${filePath} -> ${newPath}`);
+                            renamedPaths.push(newPath);
                             resolve();
                         }
                     });
                 });
-
-                console.log(`File renamed: ${filePath} -> ${newPath}`);
-                renamedPaths.push(newPath);
             } catch (err) {
                 console.error(`Error renaming file: ${filePath}`, err);
                 renamedPaths.push(filePath);
