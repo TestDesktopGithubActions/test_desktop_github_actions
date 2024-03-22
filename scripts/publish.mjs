@@ -41,29 +41,32 @@ const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; 
 // 确保传入的是文件路径而不是目录路径
 const file_paths = artifactPaths.filter((file) => fs.statSync(file).isFile());
 
-const modifiedArtifactPaths = file_paths.map((filePath) => {
-    if (
-        filePath.includes("Falcon Flow.app.tar.gz") ||
-        filePath.includes("Falcon Flow.app.tar.gz.sig")
-    ) {
-        const newFileName = filePath.replace(
-            "Falcon Flow",
-            `Falcon Flow_${target}`
-        );
-        const newPath = path.join(path.dirname(filePath), newFileName);
+async function renameFiles(file_paths, target) {
+    const renamedPaths = [];
 
-        fs.rename(filePath, newPath, (err) => {
-            if (err) {
-                console.error(`Error renaming file: ${filePath}`, err);
-            } else {
+    for (const filePath of file_paths) {
+        if (filePath.includes("Falcon Flow.app.tar.gz") || filePath.includes("Falcon Flow.app.tar.gz.sig")) {
+            const newFileName = filePath.replace("Falcon Flow", `Falcon Flow_${target}`);
+            const newPath = path.join(path.dirname(filePath), newFileName);
+
+            try {
+                await fs.rename(filePath, newPath);
                 console.log(`File renamed: ${filePath} -> ${newPath}`);
+                renamedPaths.push(newPath);
+            } catch (err) {
+                console.error(`Error renaming file: ${filePath}`, err);
+                renamedPaths.push(filePath);
             }
-        });
-        return newPath; // 返回新的文件路径
-    } else {
-        return filePath; // 不需要修改的文件直接返回
+        } else {
+            renamedPaths.push(filePath); // 不需要修改的文件直接返回
+        }
     }
-});
+
+    return renamedPaths;
+}
+
+
+const modifiedArtifactPaths = await renameFiles(file_paths, target).catch(console.error);
 
 const quotedFilePaths = modifiedArtifactPaths
     .map((file) => `"${file}"`)
