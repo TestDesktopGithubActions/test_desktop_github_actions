@@ -394,8 +394,8 @@ jobs:
       - name: Run updater script
         run: yarn updater
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
           API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           BOSS_LOGIN_BODY: ${{ secrets.BOSS_LOGIN_BODY }}
