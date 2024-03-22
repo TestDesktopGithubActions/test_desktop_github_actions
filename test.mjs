@@ -61,20 +61,28 @@ const updateData = {
 const boss_release_add_url = "https://boss.ffdev.cc/v1/release/version";
 const boss_login_url = "https://boss.ffdev.cc/v1/login";
 
-let boss_login_body = {
-    user_name: "x",
-    password: "430c939a46035151f598ee338d4449d6",
-};
+// let boss_login_body = {
+//     user_name: "x",
+//     password: "430c939a46035151f598ee338d4449d6",
+// };
+
+let boss_login_body =
+    '{"user_name":"x","password":"430c939a46035151f598ee338d4449d6"}';
+// let json = JSON.stringify(boss_login_body);
+let json_str = JSON.parse(boss_login_body);
+let json = JSON.stringify(json_str);
+
 
 // 获取token
 async function getBossToken() {
     try {
+        console.log("json: ",json);
         const response = await fetch(boss_login_url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(boss_login_body),
+            body: json,
         });
 
         if (response.ok) {

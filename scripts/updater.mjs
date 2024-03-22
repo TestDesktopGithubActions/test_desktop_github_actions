@@ -242,12 +242,13 @@ exec().catch(console.error);
 // 获取token
 async function getBossToken() {
     try {
+        let json_str = JSON.parse(boss_login_body);
         const response = await fetch(boss_login_url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(boss_login_body),
+            body: JSON.stringify(json_str),
         });
 
         if (response.ok) {
@@ -269,7 +270,6 @@ async function getBossToken() {
         return "";
     }
 }
-
 
 // 获取签名内容
 async function _getSignature(url) {
