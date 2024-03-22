@@ -56,9 +56,46 @@ const updateData = {
     },
 };
 
-let boss_login_token =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NjBhMzkyNTgxYmUxYzQ0YzI3YjNhZmY0NjI4ZjdkZSIsImtleSI6WzcsOTAsMTUzLDU5LDIyNSwxMzcsMjIxLDg0LDc3LDE4Nyw1MSwyOSwxOTMsMTA5LDkwLDY0LDg2LDExOCw5MSw1OSwxNTcsMjQxLDk4LDI3LDEwOSw1MCwxODksMTA0LDczLDE1LDEyMywxMjJdLCJpYXQiOjE3MTExMTg4NDQsImV4cCI6MTcxMjQxNDg0NH0.nB3bKmS263qcc3BHOI_DPo8PLAAQhb1fD8-I0hjHZjg";
+// let boss_login_token =
+//     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NjBhMzkyNTgxYmUxYzQ0YzI3YjNhZmY0NjI4ZjdkZSIsImtleSI6WzcsOTAsMTUzLDU5LDIyNSwxMzcsMjIxLDg0LDc3LDE4Nyw1MSwyOSwxOTMsMTA5LDkwLDY0LDg2LDExOCw5MSw1OSwxNTcsMjQxLDk4LDI3LDEwOSw1MCwxODksMTA0LDczLDE1LDEyMywxMjJdLCJpYXQiOjE3MTExMTg4NDQsImV4cCI6MTcxMjQxNDg0NH0.nB3bKmS263qcc3BHOI_DPo8PLAAQhb1fD8-I0hjHZjg";
 const boss_release_add_url = "https://boss.ffdev.cc/v1/release/version";
+const boss_login_url = "https://boss.ffdev.cc/v1/login";
+
+let boss_login_body = {
+    user_name: "x",
+    password: "430c939a46035151f598ee338d4449d6",
+};
+
+// 获取token
+async function getBossToken() {
+    try {
+        const response = await fetch(boss_login_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(boss_login_body),
+        });
+
+        if (response.ok) {
+            const { code, message, result } = await response.json();
+
+            if (code != 200) {
+                console.error("Failed to get boss token:", message);
+            } else {
+                const { token } = result;
+                console.log("Get boss token successfully");
+                return token;
+            }
+        } else {
+            console.error("Failed to get boss token:", response.statusText);
+            return "";
+        }
+    } catch (error) {
+        console.error("Error fetching or parsing data:", error);
+        return "";
+    }
+}
 
 async function addPackageVersion(boss_login_token) {
     for (const [platform, data] of Object.entries(updateData.platforms)) {
@@ -89,7 +126,6 @@ async function addPackageVersion(boss_login_token) {
             if (response.ok) {
                 const { code, message } = await response.json();
 
-                console.log("code:", code);
                 if (code != 200) {
                     console.error(
                         "Failed to add package version information:",
@@ -112,7 +148,18 @@ async function addPackageVersion(boss_login_token) {
     }
 }
 
-addPackageVersion(boss_login_token).catch(console.error);
+async function exec() {
+    try {
+        let boss_login_token = await getBossToken();
+        await addPackageVersion(boss_login_token);
+    } catch (error) {
+        console.error(error);
+    }
+    // updater().catch(console.error);
+    // addPackageVersion().catch(console.error);
+}
+
+exec().catch(console.error);
 
 // async function renameFiles(file_paths, target) {
 //     const renamedPaths = [];

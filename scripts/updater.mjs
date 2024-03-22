@@ -244,16 +244,24 @@ async function getBossToken() {
     try {
         const response = await fetch(boss_login_url, {
             method: "POST",
-            body: boss_login_body,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(boss_login_body),
         });
 
         if (response.ok) {
-            const data = await response.json();
-            const {
-                result: { token },
-            } = data;
-            return token;
+            const { code, message, result } = await response.json();
+
+            if (code != 200) {
+                console.error("Failed to get boss token:", message);
+            } else {
+                const { token } = result;
+                console.log("Get boss token successfully");
+                return token;
+            }
         } else {
+            console.error("Failed to get boss token:", response.statusText);
             return "";
         }
     } catch (error) {
@@ -261,6 +269,7 @@ async function getBossToken() {
         return "";
     }
 }
+
 
 // 获取签名内容
 async function _getSignature(url) {
