@@ -155,24 +155,21 @@ async function updater() {
         // 设置下载链接
         // macos
         if (/_aarch64.app.tar.gz$/.test(asset.name)) {
-            updateData.platforms["darwin-aarch64"].url =
-                asset.browser_download_url;
+            updateData.platforms["darwin-aarch64"].url = browser_download_url;
         }
         // else if (/_universal.app.tar.gz$/.test(asset.name)) {
         //   updateData.platforms['darwin'].url = asset.browser_download_url;
         // }
         else if (/_x64.app.tar.gz$/.test(asset.name)) {
-            updateData.platforms["darwin-x86_64"].url =
-                asset.browser_download_url;
+            updateData.platforms["darwin-x86_64"].url = browser_download_url;
         }
         // windows
         else if (/_x64-setup.nsis.zip$/.test(asset.name)) {
-            updateData.platforms["windows-x86_64"].url =
-                asset.browser_download_url;
+            updateData.platforms["windows-x86_64"].url = browser_download_url;
             // updateData.platforms['windows-x86_64-nsis'].url = asset.browser_download_url;
         } else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
             updateData.platforms["windows-x86_64-msi"].url =
-                asset.browser_download_url;
+                browser_download_url;
         }
         console.log("[setUrl] updateData: ", updateData);
     };
