@@ -50,7 +50,16 @@ async function renameFiles(file_paths, target) {
             const newPath = path.join(path.dirname(filePath), newFileName);
 
             try {
-                await fs.rename(filePath, newPath);
+                await new Promise((resolve, reject) => {
+                    fs.rename(filePath, newPath, (err) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve();
+                        }
+                    });
+                });
+
                 console.log(`File renamed: ${filePath} -> ${newPath}`);
                 renamedPaths.push(newPath);
             } catch (err) {
@@ -64,7 +73,6 @@ async function renameFiles(file_paths, target) {
 
     return renamedPaths;
 }
-
 
 const modifiedArtifactPaths = await renameFiles(file_paths, target).catch(console.error);
 
