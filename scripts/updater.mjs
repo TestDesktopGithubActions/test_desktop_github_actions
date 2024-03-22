@@ -306,9 +306,19 @@ async function addPackageVersion(boss_login_token) {
         try {
             const response = await fetch(boss_release_add_url, requestOptions);
             if (response.ok) {
-                console.log(
-                    `[${platform} ${data.target} ${data.installer}] Added package version information successfully!`
-                );
+                const { code, message } = await response.json();
+
+                console.log("code:", code);
+                if (code != 200) {
+                    console.error(
+                        "Failed to add package version information:",
+                        message
+                    );
+                } else {
+                    console.log(
+                        `[${platform} ${data.target} ${data.installer}] Added package version information successfully!`
+                    );
+                }
             } else {
                 console.error(
                     "Failed to add package version information:",
