@@ -156,20 +156,24 @@ async function updater() {
         // macos
         if (/_aarch64.app.tar.gz$/.test(asset.name)) {
             updateData.platforms["darwin-aarch64"].url = browser_download_url;
+            pkgUrl["darwin-aarch64"] = browser_download_url;
         }
         // else if (/_universal.app.tar.gz$/.test(asset.name)) {
         //   updateData.platforms['darwin'].url = asset.browser_download_url;
         // }
         else if (/_x64.app.tar.gz$/.test(asset.name)) {
             updateData.platforms["darwin-x86_64"].url = browser_download_url;
+            pkgUrl["darwin-x86_64"] = browser_download_url;
         }
         // windows
         else if (/_x64-setup.nsis.zip$/.test(asset.name)) {
             updateData.platforms["windows-x86_64"].url = browser_download_url;
+            pkgUrl["windows-x86_64"] = browser_download_url;
             // updateData.platforms['windows-x86_64-nsis'].url = asset.browser_download_url;
         } else if (/_x64_en-US.msi.zip$/.test(asset.name)) {
             updateData.platforms["windows-x86_64-msi"].url =
                 browser_download_url;
+            pkgUrl["windows-x86_64-msi"] = browser_download_url;
         }
         console.log("[setUrl] updateData: ", updateData);
     };
@@ -302,7 +306,9 @@ async function addPackageVersion(boss_login_token) {
             download_url: pkgUrl[platform],
         };
 
-        console.log(`[${platform}] packageData: ${packageData}`);
+        console.log(
+            `[${platform}] packageData: ${JSON.stringify(packageData)}`
+        );
         const requestOptions = {
             method: "POST",
             headers: {
