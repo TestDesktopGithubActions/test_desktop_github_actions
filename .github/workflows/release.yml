@@ -321,10 +321,10 @@ jobs:
       #   env:
       #     # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
       #     ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
-        # run: |
-        #   const artifactPaths = ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }};
-        #   console.log(JSON.stringify(artifactPaths));
-        #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
+      # run: |
+      #   const artifactPaths = ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }};
+      #   console.log(JSON.stringify(artifactPaths));
+      #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
 
       - name: Create GH_TOKEN file
         run: |
@@ -340,7 +340,7 @@ jobs:
           # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
           # shell: bash
           # run: $GITHUB_ACTION_PATH/scripts/publish.sh
-        
+
       # - name: Print New Artifact Paths
       #   run: |
       #     echo "New Artifact Paths: ${{ env.artifactPath }}"
@@ -350,7 +350,6 @@ jobs:
       #     name: my-artifact
       #     path:  ${{ env.artifactPath }}
       #       # ${{ steps.prepare-paths.outputs.artifactPaths }}
-           
 
     # outputs:
     #   ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
@@ -395,7 +394,8 @@ jobs:
       - name: Run updater script
         run: yarn updater
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
           API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           BOSS_LOGIN_BODY: ${{ secrets.BOSS_LOGIN_BODY }}

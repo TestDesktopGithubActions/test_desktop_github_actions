@@ -7,7 +7,8 @@ import ssh2 from "ssh2";
 
 import updatelog from "./updatelog.mjs";
 
-const token = process.env.GITHUB_TOKEN;
+// const token = process.env.GITHUB_TOKEN;
+const token = process.env.RELEASE_KEY;
 const personal_access_token = process.env.PERSONAL_TOKEN;
 const boss_login_body = process.env.BOSS_LOGIN_BODY;
 const boss_login_url = "https://boss.ffdev.cc/v1/login";
