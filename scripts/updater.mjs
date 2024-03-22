@@ -7,8 +7,8 @@ import ssh2 from "ssh2";
 
 import updatelog from "./updatelog.mjs";
 
-// const token = process.env.GITHUB_TOKEN;
-const token = process.env.RELEASE_KEY;
+const token = process.env.GITHUB_TOKEN;
+// const token = process.env.RELEASE_KEY;
 const personal_access_token = process.env.PERSONAL_TOKEN;
 const boss_login_body = process.env.BOSS_LOGIN_BODY;
 const boss_login_url = "https://boss.ffdev.cc/v1/login";
@@ -141,6 +141,17 @@ async function updater() {
     };
 
     const setUrl = async (asset) => {
+        let browser_download_url = asset.browser_download_url;
+        if (
+            browser_download_url.includes(
+                "TestDesktopGithubActions/test_desktop_github_actions"
+            )
+        ) {
+            browser_download_url = browser_download_url.replace(
+                "TestDesktopGithubActions/test_desktop_github_actions",
+                `TestDesktopGithubActions/desktop_release`
+            );
+        }
         // 设置下载链接
         // macos
         if (/_aarch64.app.tar.gz$/.test(asset.name)) {
