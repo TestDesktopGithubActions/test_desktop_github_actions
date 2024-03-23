@@ -193,11 +193,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      # - name: Give GitHub Actions access to private repo
-      #   uses: webfactory/ssh-agent@v0.8.0
-      #   with:
-      #     ssh-private-key: |
-      #       ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+      - name: Give GitHub Actions access to private repo
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
 
       - name: Update cargo config to use Git CLI
         run: |
@@ -212,13 +212,13 @@ jobs:
       # - name: Remove duplicate key in config.toml
       #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
 
-      # - name: Setup SSH for private repository access
-      #   run: |
-      #     echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-      #     chmod 600 ~/.ssh/id_rsa
-      #     ssh-keyscan github.com >> ~/.ssh/known_hosts
-      #   env:
-      #     SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+      - name: Setup SSH for private repository access
+        run: |
+          echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
 
       # 安装依赖执行构建，以及推送 github release
       - name: Install app dependencies and build it
@@ -359,14 +359,14 @@ jobs:
     needs: [create-release, build-tauri]
 
     steps:
-      - name: Create API SSH private key file
-        # run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
-        run: |
-          mkdir -p $HOME/.ssh  # 创建 .ssh 目录
-          echo "${{ secrets.API_PRIVATE_KEY }}" > $HOME/.ssh/api_id_rsa
-          chmod 600 $HOME/.ssh/api_id_rsa  # 设置私钥文件权限
-        env:
-          API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+      # - name: Create API SSH private key file
+      #   # run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
+      #   run: |
+      #     mkdir -p $HOME/.ssh  # 创建 .ssh 目录
+      #     echo "${{ secrets.API_PRIVATE_KEY }}" > $HOME/.ssh/api_id_rsa
+      #     chmod 600 $HOME/.ssh/api_id_rsa  # 设置私钥文件权限
+      #   env:
+      #     API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
 
       - name: Print api_id_rsa content
         run: cat $HOME/.ssh/api_id_rsa
@@ -396,7 +396,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
-          API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+          # API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           BOSS_LOGIN_BODY: ${{ secrets.BOSS_LOGIN_BODY }}
 
