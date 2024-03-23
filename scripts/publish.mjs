@@ -43,40 +43,56 @@ const file_paths = artifactPaths.filter((file) => fs.statSync(file).isFile());
 
 async function renameFiles(file_paths, target) {
     const renamedPaths = [];
+    if (platform == "macos-latest") {
+        for (const filePath of file_paths) {
+            if (
+                filePath.includes("Falcon Flow.app.tar.gz") ||
+                filePath.includes("Falcon Flow.app.tar.gz.sig")
+            ) {
+                const newPath = filePath.replace(
+                    "Falcon Flow",
+                    `Falcon Flow_${target}`
+                );
+                // const newPath = path.join(path.dirname(filePath), newFileName);
+                console.error(`newPath: ${newPath}`);
 
-    for (const filePath of file_paths) {
-        if (filePath.includes("Falcon Flow.app.tar.gz") || filePath.includes("Falcon Flow.app.tar.gz.sig")) {
-            const newPath = filePath.replace("Falcon Flow", `Falcon Flow_${target}`);
-            // const newPath = path.join(path.dirname(filePath), newFileName);
-            console.error(`newPath: ${newPath}`);
-
-            try {
-                await new Promise((resolve, reject) => {
-                    fs.rename(filePath, newPath, (err) => {
-                        if (err) {
-                            console.error(`Error renaming file: ${filePath}`, err);
-                            renamedPaths.push(filePath);
-                            reject(err);
-                        } else {
-                            console.log(`File renamed: ${filePath} -> ${newPath}`);
-                            renamedPaths.push(newPath);
-                            resolve();
-                        }
+                try {
+                    await new Promise((resolve, reject) => {
+                        fs.rename(filePath, newPath, (err) => {
+                            if (err) {
+                                console.error(
+                                    `Error renaming file: ${filePath}`,
+                                    err
+                                );
+                                renamedPaths.push(filePath);
+                                reject(err);
+                            } else {
+                                console.log(
+                                    `File renamed: ${filePath} -> ${newPath}`
+                                );
+                                renamedPaths.push(newPath);
+                                resolve();
+                            }
+                        });
                     });
-                });
-            } catch (err) {
-                console.error(`Error renaming file: ${filePath}`, err);
-                renamedPaths.push(filePath);
+                } catch (err) {
+                    console.error(`Error renaming file: ${filePath}`, err);
+                    renamedPaths.push(filePath);
+                }
+            } else {
+                renamedPaths.push(filePath); // 不需要修改的文件直接返回
             }
-        } else {
-            renamedPaths.push(filePath); // 不需要修改的文件直接返回
         }
+    } else {
+        return file_paths;
     }
 
     return renamedPaths;
 }
 
-const modifiedArtifactPaths = await renameFiles(file_paths, target).catch(console.error);
+const modifiedArtifactPaths = await renameFiles(file_paths, target).catch(
+    console.error
+);
 
 const quotedFilePaths = modifiedArtifactPaths
     .map((file) => `"${file}"`)

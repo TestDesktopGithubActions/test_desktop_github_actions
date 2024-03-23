@@ -124,12 +124,12 @@ jobs:
       CARGO_NET_GIT_FETCH_WITH_CLI: true
     runs-on: ${{ matrix.settings.platform }}
     steps:
-      - name: Get url to upload to release from output
-        env:
-          url: ${{ steps.create_release.outputs.upload_url }}
-        run: |
-          mkdir artifact
-          echo $url > artifact/url.txt
+      # - name: Get url to upload to release from output
+      #   env:
+      #     url: ${{ steps.create_release.outputs.upload_url }}
+      #   run: |
+      #     mkdir artifact
+      #     echo $url > artifact/url.txt
 
       - uses: actions/checkout@v3
         # with:
@@ -137,8 +137,8 @@ jobs:
       # 安装 Node.js
       - name: Setup node
         uses: actions/setup-node@v3
-        # with:
-        #   node-version: 18.x
+        with:
+          node-version: 18.x
 
       # 安装 Rust
       - name: Install Rust nightly
