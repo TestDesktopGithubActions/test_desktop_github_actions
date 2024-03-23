@@ -193,11 +193,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Give GitHub Actions access to private repo
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: |
-            ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+      # - name: Give GitHub Actions access to private repo
+      #   uses: webfactory/ssh-agent@v0.8.0
+      #   with:
+      #     ssh-private-key: |
+      #       ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
 
       - name: Update cargo config to use Git CLI
         run: |
@@ -212,13 +212,13 @@ jobs:
       # - name: Remove duplicate key in config.toml
       #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
 
-      - name: Setup SSH for private repository access
-        run: |
-          echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-        env:
-          SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+      # - name: Setup SSH for private repository access
+      #   run: |
+      #     echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     ssh-keyscan github.com >> ~/.ssh/known_hosts
+      #   env:
+      #     SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
 
       # 安装依赖执行构建，以及推送 github release
       - name: Install app dependencies and build it
