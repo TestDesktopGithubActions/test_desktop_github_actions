@@ -16,8 +16,8 @@ pub(crate) static LANGUAGE: once_cell::sync::Lazy<
     std::sync::Arc::new(tokio::sync::RwLock::new(crate::i18n::Language::English))
 });
 
-// const API: &str = "https://api.ffdev.cc/";
-const API: &str = "https://api.falconflow.io/";
+const API: &str = "https://api.ffdev.cc/";
+// const API: &str = "https://api.falconflow.io/";
 // const API: &str = "http://localhost:17776/";
 
 pub(crate) static HTTP_PARAMS: once_cell::sync::Lazy<

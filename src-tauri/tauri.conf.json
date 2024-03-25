@@ -46,6 +46,9 @@
           "http://**",
           "https://**"
         ]
+      },
+      "process": {
+        "relaunch": true
       }
     },
     "bundle": {
@@ -91,7 +94,7 @@
     },
     "updater": {
       "active": true,
-      "dialog": true,
+      "dialog": false,
       "endpoints": [
         "https://ram-flux.github.io//install.json"
       ],

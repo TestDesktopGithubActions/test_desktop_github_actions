@@ -15,7 +15,7 @@ use tauri_plugin_autostart::MacosLauncher;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    println!("Starting ...");
+    // println!("Starting ...");
     // let _ = fix_path_env::fix();
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
@@ -26,6 +26,28 @@ async fn main() -> anyhow::Result<()> {
             ram_flux::service::tauri::action::event_handler(app, event)
         })
         .setup(|app| {
+            // let handle = app.handle();
+            // tauri::async_runtime::spawn(async move {
+            //     let res = handle.updater();
+            //     println!("updater: res: {res:?}");
+            //     match res.check().await {
+            //         Ok(update) => {
+            //             // println!("update: {update}");
+            //             let res = update
+            //                 .header(
+            //                     "Authorization",
+            //                     "Bearer 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",
+            //                 )
+            //                 .unwrap()
+            //                 .download_and_install()
+            //                 .await;
+            //             println!("download_and_install res: {res:?}");
+            //         }
+            //         Err(e) => {
+            //             println!("ERROR: {}", e);
+            //         }
+            //     }
+            // });
             // save system tray handle to update icon
             ram_flux::SYSTEM_TRAY_HANDLE.set(app.tray_handle()).unwrap();
             // don't show on the taskbar/springboard

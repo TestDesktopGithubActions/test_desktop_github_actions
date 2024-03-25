@@ -469,13 +469,15 @@ impl NodeListReq {
 pub struct NodeStartReq {
     guid: String,
     token: String,
+    pkey: String,
 }
 
 impl NodeStartReq {
-    pub fn new(guid: &str, token: &str) -> Self {
+    pub fn new(guid: &str, token: &str,pkey:&str) -> Self {
         Self {
             guid: guid.to_string(),
             token: token.to_string(),
+            pkey: pkey.to_string(),
         }
     }
 
@@ -491,14 +493,17 @@ impl NodeStartReq {
     pub(crate) async fn node_start(
         self,
         http: &crate::utils::http::HttpParams,
+        private: String,
     ) -> crate::utils::response::Response<serde_json::Value> {
+
         let path_query = http
-            .path_query(&format!("node/start?d=/node/start&guid={}", self.guid))
+            .path_query(&format!("node/start?d=/node/start&guid={}&pkey={}", self.guid,self.pkey))
             .await;
         let (key, _, signature) = self.get_key_and_signature(&path_query).await?;
         let url = http
-            .uri(format!("node/start?d=/node/start&guid={}", self.guid))
+            .uri(format!("node/start?d=/node/start&guid={}&pkey={}", self.guid,self.pkey))
             .await;
+
         let text = http
             .send_request(
                 reqwest::Method::GET,
@@ -511,11 +516,13 @@ impl NodeStartReq {
                 ]),
             )
             .await?;
+
         let mut res: crate::utils::response::Response<serde_json::Value> = (key, text.as_str())
             .try_into()
             .map_err(|e| crate::Error::BadRequest(crate::NodeError::Middleware(e).into()))?;
+
         if let Some(result) = res.result {
-            res = NodeStartReq::connect(result).await?;
+            res = NodeStartReq::connect(result,private).await?;
             if res.code == 200 {
                 crate::service::tauri::action::update_system_tray_icon(true)?;
                 // let mut flag = crate::service::node::command::LINK_FLAG.write().unwrap();
@@ -524,21 +531,27 @@ impl NodeStartReq {
                 NodeEndReq::disconnect().await;
             }
         }
-        tracing::info!("[node_start] res: {res:?}");
+        // tracing::info!("[node_start] res: {res:?}");
         res
     }
 
     async fn connect(
         result: serde_json::Value,
+        private: String,
     ) -> Result<crate::utils::response::Response<serde_json::Value>, crate::Error> {
-        let req: crate::service::node::action::StartReq =
+        
+        let mut req: crate::service::node::action::StartReq =
             serde_json::from_value(result).map_err(|_| {
                 crate::BadRequest::Node(crate::NodeError::Parse(crate::ParseError::JsonDeserialize))
             })?;
+        req.client_prikey = private;
+
         let mut node = crate::utils::http::NODEINFO.lock().await;
         node.pk = req.client_pubkey.clone();
         node.node_port = req.node_port;
+
         let connect_res = crate::service::node::action::connect(req).await;
+
         serde_json::from_str(&connect_res).map_err(|_| {
             crate::BadRequest::Node(crate::NodeError::Parse(crate::ParseError::JsonDeserialize))
                 .into()

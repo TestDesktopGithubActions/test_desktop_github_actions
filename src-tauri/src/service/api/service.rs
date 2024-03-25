@@ -70,15 +70,26 @@ pub(crate) async fn node_start(
     guid: &str,
     http: &crate::utils::http::HttpParams,
 ) -> crate::utils::response::Response<serde_json::Value> {
+    // tracing::info!("[guid] guid res: {:?}", guid);
+
     if token.is_empty() {
         return Err(crate::Error::BadRequest(
             crate::NodeError::Param(crate::ParamError::TokenMissing).into(),
         ))
         .into();
     }
-    tracing::info!("[node_start] guid: {guid}");
-    let req = crate::rpc::param::NodeStartReq::new(guid, token);
-    req.node_start(http).await
+    // tracing::error!("[node_start] guid: {guid}");
+
+
+    let private = x25519_dalek::StaticSecret::random_from_rng(rand_core::OsRng);
+    let public_key = x25519_dalek::PublicKey::from(&private);
+    let public_key = hex::encode(public_key.as_bytes());
+    let private = hex::encode(private.to_bytes());
+
+    let req = crate::rpc::param::NodeStartReq::new(guid, token,public_key.as_str());
+    // tracing::error!("[node_start] req: {:#?}",req);
+
+    req.node_start(http,private).await
 }
 
 pub(crate) async fn node_end(
