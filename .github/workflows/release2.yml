@@ -1,0 +1,413 @@
+# 可选，将显示在 GitHub 存储库的“操作”选项卡中的工作流名称
+name: Release CI
+
+# 指定此工作流的触发器
+on:
+  push:
+    # 匹配特定标签 (refs/tags)
+    tags:
+      - "v*" # 推送事件匹配 v*, 例如 v1.0，v20.15.10 等来触发工作流
+
+# 需要运行的作业组合
+jobs:
+  # 任务：创建 release 版本
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      RELEASE_UPLOAD_ID: ${{ steps.create_release.outputs.id }}
+
+    steps:
+      - name: Checkout public repository
+        uses: actions/checkout@v3
+        # with:
+        #   repository: TestDesktopGithubActions/desktop_release
+        # path: another_public_repo
+
+      # - name: Get tag name from ref
+      #   shell: bash
+      #   run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+      #   id: get_tag
+      # - name: Create tag in public repository
+      #   run: |
+      #     cd ${{github.workspace}}/desktop_release
+      #     git tag ${{ steps.get_tag.outputs.tag }}
+      #     git push --tags --porcelain
+      # 根据查询到的版本号创建 release
+      - name: Create Release
+        id: create_release
+        # uses: actions/create-release@v1.1.4
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_REPOSITORY: ram-flux/desktop_release
+        with:
+          body: "See the assets to download this version and install."
+
+        # uses: actions/create-release@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # A personal access token
+        # with:
+        #   # tag_name: ${{ steps.get_tag.outputs.tag }}
+        #   # release_name: Release ${{ steps.get_tag.outputs.tag }}
+        #   tag_name: ${{ github.ref }}
+        #   release_name: Release ${{ github.ref }}
+        #   draft: false
+        #   prerelease: false
+        #   owner: TestDesktopGithubActions
+        #   repo: desktop_release
+
+      # - name: Run Clone action
+      #   uses: andrewthetechie/gha-clone-releases@v1
+      #   with:
+      #     token: ${{ secrets.PERSONAL_TOKEN }}
+      #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
+      #     dest_repo: TestDesktopGithubActions/desktop_release
+      #     copy_assets: true
+      - name: Get url to upload to release from output
+        env:
+          url: ${{ steps.create_release.outputs.upload_url }}
+        run: |
+          mkdir artifact
+          echo $url > artifact/url.txt
+
+      - name: Upload artifact to share url with other jobs
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: artifact/url.txt
+  # 编译 Tauri
+  build-tauri:
+    needs: [create-release]
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          # - platform: 'macos-latest'
+          #   args: '--target universal-apple-darwin'
+          - platform: "macos-latest"
+            args: "--target x86_64-apple-darwin"
+            target: x64
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
+            target: aarch64
+          - platform: "windows-latest"
+            args: "--target x86_64-pc-windows-msvc"
+            target: x64
+
+        # list:
+        #   [darwin-aarch64, darwin-x86_64, windows-x86_64, windows-x86_64-msi]
+        # include:
+        #   - archtec: darwin-aarch64
+        #     platform: macos
+        #     target: aarch64
+        #     installer: dmg
+        #     installer_dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*
+        #     # macos_dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/x86_64-apple-darwin/release/bundle/macos/*
+        #   - archtec: darwin-x86_64
+        #     platform: macos
+        #     target: x86_64
+        #     installer: dmg
+        #     dir: /Users/runner/work/${{ github.event.repository.name}}/src-tauri/target/
+        #   - archtec: windows-x86_64
+        #     platform: windows
+        #     target: x86_64
+        #     installer: exe
+        #     installer_dir: D:\a\test_desktop_github_actions\test_desktop_github_actions\src-tauri\target\x86_64-pc-windows-msvc\release\bundle\nsis/*
+
+        #   - archtec: windows-x86_64-msi
+        #     platform: windows
+        #     target: x86_64
+        #     installer: msi
+        #     installer_dir: D:\a\test_desktop_github_actions\test_desktop_github_actions\src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi/*
+
+    env:
+      CARGO_NET_GIT_FETCH_WITH_CLI: true
+    runs-on: ${{ matrix.settings.platform }}
+    steps:
+      # - name: Get url to upload to release from output
+      #   env:
+      #     url: ${{ steps.create_release.outputs.upload_url }}
+      #   run: |
+      #     mkdir artifact
+      #     echo $url > artifact/url.txt
+
+      - uses: actions/checkout@v3
+        # with:
+        #   repository: ram-flux/desktop_release
+      # 安装 Node.js
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      # 安装 Rust
+      - name: Install Rust nightly
+        # uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          # toolchain: nightly-2024-01-12
+          toolchain: nightly
+          # default: true
+          target: aarch64-apple-darwin
+
+      # 使用 Rust 缓存，加快安装速度
+      - uses: Swatinem/rust-cache@v2
+
+      - name: install dependencies (ubuntu only)
+        if: matrix.settings.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
+
+      # 可选，如果需要将 Rust 编译为 wasm，则安装 wasm-pack
+      # - uses: jetli/wasm-pack-action@v0.3.0
+      #   with:
+      #     # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')
+      #     version: v0.9.1
+
+      # 可选，如果需要使用 rsw 构建 wasm，则安装 rsw
+      # - name: Install rsw
+      #   run: cargo install rsw
+
+      # 安装 pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        id: pnpm-install
+        with:
+          version: 8.7.4
+          run_install: false
+
+      # 获取 pnpm 缓存
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      # 设置 pnpm 缓存
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Give GitHub Actions access to private repo
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+
+      - name: Update cargo config to use Git CLI
+        run: |
+          echo "[net]" >> $HOME/.cargo/config.toml
+          echo "git-fetch-with-cli = true" >> $HOME/.cargo/config.toml
+
+      - name: Print config.toml content
+        run: cat $HOME/.cargo/config.toml
+
+      # - name: Remove duplicate key in config.toml
+      #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
+      # - name: Remove duplicate key in config.toml
+      #   run: sed -i '' '/net/d' $HOME/.cargo/config.toml
+
+      - name: Setup SSH for private repository access
+        run: |
+          echo "${{ secrets.SECRET_REPO_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          SECRET_REPO_DEPLOY_KEY: ${{ secrets.SECRET_REPO_DEPLOY_KEY }}
+
+      # 安装依赖执行构建，以及推送 github release
+      - name: Install app dependencies and build it
+        run: |
+          echo "Installing application dependencies..."
+          pnpm install --no-frozen-lockfile
+          echo "Application dependencies installed."
+          echo "Building the application..."
+          pnpm bundle
+          echo "Application built successfully."
+        env:
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build tauri app
+        id: build_tauri_app
+        uses: tauri-apps/tauri-action@v0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        with:
+          releaseId: ${{ needs.create-release.outputs.RELEASE_UPLOAD_ID }}
+          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: "App v__VERSION__"
+          releaseBody: "See the assets to download this version and install."
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.settings.args }}
+          # repo: ram-flux/desktop_release
+        # outputs:
+        #   ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
+
+      # - name: Run Clone action
+      #   uses: andrewthetechie/gha-clone-releases@v1
+      #   with:
+      #     token: ${{ secrets.PERSONAL_TOKEN }}
+      #     src_repo: TestDesktopGithubActions/test_desktop_github_actions
+      #     dest_repo: TestDesktopGithubActions/desktop_release
+      #     copy_assets: true
+
+      # - name: Create Release With Asset
+      #   id: Release-AIO1
+      #   uses: Hs1r1us/Release-AIO@v2.0.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      # asset_files: './asset_file'
+
+      # - name: Duplicate Release With Asset to public_Repo
+      #   id: Release-AIO
+      #   uses: Hs1r1us/Release-AIO@v2.0.0
+      #   env:
+      #     # GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # You need a new token to access the target Repository
+      #     GITHUB_TOKEN: ${{ secrets.PRIVATE_TOKEN }} # You need a new token to access the target Repository
+      #   with:
+      #     tag_name: 'inherit' # Must use 'inherit' to get the latest release
+      #     body: 'hello world' # Will be added in the new release
+      #     repo: 'TestDesktopGithubActions/desktop_release' # The format is like owner/repo
+      #     # asset_files: './asset_file' # Will be added in the new release
+
+      # - name: Download artifact to get url to upload to release
+      #   uses: actions/download-artifact@v1
+      #   with:
+      #     name: artifact
+      # - name: Get url to upload to release from artifact
+      #   id: get_url
+      #   run: |
+      #     url=$(cat artifact/url.txt)
+      #     echo "##[set-output name=upload_url;]$url"
+
+      # uses: actions/upload-release-asset@v1.0.1
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
+      # with:
+      #   upload_url: ${{ steps.get_url.outputs.upload_url }}
+      #   asset_path: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
+      #   asset_name: ${{ steps.build_tauri_app.outputs.artifactPaths  }}
+      #   asset_content_type: application/octet-stream
+      # - name: Upload binaries to release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.PERSONAL_TOKEN }}
+      #     file: target/release/*
+      #     tag: ${{ github.ref }}
+
+      # - name: Install dependencies
+      #   run: yarn install
+
+      # - name: Add development dependencies
+      #   run: yarn add -D node-fetch @actions/github
+
+      # - name: Prepare artifact paths
+      #   id: prepare-paths
+      #   run: |
+      #     yarn prepare_artifact_paths
+      #     echo "artifactPath=~/new/artifact/file.txt" >> $GITHUB_ENV
+      #     # echo "::set-output name=artifactPaths::$artifactPaths"
+      #   env:
+      #     # ARTIFACT_PATHS: ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }}
+      #     ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
+      # run: |
+      #   const artifactPaths = ${{ needs.build-tauri.outputs.ARTIFACT_PATHS }};
+      #   console.log(JSON.stringify(artifactPaths));
+      #   core.setOutput('artifactPaths', artifactPaths.join('\n'));
+
+      - name: Create GH_TOKEN file
+        run: |
+          echo "${{ secrets.PERSONAL_TOKEN }}" > $HOME/gh_token.txt
+          chmod 600 $HOME/gh_token.txt  # 设置文件权限
+      - name: Run publish script
+        run: yarn publisher
+        env:
+          ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
+          TARGET: ${{ matrix.settings.target }}
+          PLATFORM: ${{ matrix.settings.platform }}
+          # GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
+          # shell: bash
+          # run: $GITHUB_ACTION_PATH/scripts/publish.sh
+
+      # - name: Print New Artifact Paths
+      #   run: |
+      #     echo "New Artifact Paths: ${{ env.artifactPath }}"
+      # - name: Upload release asset
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: my-artifact
+      #     path:  ${{ env.artifactPath }}
+      #       # ${{ steps.prepare-paths.outputs.artifactPaths }}
+
+    # outputs:
+    #   ARTIFACT_PATHS: ${{ steps.build_tauri_app.outputs.artifactPaths }}
+  # 生成静态资源并将其推送到 github pages
+  updater:
+    runs-on: ubuntu-latest
+    needs: [create-release, build-tauri]
+
+    steps:
+      # - name: Create API SSH private key file
+      #   # run: echo "$API_PRIVATE_KEY" > ~/.ssh/id_rsa
+      #   run: |
+      #     mkdir -p $HOME/.ssh  # 创建 .ssh 目录
+      #     echo "${{ secrets.API_PRIVATE_KEY }}" > $HOME/.ssh/api_id_rsa
+      #     chmod 600 $HOME/.ssh/api_id_rsa  # 设置私钥文件权限
+      #   env:
+      #     API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+
+      # - name: Print api_id_rsa content
+      #   run: cat $HOME/.ssh/api_id_rsa
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Add development dependencies
+        run: yarn add -D node-fetch @actions/github
+
+      - name: Install ssh2 package
+        run: yarn add ssh2
+
+      # - name: Run publish script
+      #   run: yarn publisher
+      #   env:
+      #     GH_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      # GITHUB_TOKEN: "token ${{ secrets.PERSONAL_TOKEN }}"
+      # shell: bash
+      # run: $GITHUB_ACTION_PATH/scripts/publish.sh
+
+      - name: Run updater script
+        run: yarn updater
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # RELEASE_KEY: ${{ secrets.RELEASE_KEY }}
+          # API_PRIVATE_KEY: ${{ secrets.API_PRIVATE_KEY }}
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          BOSS_LOGIN_BODY: ${{ secrets.BOSS_LOGIN_BODY }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          # external_repository: QuantumCat-957/QuantumCat-957.github.io
+          external_repository: ram-flux/ram-flux.github.io
+          publish_branch: main # default: gh-pages
+          publish_dir: ./updater
+          force_orphan: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
