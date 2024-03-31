@@ -3,7 +3,7 @@
 import fetch from "node-fetch";
 import { getOctokit, context } from "@actions/github";
 import fs from "fs";
-import ssh2 from "ssh2";
+// import ssh2 from "ssh2";
 
 import updatelog from "./updatelog.mjs";
 
