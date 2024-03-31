@@ -346,61 +346,61 @@ async function addPackageVersion(boss_login_token) {
     }
 }
 
-// 上传文件到api server
-async function uploadGitHubFileToServer(url, remoteFilePath, serverConfig) {
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                Accept: "application/octet-stream",
-                Authorization: `token ${personal_access_token}`,
-            },
-        });
+// // 上传文件到api server
+// async function uploadGitHubFileToServer(url, remoteFilePath, serverConfig) {
+//     try {
+//         const response = await fetch(url, {
+//             method: "GET",
+//             headers: {
+//                 Accept: "application/octet-stream",
+//                 Authorization: `token ${personal_access_token}`,
+//             },
+//         });
 
-        const fileData = await response.buffer();
-        await UploadPackage(fileData, remoteFilePath, serverConfig);
-    } catch (error) {
-        console.error("Error:", error);
-        return error;
-    }
-}
+//         const fileData = await response.buffer();
+//         await UploadPackage(fileData, remoteFilePath, serverConfig);
+//     } catch (error) {
+//         console.error("Error:", error);
+//         return error;
+//     }
+// }
 
-// 封装发送POST请求的函数
-async function UploadPackage(fileData, remoteFilePath, serverConfig) {
-    return new Promise((resolve, reject) => {
-        const conn = new ssh2.Client();
+// // 封装发送POST请求的函数
+// async function UploadPackage(fileData, remoteFilePath, serverConfig) {
+//     return new Promise((resolve, reject) => {
+//         const conn = new ssh2.Client();
 
-        conn.on("ready", function () {
-            console.log("SSH connection established");
+//         conn.on("ready", function () {
+//             console.log("SSH connection established");
 
-            conn.sftp(function (err, sftp) {
-                if (err) {
-                    conn.end();
-                    reject(err);
-                }
+//             conn.sftp(function (err, sftp) {
+//                 if (err) {
+//                     conn.end();
+//                     reject(err);
+//                 }
 
-                const writeStream = sftp.createWriteStream(remoteFilePath);
-                writeStream.on("close", function () {
-                    console.log("File transferred");
-                    conn.end();
-                    resolve();
-                });
-                writeStream.on("error", function (err) {
-                    console.error("File transfer error:", err);
-                    conn.end();
-                    reject(err);
-                });
+//                 const writeStream = sftp.createWriteStream(remoteFilePath);
+//                 writeStream.on("close", function () {
+//                     console.log("File transferred");
+//                     conn.end();
+//                     resolve();
+//                 });
+//                 writeStream.on("error", function (err) {
+//                     console.error("File transfer error:", err);
+//                     conn.end();
+//                     reject(err);
+//                 });
 
-                writeStream.write(fileData);
-                writeStream.end();
-            });
-        });
-        conn.on("error", function (err) {
-            console.error("SSH connection error:", err);
-            conn.end();
-            reject(err);
-        });
+//                 writeStream.write(fileData);
+//                 writeStream.end();
+//             });
+//         });
+//         conn.on("error", function (err) {
+//             console.error("SSH connection error:", err);
+//             conn.end();
+//             reject(err);
+//         });
 
-        conn.connect(serverConfig);
-    });
-}
+//         conn.connect(serverConfig);
+//     });
+// }
