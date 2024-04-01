@@ -32,8 +32,8 @@ cp.execSync(`gh auth login --with-token < ${tokenFilePath}`, {
 // const tokenFilePath = path.join(process.env.HOME, 'gh_token.txt');
 // const token = fs.readFileSync(tokenFilePath, { encoding: 'utf8' }).trim();
 // cp.execSync(`echo ${token} | gh auth login --with-token`, { stdio: 'inherit' });
-const file =
-    "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
+// const file =
+//     "https://github.com/TestDesktopGithubActions/test_desktop_github_actions/releases/download/v0.0.50/Falcon.Flow_0.0.50_x64-setup.nsis.zip";
 
 const parsedPaths = JSON.parse(artifact_paths);
 const artifactPaths = Array.isArray(parsedPaths) ? parsedPaths : [parsedPaths]; // 将单个路径转为数组
@@ -100,7 +100,7 @@ const quotedFilePaths = modifiedArtifactPaths
 
 const existingRelease = cp
     .execSync(
-        `gh release list -R https://github.com/TestDesktopGithubActions/desktop_release`
+        `gh release list -R https://github.com/ram-flux/desktop_release`
     )
     .toString()
     .split("\n")
@@ -109,13 +109,13 @@ const existingRelease = cp
 if (existingRelease.length > 0) {
     // 如果存在相同标签名的发布版本，则更新该发布版本
     cp.execSync(
-        `gh release upload ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        `gh release upload ${TAG} ${quotedFilePaths} -R https://github.com/ram-flux/desktop_release`,
         { stdio: "inherit" }
     );
 } else {
     // 如果不存在相同标签名的发布版本，则创建新的发布版本
     cp.execSync(
-        `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/TestDesktopGithubActions/desktop_release`,
+        `gh release create ${TAG} ${quotedFilePaths} -R https://github.com/ram-flux/desktop_release`,
         { stdio: "inherit" }
     );
 }
