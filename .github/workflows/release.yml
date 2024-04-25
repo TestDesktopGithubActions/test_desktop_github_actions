@@ -37,12 +37,12 @@ jobs:
         settings:
           # - platform: 'macos-latest'
           #   args: '--target universal-apple-darwin'
-          - platform: "macos-latest"
-            args: "--target x86_64-apple-darwin"
-            target: x64
           # - platform: "macos-latest"
-          #   args: "--target aarch64-apple-darwin"
-          #   target: aarch64
+          #   args: "--target x86_64-apple-darwin"
+          #   target: x64
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
+            target: aarch64
           # - platform: "windows-latest"
           #   args: "--target x86_64-pc-windows-msvc"
           #   target: x64
@@ -68,8 +68,8 @@ jobs:
         with:
           toolchain: nightly
           # default: true
-          targets: x86_64-apple-darwin 
-          # aarch64-apple-darwin aarch64-pc-windows-msvc
+          targets: aarch64-apple-darwin 
+          # aarch64-pc-windows-msvc x86_64-apple-darwin 
 
       # 使用 Rust 缓存，加快安装速度
       - uses: Swatinem/rust-cache@v2
