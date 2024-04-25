@@ -40,12 +40,12 @@ jobs:
           - platform: "macos-latest"
             args: "--target x86_64-apple-darwin"
             target: x64
-          - platform: "macos-latest"
-            args: "--target aarch64-apple-darwin"
-            target: aarch64
-          - platform: "windows-latest"
-            args: "--target x86_64-pc-windows-msvc"
-            target: x64
+          # - platform: "macos-latest"
+          #   args: "--target aarch64-apple-darwin"
+          #   target: aarch64
+          # - platform: "windows-latest"
+          #   args: "--target x86_64-pc-windows-msvc"
+          #   target: x64
           # - platform: "windows-latest"
           #   args: "--target aarch64-pc-windows-msvc"
           #   target: aarch64
@@ -68,7 +68,8 @@ jobs:
         with:
           toolchain: nightly
           # default: true
-          targets: aarch64-apple-darwin aarch64-pc-windows-msvc
+          targets: x86_64-apple-darwin 
+          # aarch64-apple-darwin aarch64-pc-windows-msvc
 
       # 使用 Rust 缓存，加快安装速度
       - uses: Swatinem/rust-cache@v2
